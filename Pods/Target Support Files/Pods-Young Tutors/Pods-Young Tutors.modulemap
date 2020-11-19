@@ -1,0 +1,6 @@
+framework module Pods_Young_Tutors {
+  umbrella header "Pods-Young Tutors-umbrella.h"
+
+  export *
+  module * { export * }
+}
