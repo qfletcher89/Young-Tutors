@@ -12,37 +12,31 @@ struct ClassView: View {
     @ObservedObject var model = ClassesModel()
     @State var searchFieldText = ""
     @State var customSearchText = ""
-    @State var isSearching = false
+    @State var classes = [Class]()
     var subject: Subject
     var boxWidth: CGFloat
     var color: Color
     
     var body: some View {
+        
         ScrollView {
             
             VStack {
-                
+
                 //Search bar
                 HStack {
                     Image(systemName: "magnifyingglass")
                         .foregroundColor(Color(UIColor.tertiaryLabel))
                     
-                    TextField("Search", text: $searchFieldText) { (changing) in
-                        withAnimation {
-                            print(changing)
-                            self.isSearching = changing
-                        }
-                    } onCommit: {
+                    TextField("Search", text: $searchFieldText) { (changing) in } onCommit: {
                         self.hideKeyboard()
                         self.searchFieldText = ""
                     }.onChange(of: searchFieldText) { (value) in
                         withAnimation {
-                            
                             self.customSearchText = value
                             
                         }
                     }
-                    
                     Spacer()
                     Button {
                         self.searchFieldText = ""
@@ -71,9 +65,6 @@ struct ClassView: View {
                                  course: course)
                             
                         }
-                        
-                        
-                        
                     }.padding(.leading, 20)
                     
                     Spacer()
@@ -90,43 +81,41 @@ struct ClassView: View {
                                  course: course)
                             
                         }
-                        
-                        
-                        
                     }.padding(.trailing, 20)
                 }
             }
             .onAppear {
-                model.getClasses(for: subject)
+                
+                model.getClasses(for: subject) { (classes) in
+                    self.classes = classes
+                }
             }
-            
             Spacer()
             
-        }
+        }.navigationTitle(Text(subject.id.capitalized))
+        
     }
     
     func decideData() -> [Class] {
         
-        if !isSearching {
-            return model.classes
+        if customSearchText == "" {
+            return self.classes
         } else {
             
             var resultArray = [Class]()
             
-            for course in model.classes {
+            for course in self.classes {
                 print(course.name)
                 
-                if course.name.contains(customSearchText.lowercased()) {
+                if course.name.contains(customSearchText.uppercased()) {
                     print("contains text")
                     resultArray.append(course)
                 }
-
+                
             }
             
             return resultArray
-            
         }
-        
     }
     
     func splitClasses() -> [[Class]] {

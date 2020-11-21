@@ -19,60 +19,52 @@ struct Card: View {
     
     var body: some View {
         
-        Button {
-            self.destinationIsActive = true
-        } label: {
+        HStack {
             
-            
-            HStack {
+            VStack(alignment: .leading) {
                 
-                NavigationLink(destination: decideDestination(), isActive: $destinationIsActive, label: {EmptyView()})
-                
-                VStack(alignment: .leading) {
+                HStack(alignment: .bottom) {
                     
-                    HStack(alignment: .bottom) {
+                    if let course = course {
                         
-                        if let course = course {
-                            
-                            Text(course.levels)
-                                .foregroundColor(.white)
-                                .opacity(0.5)
-                            
-                        } else {
-                            
-                            decideImage()
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .font(.system(size: 22, weight: .semibold))
-                                .frame(width: 24, height: 24)
-                                .opacity(mainText == "science" ? 0.5 : 1)
-                                .foregroundColor(.white)
-                        }
-                        Spacer()
-                        
-                        Text("\(number)")
+                        Text(course.levels)
                             .foregroundColor(.white)
-                            .font(.title3)
-                            .fontWeight(.semibold)
-                    }.frame(width: (boxWidth -  40))
-                    .padding(.bottom, 5)
-                    .padding(.horizontal)
+                            .opacity(0.5)
+                        
+                    } else {
+                        
+                        decideImage()
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .font(.system(size: 22, weight: .semibold))
+                            .frame(width: 24, height: 24)
+                            .opacity(mainText == "science" ? 0.5 : 1)
+                            .foregroundColor(.white)
+                    }
+                    Spacer()
                     
-                    Text("\(mainText.capitalized)")
+                    Text("\(number)")
                         .foregroundColor(.white)
-                        .font(.body)
+                        .font(.title3)
                         .fontWeight(.semibold)
-                        .frame(width: (boxWidth -  40), alignment: .leading)
-                        .padding(.horizontal)
-                }
+                }.frame(width: (boxWidth -  40))
+                .padding(.bottom, 5)
+                .padding(.horizontal)
                 
+                Text("\(mainText.capitalized)")
+                    .foregroundColor(.white)
+                    .font(.body)
+                    .fontWeight(.semibold)
+                    .frame(width: (boxWidth -  40), alignment: .leading)
+                    .padding(.horizontal)
             }
-            .padding(.vertical, 20)
-            .background(RoundedRectangle(cornerRadius: 30)
-                            .frame(width: boxWidth)
-                            .foregroundColor(color))
-            .shadow(color: decideColor().opacity(course == nil ? 0.4 : 0), radius: 40, x: 0, y: 20)
+            
         }
+        .padding(.vertical, 20)
+        .background(RoundedRectangle(cornerRadius: 30)
+                        .frame(width: boxWidth)
+                        .foregroundColor(color))
+        .shadow(color: color.opacity(course == nil ? 0.4 : 0), radius: 40, x: 0, y: 20)
     }
     
     func decideColor() -> Color {

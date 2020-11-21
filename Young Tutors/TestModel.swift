@@ -10,7 +10,6 @@ import FirebaseFirestore
 
 class TestModel: ObservableObject {
     
-    @Published var subjects = [Subject]()
     @Published var classes = [Class]()
     var db: Firestore!
     
@@ -46,7 +45,7 @@ class TestModel: ObservableObject {
                         
                     }
                     
-                    self.subjects = subjectsArray
+//                    self.subjects = subjectsArray
                     
                 } else {
                     print("could not get documents in snapshot")

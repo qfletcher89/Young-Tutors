@@ -11,8 +11,8 @@ struct SubjectsView: View {
     
     @ObservedObject var model = SubjectsModel()
     @State var searchFieldText = ""
+    //I do a custom value so I can animate the changing of the text in search field
     @State var customSearchText = ""
-    @State var isSearching = false
     
     var body: some View {
         
@@ -23,16 +23,18 @@ struct SubjectsView: View {
                 ScrollView {
                     VStack {
                         
-                        //Search Bar
+                        Button {
+                            model.uploadData()
+                        } label: {
+                            Text("upload data")
+                        }
+                        
+//                        Search Bar
                         HStack {
                             Image(systemName: "magnifyingglass")
                                 .foregroundColor(Color(UIColor.tertiaryLabel))
                             
-                            TextField("Search", text: $searchFieldText) { (changing) in
-                                withAnimation {
-                                    self.isSearching = changing
-                                }
-                            } onCommit: {
+                            TextField("Search", text: $searchFieldText) { (changing) in } onCommit: {
                                 self.hideKeyboard()
                                 self.searchFieldText = ""
                             }.onChange(of: searchFieldText) { (value) in
@@ -51,8 +53,6 @@ struct SubjectsView: View {
                                 Image(systemName: "xmark.circle")
                                     .foregroundColor(.white)
                             }
-
-                            
                         }
                         .padding(.horizontal)
                         .padding(.vertical, 10)
@@ -62,19 +62,19 @@ struct SubjectsView: View {
                         .padding(.vertical, 10)
                         
                         HStack {
-//                            if !splitSubjects()[1].isEmpty {
-//                                Spacer()
-//                            }
+
                             VStack {
                                 ForEach(splitSubjects()[0]) {subject in
                                     
                                     
-                                    //                                    let boxWidth = geometry.size.width * 0.43
-                                    
-                                    Card(boxWidth: boxWidth, color: decideColor(for: subject), mainText: subject.id, number: subject.count, isFromSubjectView: true)
-                                        .padding(.bottom)
-                                    
-                                    
+                                    NavigationLink(destination: ClassView(subject: subject, boxWidth: boxWidth, color: decideColor(for: subject))) {
+                                        Card(boxWidth: boxWidth,
+                                             color: decideColor(for: subject),
+                                             mainText: subject.id,
+                                             number: subject.count,
+                                             isFromSubjectView: true)
+                                            .padding(.bottom)
+                                    }
                                 }
                                 
                                 Spacer()
@@ -87,36 +87,35 @@ struct SubjectsView: View {
                             VStack {
                                 ForEach(splitSubjects()[1]) {subject in
                                     
-                                    
-                                    
-                                    Card(boxWidth: boxWidth, color: decideColor(for: subject), mainText: subject.id, number: subject.count, isFromSubjectView: true)
-                                        .padding(.bottom)
-                                    
+                                    NavigationLink(destination: ClassView(subject: subject, boxWidth: boxWidth, color: decideColor(for: subject))) {
+                                        Card(boxWidth: boxWidth,
+                                             color: decideColor(for: subject),
+                                             mainText: subject.id,
+                                             number: subject.count,
+                                             isFromSubjectView: true)
+                                            .padding(.bottom)
+                                    }
                                 }
                                 
                                 Spacer()
                                 
                             }.padding(.trailing, 20)
                             
-//                            Spacer()
-                            
-                            
                         }.padding(.top)
-                        //                    .background(Color(red: 12 / 255, green: 12 / 255, blue: 14 / 255).edgesIgnoringSafeArea(.all))
-                        .navigationTitle(Text("Schedule a Session"))
+                        
                     }
                 }
                 
                 .onAppear {
                     model.getSubjects()
                 }
-            }
+            }.navigationTitle(Text("Schedule a Session"))
         }
     }
     
     func decideData() -> [Subject] {
         
-        if !isSearching {
+        if customSearchText == "" {
             return model.subjects
         } else {
             
@@ -124,17 +123,14 @@ struct SubjectsView: View {
             
             for subject in model.subjects {
                 
-                if subject.id.contains(customSearchText) {
+                if subject.id.contains(customSearchText.lowercased()) {
 
                     resultArray.append(subject)
                 }
-                
             }
-            
             return resultArray
             
         }
-        
     }
     
     func splitSubjects() -> [[Subject]] {

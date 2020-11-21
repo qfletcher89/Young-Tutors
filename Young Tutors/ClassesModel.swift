@@ -22,7 +22,7 @@ class ClassesModel: ObservableObject {
         
     }
     
-    func getClasses(for subject: Subject) {
+    func getClasses(for subject: Subject, handler: @escaping ([Class]) -> Void) {
         
         db.collection("subjects").document(subject.id).collection("classes").getDocuments { (snapshot, error) in
             
@@ -59,10 +59,8 @@ class ClassesModel: ObservableObject {
                         
                         classArray.append(Class(id: document.documentID, name: name, levels: levels, sessions: sessionArray))
                         
-                        
-                        
                     }
-                    
+                    handler(classArray)
                     self.classes = classArray
                     
                 } else {
@@ -71,6 +69,7 @@ class ClassesModel: ObservableObject {
             }
         }
     }
+    
 }
 
 struct Class: Identifiable {

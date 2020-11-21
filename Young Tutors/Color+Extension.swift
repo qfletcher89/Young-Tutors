@@ -33,7 +33,7 @@ class Colors {
     
     let watermelon = Color(#colorLiteral(red: 0.929411768913269, green: 0.45098039507865906, blue: 0.4901960790157318, alpha: 1))
     let orange = Color(#colorLiteral(red: 0.8980392217636108, green: 0.49803921580314636, blue: 0.1921568661928177, alpha: 1))
-    let yellow = Color(#colorLiteral(red: 1, green: 0.8392156863, blue: 0.03921568627, alpha: 1))
+    let yellow = Color(#colorLiteral(red: 0.9960784314, green: 0.6588235294, blue: 0.1607843137, alpha: 1))
     let lime = Color(#colorLiteral(red: 0.6509804129600525, green: 0.7764706015586853, blue: 0.27450981736183167, alpha: 1))
     
     let teal = Color(#colorLiteral(red: 0.23529411852359772, green: 0.43921568989753723, blue: 0.501960813999176, alpha: 1))
