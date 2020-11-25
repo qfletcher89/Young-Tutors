@@ -14,7 +14,6 @@ struct Card: View {
     var color: Color
     var mainText: String
     var number: Int
-    var isFromSubjectView: Bool
     var course: Class?
     
     var body: some View {
@@ -45,7 +44,7 @@ struct Card: View {
                     
                     Text("\(number)")
                         .foregroundColor(.white)
-                        .font(.title3)
+                        .font(.system(.title3, design: .rounded))
                         .fontWeight(.semibold)
                 }.frame(width: (boxWidth -  40))
                 .padding(.bottom, 5)
@@ -53,7 +52,7 @@ struct Card: View {
                 
                 Text("\(mainText.capitalized)")
                     .foregroundColor(.white)
-                    .font(.body)
+                    .font(.system(.body, design: .rounded))
                     .fontWeight(.semibold)
                     .frame(width: (boxWidth -  40), alignment: .leading)
                     .padding(.horizontal)
@@ -63,8 +62,9 @@ struct Card: View {
         .padding(.vertical, 20)
         .background(RoundedRectangle(cornerRadius: 30)
                         .frame(width: boxWidth)
-                        .foregroundColor(color))
-        .shadow(color: color.opacity(course == nil ? 0.4 : 0), radius: 40, x: 0, y: 20)
+                        .foregroundColor(number == 0 ? self.cs().darkGrey : color))
+        .shadow(color: number == 0 ? color.opacity(0) : color.opacity(course == nil ? 0.4 : 0),
+                radius: 40, x: 0, y: 20)
     }
     
     func decideColor() -> Color {
@@ -119,21 +119,5 @@ struct Card: View {
         default:
             return Image("book")
         }
-        
     }
-    
-    func decideDestination() -> AnyView {
-        
-        if isFromSubjectView {
-            
-            return AnyView(ClassView(subject: Subject(id: mainText, count: number), boxWidth: boxWidth, color: color))
-            
-        } else {
-            
-            return AnyView(Text("schedule"))
-            
-        }
-        
-    }
-    
 }

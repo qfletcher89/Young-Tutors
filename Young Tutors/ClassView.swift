@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ClassView: View {
     
-    @ObservedObject var model = ClassesModel()
+    @ObservedObject var model = ClassModel()
     @State var searchFieldText = ""
     @State var customSearchText = ""
     @State var classes = [Class]()
@@ -22,7 +22,7 @@ struct ClassView: View {
         ScrollView {
             
             VStack {
-
+                
                 //Search bar
                 HStack {
                     Image(systemName: "magnifyingglass")
@@ -57,13 +57,13 @@ struct ClassView: View {
                     VStack {
                         ForEach(splitClasses()[0]) {course in
                             
-                            Card(boxWidth: boxWidth,
-                                 color: color,
-                                 mainText: course.name,
-                                 number: getSessionsCount(course: course),
-                                 isFromSubjectView: false,
-                                 course: course)
-                            
+                            NavigationLink(destination: SessionView(course: course)) {
+                                Card(boxWidth: boxWidth,
+                                     color: color,
+                                     mainText: course.name,
+                                     number: getSessionsCount(course: course),
+                                     course: course)
+                            }.disabled(getSessionsCount(course: course) == 0 ? true : false)  
                         }
                     }.padding(.leading, 20)
                     
@@ -73,13 +73,13 @@ struct ClassView: View {
                         
                         ForEach(splitClasses()[1]) {course in
                             
-                            Card(boxWidth: boxWidth,
-                                 color: color,
-                                 mainText: course.name,
-                                 number: getSessionsCount(course: course),
-                                 isFromSubjectView: false,
-                                 course: course)
-                            
+                            NavigationLink(destination: SessionView(course: course)) {
+                                Card(boxWidth: boxWidth,
+                                     color: color,
+                                     mainText: course.name,
+                                     number: getSessionsCount(course: course),
+                                     course: course)
+                            }.disabled(getSessionsCount(course: course) == 0 ? true : false)
                         }
                     }.padding(.trailing, 20)
                 }
@@ -92,7 +92,16 @@ struct ClassView: View {
             }
             Spacer()
             
-        }.navigationTitle(Text(subject.id.capitalized))
+        }//.navigationTitle(Text(subject.id.capitalized))
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                HStack {
+                    Image("gym")
+                    Text(subject.id.capitalized)
+                }
+            }
+        }
+        .background(self.cs().background.edgesIgnoringSafeArea(.all))
         
     }
     

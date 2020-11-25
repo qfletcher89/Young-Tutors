@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @ObservedObject var model = ClassesModel()
+    @ObservedObject var model = ClassModel()
     var subject: Subject
     @State var classes = [Class]()
     

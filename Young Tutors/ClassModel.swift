@@ -7,8 +7,9 @@
 
 import Foundation
 import FirebaseFirestore
+import FirebaseAuth
 
-class ClassesModel: ObservableObject {
+class ClassModel: ObservableObject {
     
     @Published var classes = [Class]()
     var db: Firestore!
@@ -49,10 +50,17 @@ class ClassesModel: ObservableObject {
                         if let sessions = data["sessions"] as? [String: [String]] {
                             for session in sessions {
                                 
-                                let time = session.key
+                                let id = session.key
                                 let tutors = session.value
+                                let time = id.split(separator: "-").last!
+                                let day = id.split(separator: "-").first!
                                 
-                                sessionArray.append(Session(id: time, tutors: tutors))
+                                let session = Session(id: id,
+                                                      day: day.description,
+                                                      time: time.description,
+                                                      tutors: tutors)
+                                
+                                sessionArray.append(session)
                                 
                             }
                         }
@@ -84,6 +92,37 @@ struct Class: Identifiable {
 struct Session: Identifiable {
     
     var id: String
+    var day: String
+    var time:String
     var tutors: [String]
+    var selectedTutor: String
+    
+    init(id: String,
+         day: String,
+         time:String,
+         tutors: [String]) {
+        
+        self.id = id
+        self.day = day
+        self.time = time
+        self.tutors = tutors
+        self.selectedTutor = tutors.first!
+        
+    }
+    
+}
+
+//temp create session
+extension ClassModel {
+    
+    func createSession(at time: String, with tutor: String) {
+        
+        if let profile = Auth.auth().currentUser {
+        db.collection("events").addDocument(data: ["isCompleted": false,
+                                                   "student": profile.uid,
+                                                   "time":time,
+                                                   "tutor":tutor])
+        }
+    }
     
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SubjectsView: View {
     
-    @ObservedObject var model = SubjectsModel()
+    @ObservedObject var model: SubjectsModel
     @State var searchFieldText = ""
     //I do a custom value so I can animate the changing of the text in search field
     @State var customSearchText = ""
@@ -23,13 +23,6 @@ struct SubjectsView: View {
                 ScrollView {
                     VStack {
                         
-                        Button {
-                            model.uploadData()
-                        } label: {
-                            Text("upload data")
-                        }
-                        
-//                        Search Bar
                         HStack {
                             Image(systemName: "magnifyingglass")
                                 .foregroundColor(Color(UIColor.tertiaryLabel))
@@ -71,10 +64,9 @@ struct SubjectsView: View {
                                         Card(boxWidth: boxWidth,
                                              color: decideColor(for: subject),
                                              mainText: subject.id,
-                                             number: subject.count,
-                                             isFromSubjectView: true)
+                                             number: subject.count)
                                             .padding(.bottom)
-                                    }
+                                    }.disabled(subject.count == 0 ? true : false)
                                 }
                                 
                                 Spacer()
@@ -91,10 +83,9 @@ struct SubjectsView: View {
                                         Card(boxWidth: boxWidth,
                                              color: decideColor(for: subject),
                                              mainText: subject.id,
-                                             number: subject.count,
-                                             isFromSubjectView: true)
+                                             number: subject.count)
                                             .padding(.bottom)
-                                    }
+                                    }.disabled(subject.count == 0 ? true : false)
                                 }
                                 
                                 Spacer()
@@ -105,11 +96,13 @@ struct SubjectsView: View {
                         
                     }
                 }
-                
-                .onAppear {
-                    model.getSubjects()
-                }
             }.navigationTitle(Text("Schedule a Session"))
+            .navigationBarItems(trailing: Button(action: {
+                model.getSubjects()
+            }, label: {
+                Image("reload")
+            }))
+            .background(self.cs().background.edgesIgnoringSafeArea(.all))
         }
     }
     

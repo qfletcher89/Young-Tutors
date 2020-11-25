@@ -17,6 +17,30 @@ extension View {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
     
+    func centered() -> some View {
+        
+        return self.modifier(Centered())
+        
+    }
+    
+}
+
+struct Centered: ViewModifier {
+    
+    func body(content: Content) -> some View {
+        
+        HStack {
+            
+            Spacer()
+            
+            content
+            
+            Spacer()
+            
+        }
+        
+    }
+    
 }
 
 class Colors {
@@ -52,7 +76,7 @@ class Colors {
     let magenta = Color(#colorLiteral(red: 0.6078431606292725, green: 0.364705890417099, blue: 0.7098039388656616, alpha: 1))
     
     let white = Color(#colorLiteral(red: 0.929411768913269, green: 0.9450980424880981, blue: 0.9490196108818054, alpha: 1))
-    let background = Color(#colorLiteral(red: 0.2352941176, green: 0.2352941176, blue: 0.262745098, alpha: 0.1))
+    let background = Color(#colorLiteral(red: 0.07058823529, green: 0.07058823529, blue: 0.07058823529, alpha: 1))
     
     let card = Color(red: 142 / 255, green: 142 / 255, blue: 147 / 255)
     
