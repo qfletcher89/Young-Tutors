@@ -8,35 +8,23 @@
 import SwiftUI
 
 struct ContentView: View {
-    
-    @ObservedObject var model = ClassModel()
-    var subject: Subject
-    @State var classes = [Class]()
-    
-    init(subject: Subject) {
-        
-        self.subject = subject
-//        model.getClasses(for: subject)
-        print("content view for \(subject.id) was initialized)")
-    }
+   
     
     var body: some View {
-        
-        VStack {
-            Text("hello hello")
+        NavigationView{
             
-            ForEach(self.classes) {course in
-                
-                Text(course.name)
-                
+            NavigationLink(destination: Text("destinaiot")) {
+                Text("line")
             }
-        }.onAppear {
-            model.getClasses(for: subject) { (classes) in
-                self.classes = classes
-                print("were done")
-            }
+            
         }
-        
     }
 }
 
+struct DestinationView: View {
+    
+    var body: some View {
+    Text("DestinationView")
+        .navigationBarHidden(true)
+    }
+}

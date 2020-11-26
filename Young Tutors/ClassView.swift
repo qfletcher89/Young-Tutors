@@ -9,100 +9,112 @@ import SwiftUI
 
 struct ClassView: View {
     
+    @Environment (\.self.presentationMode) var presentationMode
     @ObservedObject var model = ClassModel()
     @State var searchFieldText = ""
     @State var customSearchText = ""
     @State var classes = [Class]()
+    
     var subject: Subject
     var boxWidth: CGFloat
     var color: Color
     
+    
+    init(subject: Subject,
+         boxWidth: CGFloat,
+         color: Color) {
+        
+        self.subject = subject
+        self.boxWidth = boxWidth
+        self.color = color
+        
+    }
+    
     var body: some View {
         
-        ScrollView {
-            
-            VStack {
+        GeometryReader { geometry in
+            ScrollView {
                 
-                //Search bar
-                HStack {
-                    Image(systemName: "magnifyingglass")
-                        .foregroundColor(Color(UIColor.tertiaryLabel))
+                VStack {
                     
-                    TextField("Search", text: $searchFieldText) { (changing) in } onCommit: {
-                        self.hideKeyboard()
-                        self.searchFieldText = ""
-                    }.onChange(of: searchFieldText) { (value) in
-                        withAnimation {
-                            self.customSearchText = value
-                            
-                        }
-                    }
-                    Spacer()
-                    Button {
-                        self.searchFieldText = ""
-                        self.hideKeyboard()
-                    } label: {
-                        Image(systemName: "xmark.circle")
-                            .foregroundColor(.white)
-                    }
-                }.padding(.horizontal)
-                .padding(.vertical, 10)
-                .background(RoundedRectangle(cornerRadius: 15)
-                                .foregroundColor(self.cs().black))
-                .padding(.horizontal)
-                .padding(.vertical, 10)
-                
-                HStack(alignment: .top) {
-                    
-                    VStack {
-                        ForEach(splitClasses()[0]) {course in
-                            
-                            NavigationLink(destination: SessionView(course: course)) {
-                                Card(boxWidth: boxWidth,
-                                     color: color,
-                                     mainText: course.name,
-                                     number: getSessionsCount(course: course),
-                                     course: course)
-                            }.disabled(getSessionsCount(course: course) == 0 ? true : false)  
-                        }
-                    }.padding(.leading, 20)
-                    
-                    Spacer()
-                    
-                    VStack {
+                    //Search bar
+                    HStack {
+                        Image(systemName: "magnifyingglass")
+                            .foregroundColor(Color(UIColor.tertiaryLabel))
                         
-                        ForEach(splitClasses()[1]) {course in
-                            
-                            NavigationLink(destination: SessionView(course: course)) {
-                                Card(boxWidth: boxWidth,
-                                     color: color,
-                                     mainText: course.name,
-                                     number: getSessionsCount(course: course),
-                                     course: course)
-                            }.disabled(getSessionsCount(course: course) == 0 ? true : false)
+                        TextField("Search", text: $searchFieldText) { (changing) in } onCommit: {
+                            self.hideKeyboard()
+                            self.searchFieldText = ""
+                        }.onChange(of: searchFieldText) { (value) in
+                            withAnimation {
+                                self.customSearchText = value
+                                
+                            }
                         }
-                    }.padding(.trailing, 20)
+                        Spacer()
+                        Button {
+                            self.searchFieldText = ""
+                            self.hideKeyboard()
+                        } label: {
+                            Image(systemName: "xmark.circle")
+                                .foregroundColor(.white)
+                        }
+                    }.padding(.horizontal)
+                    .padding(.vertical, 10)
+                    .background(RoundedRectangle(cornerRadius: 15)
+                                    .foregroundColor(self.cs().black))
+                    .padding(.horizontal)
+                    .padding(.vertical, 10)
+                    
+                    HStack(alignment: .top) {
+                        
+                        VStack {
+                            ForEach(splitClasses()[0]) {course in
+                                
+                                NavigationLink(destination: SessionView(subject: subject, course: course)) {
+                                    Card(boxWidth: boxWidth,
+                                         color: color,
+                                         mainText: course.name,
+                                         number: getSessionsCount(course: course),
+                                         course: course)
+                                }.disabled(getSessionsCount(course: course) == 0 ? true : false)
+                            }
+                        }.padding(.leading, 20)
+                        
+                        Spacer()
+                        
+                        VStack {
+                            
+                            ForEach(splitClasses()[1]) {course in
+                                
+                                NavigationLink(destination: SessionView(subject: subject, course: course)) {
+                                    Card(boxWidth: boxWidth,
+                                         color: color,
+                                         mainText: course.name,
+                                         number: getSessionsCount(course: course),
+                                         course: course)
+                                }.disabled(getSessionsCount(course: course) == 0 ? true : false)
+                            }
+                        }.padding(.trailing, 20)
+                    }
                 }
+                
+                Spacer()
+                
             }
+            .navigationBarHidden(true)
             .onAppear {
                 
                 model.getClasses(for: subject) { (classes) in
                     self.classes = classes
                 }
-            }
-            Spacer()
-            
-        }//.navigationTitle(Text(subject.id.capitalized))
-        .toolbar {
-            ToolbarItem(placement: .principal) {
-                HStack {
-                    Image("gym")
-                    Text(subject.id.capitalized)
-                }
-            }
+            }.customNavBar(proxy: geometry, title: subject.id.capitalized, Button(action: {
+                self.presentationMode.wrappedValue.dismiss()
+                
+            }, label: {
+                Image("left")
+            }), nil)
         }
-        .background(self.cs().background.edgesIgnoringSafeArea(.all))
-        
     }
     
     func decideData() -> [Class] {
@@ -161,7 +173,9 @@ struct ClassView: View {
         
         for session in course.sessions {
             
-            count = count + session.tutors.count
+            if Int(session.day)! >= Calendar.current.component(.weekday, from: Date()) {
+                count = count + session.tutors.count
+            }
             
         }
         

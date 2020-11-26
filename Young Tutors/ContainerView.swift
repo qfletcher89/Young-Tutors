@@ -10,7 +10,7 @@ import FirebaseAuth
 
 struct ContainerView: View {
     
-    @State var selection = 0
+    @State var selection = 1
     let subjectsViewModel = SubjectsModel()
     
     var body: some View {

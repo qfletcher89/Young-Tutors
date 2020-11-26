@@ -5,13 +5,14 @@
 //  Created by Kendall Easterly on 11/18/20.
 //
 
-import Foundation
+import SwiftUI
 import FirebaseFirestore
 
 class SubjectsModel: ObservableObject {
     
     @Published var subjects = [Subject]()
     var db: Firestore!
+    var lastDocument: DocumentSnapshot? = nil
     
     init() {
         
@@ -44,9 +45,9 @@ class SubjectsModel: ObservableObject {
                         subjectsArray.append(Subject(id: id, count: count))
                         
                     }
-                    
+                    withAnimation{
                     self.subjects = subjectsArray
-                    
+                    }
                 } else {
                     print("could not get documents in snapshot")
                 }

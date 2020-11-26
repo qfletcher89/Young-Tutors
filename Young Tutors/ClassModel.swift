@@ -45,15 +45,31 @@ class ClassModel: ObservableObject {
                         let name = data["name"] as! String
                         let levels = data["levels"] as! String
                         
+                        var sessionDictionary = [String:[String]]()
+                        
+                        for object in data {
+                            
+                            if let sessions = object.value as? [String] {
+                                
+                                sessionDictionary[object.key] = sessions
+                                
+                            }
+                        }
+                        
                         var sessionArray = [Session]()
                         
-                        if let sessions = data["sessions"] as? [String: [String]] {
-                            for session in sessions {
-                                
-                                let id = session.key
-                                let tutors = session.value
-                                let time = id.split(separator: "-").last!
-                                let day = id.split(separator: "-").first!
+                        for session in sessionDictionary {
+                            
+                            let id = session.key
+                            let tutors = session.value
+                            let day = id[0]
+                            let protoTime = id.substring(fromIndex: 1)
+                            
+                            let time1 = protoTime[0]
+                            let time2 = protoTime.substring(fromIndex: 1)
+                            let time = time1 + ":" + time2
+                            
+                            if !tutors.isEmpty {
                                 
                                 let session = Session(id: id,
                                                       day: day.description,
@@ -61,7 +77,6 @@ class ClassModel: ObservableObject {
                                                       tutors: tutors)
                                 
                                 sessionArray.append(session)
-                                
                             }
                         }
                         
@@ -77,7 +92,6 @@ class ClassModel: ObservableObject {
             }
         }
     }
-    
 }
 
 struct Class: Identifiable {
@@ -112,16 +126,26 @@ struct Session: Identifiable {
     
 }
 
-//temp create session
+
+///For the handling of the session methods
 extension ClassModel {
     
-    func createSession(at time: String, with tutor: String) {
+    func createSession(at time: String, with tutor: String, subject: Subject, course: Class) {
+        
+        let funcCourse = subject.id + "-" + course.id
         
         if let profile = Auth.auth().currentUser {
-        db.collection("events").addDocument(data: ["isCompleted": false,
-                                                   "student": profile.uid,
-                                                   "time":time,
-                                                   "tutor":tutor])
+            db.collection("events").addDocument(data: ["isCompleted": false,
+                                                       "student": profile.uid,
+                                                       "time":time,
+                                                       "tutor":tutor,
+                                                       "class":funcCourse])
+            
+            db.collection("subjects")
+                .document(subject.id)
+                .collection("classes")
+                .document(course.id)
+                .setData([time:FieldValue.arrayRemove([tutor])], merge: true)
         }
     }
     

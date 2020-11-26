@@ -16,6 +16,25 @@ struct Card: View {
     var number: Int
     var course: Class?
     
+    init(boxWidth: CGFloat,
+    color: Color,
+    mainText: String,
+    number: Int,
+    course: Class?) {
+        
+        self.boxWidth = boxWidth
+        self.color = color
+        self.mainText = mainText
+        self.number = number
+        self.course = course
+        
+        if number == 0 {
+            self.color = Color(UIColor.quaternaryLabel)
+        }
+    }
+    
+    
+    
     var body: some View {
         
         HStack {
@@ -27,32 +46,33 @@ struct Card: View {
                     if let course = course {
                         
                         Text(course.levels)
-                            .foregroundColor(.white)
+                            .foregroundColor(color)
                             .opacity(0.5)
                         
                     } else {
                         
                         decideImage()
+                            .renderingMode(.template)
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .font(.system(size: 22, weight: .semibold))
                             .frame(width: 24, height: 24)
-                            .opacity(mainText == "science" ? 0.5 : 1)
-                            .foregroundColor(.white)
+                            .foregroundColor(color)
+                            .opacity(0.5)
                     }
                     Spacer()
                     
                     Text("\(number)")
-                        .foregroundColor(.white)
-                        .font(.system(.title3, design: .rounded))
+                        .foregroundColor(color)
+                        .font(.title3)
                         .fontWeight(.semibold)
                 }.frame(width: (boxWidth -  40))
                 .padding(.bottom, 5)
                 .padding(.horizontal)
                 
                 Text("\(mainText.capitalized)")
-                    .foregroundColor(.white)
-                    .font(.system(.body, design: .rounded))
+                    .foregroundColor(color)
+                    .font(.body)
                     .fontWeight(.semibold)
                     .frame(width: (boxWidth -  40), alignment: .leading)
                     .padding(.horizontal)
@@ -62,36 +82,7 @@ struct Card: View {
         .padding(.vertical, 20)
         .background(RoundedRectangle(cornerRadius: 30)
                         .frame(width: boxWidth)
-                        .foregroundColor(number == 0 ? self.cs().darkGrey : color))
-        .shadow(color: number == 0 ? color.opacity(0) : color.opacity(course == nil ? 0.4 : 0),
-                radius: 40, x: 0, y: 20)
-    }
-    
-    func decideColor() -> Color {
-        
-        switch mainText {
-        
-        case "computer science":
-            return self.cs().orange
-        case "math":
-            return self.cs().skyBlue
-        case "english":
-            return self.cs().navyBlue
-        case "science":
-            return self.cs().mint
-        case "social science":
-            return self.cs().red
-        case "performing arts":
-            return self.cs().magenta
-        case "world languages":
-            return self.cs().yellow
-        case "pe":
-            return self.cs().coffe
-        case "visual arts":
-            return self.cs().teal
-        default:
-            return self.cs().black
-        }
+                        .foregroundColor(self.cs().background6))
     }
     
     func decideImage() -> Image {

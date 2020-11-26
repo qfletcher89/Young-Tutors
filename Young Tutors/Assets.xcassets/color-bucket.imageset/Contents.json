@@ -6,10 +6,12 @@
       "scale" : "1x"
     },
     {
+      "filename" : "color-bucket@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "color-bucket@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

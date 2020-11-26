@@ -23,6 +23,15 @@ extension View {
         
     }
     
+    func customNavBar(proxy: GeometryProxy,
+                      title: String,
+                      _ leading: Button<Image>?,
+                      _ trailing: Button<Image>?) -> some View {
+        
+        return self.modifier(CustomNavBar(title: title, leading: leading, trailing: trailing, proxy: proxy))
+        
+    }
+    
 }
 
 struct Centered: ViewModifier {
@@ -38,10 +47,66 @@ struct Centered: ViewModifier {
             Spacer()
             
         }
+    }
+}
+
+struct CustomNavBar: ViewModifier {
+    
+    var title: String
+    var leading: Button<Image>?
+    var trailing: Button<Image>?
+    var proxy: GeometryProxy
+    
+    func body(content: Content) -> some View {
+        
+        ZStack(alignment: .top) {
+            
+            content
+                .padding(.top, proxy.safeAreaInsets.top)
+                .padding(.top)
+//                .padding(.top)
+            
+            VStack {
+                VStack {
+                    
+                    HStack {
+                        
+                        if let leadingItem = leading {
+                            
+                            leadingItem
+                            
+                        }
+                        
+                        Spacer()
+                        
+                        if let trailingItem = trailing {
+                            
+                            trailingItem
+                            
+                        }
+                    }.overlay(Text(title)
+                                .font(.title2)
+                                .fontWeight(.bold))
+                    
+                    .padding()
+                    
+                    Divider()
+                    
+                }
+                .padding(.top, proxy.safeAreaInsets.top)
+                .background(Rectangle().foregroundColor(Color(UIColor.systemBackground)))
+                .edgesIgnoringSafeArea(.top)
+                
+                Spacer()
+                
+            }
+            
+        }
         
     }
     
 }
+
 
 class Colors {
     
@@ -65,7 +130,7 @@ class Colors {
     let green = Color(#colorLiteral(red: 0.2235294133424759, green: 0.7960784435272217, blue: 0.4588235318660736, alpha: 1))
     let forestGreen = Color(#colorLiteral(red: 0.21176470816135406, green: 0.37254902720451355, blue: 0.25882354378700256, alpha: 1))
     
-    let navyBlue = Color(#colorLiteral(red: 0.2078431397676468, green: 0.29019609093666077, blue: 0.364705890417099, alpha: 1))
+    let navyBlue = Color(#colorLiteral(red: 0.48627451062202454, green: 0.5529412031173706, blue: 0.7215686440467834, alpha: 1))
     let skyBlue = Color(#colorLiteral(red: 0.23137255012989044, green: 0.6039215922355652, blue: 0.8509804010391235, alpha: 1))
     let ice = Color(#colorLiteral(red: 0.7254902124404907, green: 0.7921568751335144, blue: 0.9411764740943909, alpha: 1))
     let pink = Color(#colorLiteral(red: 0.9529411792755127, green: 0.49803921580314636, blue: 0.7647058963775635, alpha: 1))
@@ -76,8 +141,9 @@ class Colors {
     let magenta = Color(#colorLiteral(red: 0.6078431606292725, green: 0.364705890417099, blue: 0.7098039388656616, alpha: 1))
     
     let white = Color(#colorLiteral(red: 0.929411768913269, green: 0.9450980424880981, blue: 0.9490196108818054, alpha: 1))
-    let background = Color(#colorLiteral(red: 0.07058823529, green: 0.07058823529, blue: 0.07058823529, alpha: 1))
+    let background = Color(UIColor.systemBackground)
     
+    let background6 = Color(UIColor.secondarySystemBackground)
     let card = Color(red: 142 / 255, green: 142 / 255, blue: 147 / 255)
     
 }

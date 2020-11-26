@@ -23,6 +23,7 @@ struct SubjectsView: View {
                 ScrollView {
                     VStack {
                         
+                        //Search bar
                         HStack {
                             Image(systemName: "magnifyingglass")
                                 .foregroundColor(Color(UIColor.tertiaryLabel))
@@ -39,6 +40,7 @@ struct SubjectsView: View {
                             }
                             
                             Spacer()
+                            
                             Button {
                                 self.searchFieldText = ""
                                 self.hideKeyboard()
@@ -52,10 +54,11 @@ struct SubjectsView: View {
                         .background(RoundedRectangle(cornerRadius: 15)
                                         .foregroundColor(self.cs().black))
                         .padding(.horizontal)
-                        .padding(.vertical, 10)
+                        .padding(.vertical)
                         
-                        HStack {
-
+                        
+                        HStack(alignment: .top) {
+                            
                             VStack {
                                 ForEach(splitSubjects()[0]) {subject in
                                     
@@ -64,7 +67,8 @@ struct SubjectsView: View {
                                         Card(boxWidth: boxWidth,
                                              color: decideColor(for: subject),
                                              mainText: subject.id,
-                                             number: subject.count)
+                                             number: subject.count,
+                                             course: nil)
                                             .padding(.bottom)
                                     }.disabled(subject.count == 0 ? true : false)
                                 }
@@ -72,7 +76,6 @@ struct SubjectsView: View {
                                 Spacer()
                                 
                             }.padding(.leading, 20)
-                            
                             
                             Spacer()
                             
@@ -83,7 +86,8 @@ struct SubjectsView: View {
                                         Card(boxWidth: boxWidth,
                                              color: decideColor(for: subject),
                                              mainText: subject.id,
-                                             number: subject.count)
+                                             number: subject.count,
+                                             course: nil)
                                             .padding(.bottom)
                                     }.disabled(subject.count == 0 ? true : false)
                                 }
@@ -92,18 +96,20 @@ struct SubjectsView: View {
                                 
                             }.padding(.trailing, 20)
                             
-                        }.padding(.top)
-                        
+                        }
                     }
                 }
-            }.navigationTitle(Text("Schedule a Session"))
-            .navigationBarItems(trailing: Button(action: {
-                model.getSubjects()
-            }, label: {
-                Image("reload")
-            }))
+                .customNavBar(proxy: geometry, title: "Subjects", nil, Button(action: {
+                    self.model.getSubjects()
+                  }, label: {
+                    Image("reload")
+                  }))
+            }.navigationBarTitle("")
+            .navigationBarHidden(true)
             .background(self.cs().background.edgesIgnoringSafeArea(.all))
+            
         }
+        
     }
     
     func decideData() -> [Subject] {
@@ -117,7 +123,7 @@ struct SubjectsView: View {
             for subject in model.subjects {
                 
                 if subject.id.contains(customSearchText.lowercased()) {
-
+                    
                     resultArray.append(subject)
                 }
             }
