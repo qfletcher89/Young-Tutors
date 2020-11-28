@@ -62,7 +62,7 @@ struct ClassView: View {
                     }.padding(.horizontal)
                     .padding(.vertical, 10)
                     .background(RoundedRectangle(cornerRadius: 15)
-                                    .foregroundColor(self.cs().black))
+                                    .foregroundColor(Color(UIColor.tertiarySystemFill)))
                     .padding(.horizontal)
                     .padding(.vertical, 10)
                     
@@ -112,7 +112,7 @@ struct ClassView: View {
                 self.presentationMode.wrappedValue.dismiss()
                 
             }, label: {
-                Image("left")
+                AnyView(Image("left"))
             }), nil)
         }
     }

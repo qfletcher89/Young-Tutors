@@ -80,7 +80,7 @@ class ClassModel: ObservableObject {
                             }
                         }
                         
-                        classArray.append(Class(id: document.documentID, name: name, levels: levels, sessions: sessionArray))
+                        classArray.append(Class(id: document.documentID, name: name, levels: levels, sessions: sessionArray, subject: subject.id))
                         
                     }
                     handler(classArray)
@@ -100,6 +100,7 @@ struct Class: Identifiable {
     var name: String
     var levels: String
     var sessions: [Session]
+    var subject: String
     
 }
 

@@ -9,7 +9,6 @@ import SwiftUI
 
 struct Card: View {
     
-    @State var destinationIsActive = false
     var boxWidth: CGFloat
     var color: Color
     var mainText: String
@@ -28,11 +27,13 @@ struct Card: View {
         self.number = number
         self.course = course
         
-        if number == 0 {
-            self.color = Color(UIColor.quaternaryLabel)
+        if course != nil {
+            if number == 0 {
+                self.color = Color(UIColor.quaternaryLabel)
+            }
         }
+        
     }
-    
     
     
     var body: some View {
@@ -107,6 +108,8 @@ struct Card: View {
             return Image("gym")
         case "visual arts":
             return Image("color-bucket")
+        case "times":
+            return Image("clock")
         default:
             return Image("book")
         }

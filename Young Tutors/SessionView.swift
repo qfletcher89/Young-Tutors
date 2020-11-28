@@ -72,6 +72,7 @@ struct SessionView: View {
                                 
                                 Button {
                                     print("navigate to tutor view")
+                                    //modal
                                 } label: {
                                     Image("info")
                                         .foregroundColor(self.cs().watermelon)
@@ -105,6 +106,7 @@ struct SessionView: View {
                                             
                                             Button {
                                                 print("navigate to bio")
+                                                //modal
                                             } label: {
                                                 Image("info")
                                             }
@@ -142,7 +144,6 @@ struct SessionView: View {
                             Text(getMonthAndYear())
                                 .font(.title3)
                                 .fontWeight(.semibold)
-                                .foregroundColor(.white)
                             
                             ScrollView(.horizontal, showsIndicators: false) {
                                 ScrollViewReader { reader in
@@ -154,7 +155,6 @@ struct SessionView: View {
                                             VStack {
                                                 
                                                 Text(day.weekday)
-                                                    .foregroundColor(.white)
                                                     .fontWeight(.semibold)
                                                 
                                                 Button {
@@ -163,7 +163,7 @@ struct SessionView: View {
                                                     }
                                                 } label: {
                                                     Text(String(day.id))
-                                                        .foregroundColor(day.id < getDayNumber() ? Color(UIColor.quaternaryLabel) : .white )
+                                                        .foregroundColor(day.id < getDayNumber() ? Color(UIColor.quaternaryLabel) : calendarSelection != day.dayOfWeek ? Color(UIColor.label) : .white)
                                                         .font(.subheadline)
                                                         .fontWeight(.semibold)
                                                         .background(Circle().frame(width: 28, height: 28)
@@ -257,7 +257,7 @@ struct SessionView: View {
             .customNavBar(proxy: geometry, title: "Book a Session", Button(action: {
                 self.presentationMode.wrappedValue.dismiss()
             }, label: {
-                Image("left")
+                AnyView(Image("left"))
             }), nil)
         }
         .navigationTitle("")

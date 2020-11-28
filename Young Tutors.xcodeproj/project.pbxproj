@@ -14,6 +14,7 @@
 		C64644352565E1D600C52883 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64644342565E1D600C52883 /* Color+Extension.swift */; };
 		C65A2CC9256618C2003FB1AB /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65A2CC8256618C2003FB1AB /* Card.swift */; };
 		C65E687A256F8EAF00E264C5 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65E6879256F8EAF00E264C5 /* String+Extension.swift */; };
+		C6DB766E2572B644000CDB21 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C6DB766D2572B644000CDB21 /* GoogleService-Info.plist */; };
 		C6E9AFF12565B96600065AE0 /* SubjectsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E9AFF02565B96600065AE0 /* SubjectsModel.swift */; };
 		C6E9AFF42565B97500065AE0 /* ClassModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E9AFF32565B97500065AE0 /* ClassModel.swift */; };
 		C6E9AFF72565B98E00065AE0 /* SubjectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E9AFF62565B98E00065AE0 /* SubjectsView.swift */; };
@@ -25,8 +26,13 @@
 		C6EADF0E25659A7F00D6EA29 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6EADF0D25659A7F00D6EA29 /* Assets.xcassets */; };
 		C6EADF1125659A7F00D6EA29 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6EADF1025659A7F00D6EA29 /* Preview Assets.xcassets */; };
 		C6EADF1425659A7F00D6EA29 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6EADF1225659A7F00D6EA29 /* LaunchScreen.storyboard */; };
-		C6EADF1D25659B6C00D6EA29 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C6EADF1C25659B6B00D6EA29 /* GoogleService-Info.plist */; };
 		C6EADF3725659D5C00D6EA29 /* TestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EADF3625659D5C00D6EA29 /* TestModel.swift */; };
+		C6F9508125717623002A9993 /* TutorSubjectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F9508025717623002A9993 /* TutorSubjectsView.swift */; };
+		C6F950842571763E002A9993 /* TutorTimesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F950832571763E002A9993 /* TutorTimesView.swift */; };
+		C6F9508725717751002A9993 /* TutorDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F9508625717751002A9993 /* TutorDataModel.swift */; };
+		C6F9508B25717E39002A9993 /* TutorContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F9508A25717E39002A9993 /* TutorContainerView.swift */; };
+		C6F9508F2571854D002A9993 /* TutorCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F9508E2571854D002A9993 /* TutorCard.swift */; };
+		C6F9509325718697002A9993 /* TutorClassesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F9509225718697002A9993 /* TutorClassesView.swift */; };
 		C6FDA967256ED186006B3110 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FDA966256ED186006B3110 /* HomeView.swift */; };
 		C6FDA96A256ED1AB006B3110 /* TutorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FDA969256ED1AB006B3110 /* TutorsView.swift */; };
 		C6FDA96D256ED205006B3110 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FDA96C256ED205006B3110 /* CalendarView.swift */; };
@@ -43,6 +49,8 @@
 		C64644342565E1D600C52883 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		C65A2CC8256618C2003FB1AB /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		C65E6879256F8EAF00E264C5 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		C6DB766D2572B644000CDB21 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C6DB76702572B648000CDB21 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C6E9AFF02565B96600065AE0 /* SubjectsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectsModel.swift; sourceTree = "<group>"; };
 		C6E9AFF32565B97500065AE0 /* ClassModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassModel.swift; sourceTree = "<group>"; };
 		C6E9AFF62565B98E00065AE0 /* SubjectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectsView.swift; sourceTree = "<group>"; };
@@ -56,8 +64,13 @@
 		C6EADF1025659A7F00D6EA29 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C6EADF1325659A7F00D6EA29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C6EADF1525659A7F00D6EA29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C6EADF1C25659B6B00D6EA29 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C6EADF3625659D5C00D6EA29 /* TestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestModel.swift; sourceTree = "<group>"; };
+		C6F9508025717623002A9993 /* TutorSubjectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorSubjectsView.swift; sourceTree = "<group>"; };
+		C6F950832571763E002A9993 /* TutorTimesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorTimesView.swift; sourceTree = "<group>"; };
+		C6F9508625717751002A9993 /* TutorDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorDataModel.swift; sourceTree = "<group>"; };
+		C6F9508A25717E39002A9993 /* TutorContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorContainerView.swift; sourceTree = "<group>"; };
+		C6F9508E2571854D002A9993 /* TutorCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorCard.swift; sourceTree = "<group>"; };
+		C6F9509225718697002A9993 /* TutorClassesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorClassesView.swift; sourceTree = "<group>"; };
 		C6FDA966256ED186006B3110 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		C6FDA969256ED1AB006B3110 /* TutorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorsView.swift; sourceTree = "<group>"; };
 		C6FDA96C256ED205006B3110 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
@@ -105,7 +118,7 @@
 		C6E9AFEB2565B8C700065AE0 /* System */ = {
 			isa = PBXGroup;
 			children = (
-				C6EADF1C25659B6B00D6EA29 /* GoogleService-Info.plist */,
+				C6DB76702572B648000CDB21 /* GoogleService-Info.plist */,
 				C6EADF0725659A7F00D6EA29 /* AppDelegate.swift */,
 				C6EADF0925659A7F00D6EA29 /* SceneDelegate.swift */,
 				C6EADF0D25659A7F00D6EA29 /* Assets.xcassets */,
@@ -116,13 +129,13 @@
 			name = System;
 			sourceTree = "<group>";
 		};
-		C6E9AFEC2565B8CD00065AE0 /* Schedule */ = {
+		C6E9AFEC2565B8CD00065AE0 /* (S) Schedule  */ = {
 			isa = PBXGroup;
 			children = (
 				C6FDA95C256ECC9E006B3110 /* Views */,
 				C6E9AFEE2565B8DA00065AE0 /* Models */,
 			);
-			name = Schedule;
+			name = "(S) Schedule ";
 			sourceTree = "<group>";
 		};
 		C6E9AFEE2565B8DA00065AE0 /* Models */ = {
@@ -155,16 +168,23 @@
 		C6EADF0625659A7F00D6EA29 /* Young Tutors */ = {
 			isa = PBXGroup;
 			children = (
+				C6DB766D2572B644000CDB21 /* GoogleService-Info.plist */,
 				C61BE3A02569B61A0025F494 /* ContainerView.swift */,
+				C6F9508A25717E39002A9993 /* TutorContainerView.swift */,
 				C6FDA95F256ED0E2006B3110 /* Home */,
-				C6E9AFEC2565B8CD00065AE0 /* Schedule */,
+				C6E9AFEC2565B8CD00065AE0 /* (S) Schedule  */,
 				C6FDA960256ED0E7006B3110 /* Tutors */,
 				C6FDA961256ED0F9006B3110 /* Calendar */,
 				C6FDA962256ED104006B3110 /* Notifications */,
-				C6FDA95E256ED0DB006B3110 /* Test */,
 				C620BB03256A400C0088F11F /* Sign Up Flow */,
+				C6FDA95E256ED0DB006B3110 /* Test */,
 				C6FDA963256ED147006B3110 /* Extensions */,
 				C6E9AFEB2565B8C700065AE0 /* System */,
+				C6F9508025717623002A9993 /* TutorSubjectsView.swift */,
+				C6F9509225718697002A9993 /* TutorClassesView.swift */,
+				C6F950832571763E002A9993 /* TutorTimesView.swift */,
+				C6F9508E2571854D002A9993 /* TutorCard.swift */,
+				C6F9508625717751002A9993 /* TutorDataModel.swift */,
 			);
 			path = "Young Tutors";
 			sourceTree = "<group>";
@@ -298,7 +318,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C6EADF1425659A7F00D6EA29 /* LaunchScreen.storyboard in Resources */,
-				C6EADF1D25659B6C00D6EA29 /* GoogleService-Info.plist in Resources */,
+				C6DB766E2572B644000CDB21 /* GoogleService-Info.plist in Resources */,
 				C6EADF1125659A7F00D6EA29 /* Preview Assets.xcassets in Resources */,
 				C6EADF0E25659A7F00D6EA29 /* Assets.xcassets in Resources */,
 			);
@@ -353,10 +373,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6F950842571763E002A9993 /* TutorTimesView.swift in Sources */,
 				C6E9AFF12565B96600065AE0 /* SubjectsModel.swift in Sources */,
+				C6F9508F2571854D002A9993 /* TutorCard.swift in Sources */,
 				C6E9AFFD2565B9A900065AE0 /* SessionView.swift in Sources */,
+				C6F9508725717751002A9993 /* TutorDataModel.swift in Sources */,
 				C6EADF0825659A7F00D6EA29 /* AppDelegate.swift in Sources */,
 				C65E687A256F8EAF00E264C5 /* String+Extension.swift in Sources */,
+				C6F9509325718697002A9993 /* TutorClassesView.swift in Sources */,
 				C6FDA96D256ED205006B3110 /* CalendarView.swift in Sources */,
 				C6FDA967256ED186006B3110 /* HomeView.swift in Sources */,
 				C6E9AFFA2565B99C00065AE0 /* ClassView.swift in Sources */,
@@ -365,9 +389,11 @@
 				C6FDA96A256ED1AB006B3110 /* TutorsView.swift in Sources */,
 				C6EADF0C25659A7F00D6EA29 /* ContentView.swift in Sources */,
 				C620BB05256A40270088F11F /* LandingScreen.swift in Sources */,
+				C6F9508125717623002A9993 /* TutorSubjectsView.swift in Sources */,
 				C65A2CC9256618C2003FB1AB /* Card.swift in Sources */,
 				C6E9AFF42565B97500065AE0 /* ClassModel.swift in Sources */,
 				C6EADF3725659D5C00D6EA29 /* TestModel.swift in Sources */,
+				C6F9508B25717E39002A9993 /* TutorContainerView.swift in Sources */,
 				C61BE3A12569B61A0025F494 /* ContainerView.swift in Sources */,
 				C620BB08256A40490088F11F /* SignUpModel.swift in Sources */,
 				C64644352565E1D600C52883 /* Color+Extension.swift in Sources */,

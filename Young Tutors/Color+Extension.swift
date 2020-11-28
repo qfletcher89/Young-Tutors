@@ -25,8 +25,8 @@ extension View {
     
     func customNavBar(proxy: GeometryProxy,
                       title: String,
-                      _ leading: Button<Image>?,
-                      _ trailing: Button<Image>?) -> some View {
+                      _ leading: Button<AnyView>?,
+                      _ trailing: Button<AnyView>?) -> some View {
         
         return self.modifier(CustomNavBar(title: title, leading: leading, trailing: trailing, proxy: proxy))
         
@@ -53,8 +53,8 @@ struct Centered: ViewModifier {
 struct CustomNavBar: ViewModifier {
     
     var title: String
-    var leading: Button<Image>?
-    var trailing: Button<Image>?
+    var leading: Button<AnyView>?
+    var trailing: Button<AnyView>?
     var proxy: GeometryProxy
     
     func body(content: Content) -> some View {

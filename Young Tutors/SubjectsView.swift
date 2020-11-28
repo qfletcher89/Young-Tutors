@@ -52,7 +52,7 @@ struct SubjectsView: View {
                         .padding(.horizontal)
                         .padding(.vertical, 10)
                         .background(RoundedRectangle(cornerRadius: 15)
-                                        .foregroundColor(self.cs().black))
+                                        .foregroundColor(Color(UIColor.tertiarySystemFill)))
                         .padding(.horizontal)
                         .padding(.vertical)
                         
@@ -102,12 +102,11 @@ struct SubjectsView: View {
                 .customNavBar(proxy: geometry, title: "Subjects", nil, Button(action: {
                     self.model.getSubjects()
                   }, label: {
-                    Image("reload")
+                    AnyView(Image("reload"))
                   }))
             }.navigationBarTitle("")
             .navigationBarHidden(true)
             .background(self.cs().background.edgesIgnoringSafeArea(.all))
-            
         }
         
     }
