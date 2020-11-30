@@ -9,10 +9,12 @@ import SwiftUI
 
 struct SessionView: View {
     
+    @EnvironmentObject var tutorsModel: TutorsModel
     @Environment (\.self.presentationMode) var presentationMode
     @State var calendarSelection = Calendar.current.component(.weekday, from: Date())
     @State var session = Session(id: "", day: "", time: "", tutors: [""])
     @State var isShowingTutors = false
+    @State var tutorIsPresented = false
     var subject: Subject
     var course: Class
     var model = ClassModel()
@@ -71,8 +73,7 @@ struct SessionView: View {
                             HStack {
                                 
                                 Button {
-                                    print("navigate to tutor view")
-                                    //modal
+                                    self.tutorIsPresented = true
                                 } label: {
                                     Image("info")
                                         .foregroundColor(self.cs().watermelon)
@@ -105,8 +106,8 @@ struct SessionView: View {
                                         HStack {
                                             
                                             Button {
-                                                print("navigate to bio")
-                                                //modal
+                                                
+                                                self.tutorIsPresented = true
                                             } label: {
                                                 Image("info")
                                             }
@@ -254,6 +255,7 @@ struct SessionView: View {
                     
                 }.padding(.top)
             }.padding(.horizontal)
+            .sheet(isPresented: $tutorIsPresented, content: {TutorDetailView(tutor: getSelectedTutor(), isFromModal: true)})
             .customNavBar(proxy: geometry, title: "Book a Session", Button(action: {
                 self.presentationMode.wrappedValue.dismiss()
             }, label: {
@@ -262,6 +264,30 @@ struct SessionView: View {
         }
         .navigationTitle("")
         .navigationBarHidden(true)
+    }
+    
+    func getSelectedTutor() -> Tutor {
+        
+        var funcTutor = Tutor(id: "not-found", grade: nil,
+                          email: nil,
+                          bio: nil,
+                          awards: nil,
+                          strengths: nil,
+                          pronouns: nil,
+                          gradient: "",
+                          times: nil,
+                          classes: nil)
+        
+        for tutor in self.tutorsModel.tutors {
+            
+            if tutor.id == self.session.selectedTutor {
+                funcTutor = tutor
+            }
+            
+        }
+        
+        return funcTutor
+        
     }
     
     func getMonthAndYear() -> String {

@@ -10,7 +10,6 @@ import FirebaseAuth
 
 struct ContainerView: View {
     
-    @ObservedObject var navModel = NavModel()
     @State var selection = 2
     let subjectsViewModel = SubjectsModel()
     let tutorsModel = TutorsModel()
@@ -25,10 +24,11 @@ struct ContainerView: View {
                 AdditionalDivider(content: HomeView())
                     .tabItem {
                         Image(selection == 0 ? "home-red" : "home")
+                            
                     }
                     .tag(0)
                 
-                AdditionalDivider(content: SubjectsView(model: subjectsViewModel))
+                AdditionalDivider(content: SubjectsView(model: subjectsViewModel).environmentObject(tutorsModel))
                     .tabItem {
                         Image(selection == 1 ? "classes-red" : "classes")
                     }

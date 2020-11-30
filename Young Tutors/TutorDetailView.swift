@@ -11,189 +11,231 @@ struct TutorDetailView: View {
     
     @Environment (\.self.presentationMode) var presentationMode
     var tutor: Tutor
+    var isFromModal: Bool
     
     var body: some View {
         
-        GeometryReader { proxy in
-            
-            //container for top bar with name and rest of content
-            ZStack(alignment: .top) {
+        if tutor.id != "not-found" {
+            GeometryReader { proxy in
                 
-                //all content
-                VStack {
+                //container for top bar with name and rest of content
+                ZStack(alignment: .top) {
                     
-                    ZStack(alignment: .top){
-                       
-                        RoundedRectangle(cornerRadius: 30)
-                            .foregroundColor(.red)
-                            .frame(height: proxy.size.height * getBakcgroundHeight(proxy: proxy))
-                            .edgesIgnoringSafeArea(.all)
+                    //all content
+                    VStack {
                         
-                        //profile pic
-                        VStack {
-                            ZStack{
-                                Circle()
-                                    .frame(width: 150, height: 150)
-                                    .foregroundColor(Color(UIColor.tertiarySystemBackground))
-                                
-                                Text(getInitals(for: tutor).uppercased())
-                                    .font(.system(size: 67, weight: .regular, design: .rounded))
-                                    .foregroundColor(Color(UIColor.label))
-                                
-                            }.padding(.vertical, getImagePadding(proxy: proxy))
+                        ZStack(alignment: .top){
+                           
+                            Rectangle()
+                                .fill(LinearGradient(gradient: Gradient(colors: getGradientColors()),
+                                                     startPoint: UnitPoint(x: 0.5, y: 0),
+                                                     endPoint: UnitPoint(x: 1, y: 1)))
+                                .frame(height: proxy.size.height * getBakcgroundHeight(proxy: proxy))
+                                .cornerRadius(radius: 30, corners: [.bottomLeft, .bottomRight])
+                                .edgesIgnoringSafeArea(.all)
                             
-                            ScrollView(.horizontal, showsIndicators: false) {
+                            //profile pic
+                            VStack {
+                                ZStack{
+                                    Circle()
+                                        .frame(width: 150, height: 150)
+                                        .foregroundColor(Color(UIColor.tertiarySystemBackground))
+                                    
+                                    Text(getInitals(for: tutor).uppercased())
+                                        .font(.system(size: 67, weight: .regular, design: .rounded))
+                                        .foregroundColor(Color(UIColor.label))
+                                    
+                                }.padding(.vertical, getImagePadding(proxy: proxy))
                                 
-                                HStack(alignment: .top) {
+                                ScrollView(.horizontal, showsIndicators: false) {
                                     
-                                    VStack(alignment: .leading, spacing: 10) {
-                                        Text("Info:")
-                                            .font(.title3)
-                                            .fontWeight(.semibold)
-                                            .foregroundColor(Color(UIColor.label))
-                                            .padding(.bottom, 10)
+                                    HStack(alignment: .top) {
                                         
-                                        if tutor.pronouns != nil {
-                                            Text(tutor.pronouns!)
-                                        }
-                                        
-                                        if tutor.grade != nil {
-                                            Text(tutor.grade!)
-                                        }
-                                        
-                                        if tutor.email != nil {
-                                            Text(tutor.email!)
-                                        }
-                                        
-                                        if tutor.pronouns == nil &&
-                                            tutor.grade == nil &&
-                                            tutor.email == nil {
-                                            Text("Sorry, there is no information available for this tutor")
-                                                .italic()
-                                        }
-                                    }.padding(.vertical, 30)
-                                    .padding(.horizontal, 30)
-                                    .frame(width: proxy.size.width - 60, alignment: .leading)
-                                    .background(
-                                    RoundedRectangle(cornerRadius: 30)
-                                        .foregroundColor(Color(UIColor.secondarySystemBackground))
-                                    )
-                                    .padding(.leading, 20)
-                                    
-                                    
-                                    VStack(alignment: .leading, spacing: 10) {
-                                        Text("Bio:")
-                                            .font(.title3)
-                                            .fontWeight(.semibold)
-                                            .foregroundColor(Color(UIColor.label))
-                                            .padding(.bottom, 10)
-                                        
-                                        if tutor.bio != nil {
-                                            ScrollView {
-                                            Text(tutor.bio!)
-                                                .lineLimit(.none)
+                                        VStack(alignment: .leading, spacing: 10) {
+                                            Text("Info:")
+                                                .font(.title3)
+                                                .fontWeight(.semibold)
+                                                .foregroundColor(Color(UIColor.label))
+                                                .padding(.bottom, 10)
+                                            
+                                            if tutor.pronouns != nil {
+                                                Text(tutor.pronouns!)
                                             }
-                                        } else {
-                                            Text("Sorry, there is no bio available for this tutor")
-                                                .italic()
-                                        }
+                                            
+                                            if tutor.grade != nil {
+                                                Text(tutor.grade!)
+                                            }
+                                            
+                                            if tutor.email != nil {
+                                                Text(tutor.email!)
+                                            }
+                                            
+                                            if tutor.pronouns == nil &&
+                                                tutor.grade == nil &&
+                                                tutor.email == nil {
+                                                Text("Sorry, there is no information available for this tutor")
+                                                    .italic()
+                                            }
+                                        }.padding(.vertical, 30)
+                                        .padding(.horizontal, 30)
+                                        .frame(width: proxy.size.width - 60, alignment: .leading)
+                                        .background(
+                                        RoundedRectangle(cornerRadius: 30)
+                                            .foregroundColor(Color(UIColor.secondarySystemBackground))
+                                        )
+                                        .padding(.leading, 20)
                                         
-                                    }.padding(.vertical, 30)
-                                    .padding(.horizontal, 30)
-                                    .frame(width: proxy.size.width - 60, alignment: .leading)
-                                    .background(
-                                    RoundedRectangle(cornerRadius: 30)
-                                        .foregroundColor(Color(UIColor.secondarySystemBackground))
-                                    )
-                                    .padding(.leading, 20)
-                                    .padding(.bottom, 20)
+                                        
+                                        VStack(alignment: .leading, spacing: 10) {
+                                            Text("Bio:")
+                                                .font(.title3)
+                                                .fontWeight(.semibold)
+                                                .foregroundColor(Color(UIColor.label))
+                                                .padding(.bottom, 10)
+                                            
+                                            if tutor.bio != nil {
+                                                ScrollView {
+                                                Text(tutor.bio!)
+                                                    .lineLimit(.none)
+                                                }
+                                            } else {
+                                                Text("Sorry, there is no bio available for this tutor")
+                                                    .italic()
+                                            }
+                                            
+                                        }.padding(.vertical, 30)
+                                        .padding(.horizontal, 30)
+                                        .frame(width: proxy.size.width - 60, alignment: .leading)
+                                        .background(
+                                        RoundedRectangle(cornerRadius: 30)
+                                            .foregroundColor(Color(UIColor.secondarySystemBackground))
+                                        )
+                                        .padding(.leading, 20)
+                                        .padding(.bottom, 20)
+                                        
+                                        
+                                        VStack(alignment: .leading, spacing: 10) {
+                                            Text("Subject Strengths:")
+                                                .font(.title3)
+                                                .fontWeight(.semibold)
+                                                .foregroundColor(Color(UIColor.label))
+                                                .padding(.bottom, 10)
+                                            
+                                            if tutor.strengths != nil {
+                                                Text(tutor.strengths!)
+                                                    .lineLimit(.none)
+                                            } else {
+                                                Text("Sorry, there are no subject strengths available for this tutor")
+                                                    .italic()
+                                            }
+                                            
+                                        }.padding(.vertical, 30)
+                                        .padding(.horizontal, 30)
+                                        .frame(width: proxy.size.width - 60, alignment: .leading)
+                                        .background(
+                                        RoundedRectangle(cornerRadius: 30)
+                                            .foregroundColor(Color(UIColor.secondarySystemBackground))
+                                        )
+                                        .padding(.leading, 20)
+                                        
+                                        VStack(alignment: .leading, spacing: 10) {
+                                            Text("Awards:")
+                                                .font(.title3)
+                                                .fontWeight(.semibold)
+                                                .foregroundColor(Color(UIColor.label))
+                                                .padding(.bottom, 10)
+                                            
+                                            if tutor.awards != nil {
+                                                Text(tutor.awards!)
+                                                    .lineLimit(.none)
+                                            } else {
+                                                Text("Sorry, there are no awards available for this tutor")
+                                                    .italic()
+                                            }
+                                            
+                                        }.padding(.vertical, 30)
+                                        .padding(.horizontal, 30)
+                                        .frame(width: proxy.size.width - 60, alignment: .leading)
+                                        .background(
+                                        RoundedRectangle(cornerRadius: 30)
+                                            .foregroundColor(Color(UIColor.secondarySystemBackground))
+                                        )
+                                        .padding(.horizontal, 20)
+                                        
+                                    }.foregroundColor(Color(UIColor.secondaryLabel))
                                     
-                                    VStack(alignment: .leading, spacing: 10) {
-                                        Text("Subject Strengths:")
-                                            .font(.title3)
-                                            .fontWeight(.semibold)
-                                            .foregroundColor(Color(UIColor.label))
-                                            .padding(.bottom, 10)
-                                        
-                                        if tutor.strengths != nil {
-                                            Text(tutor.strengths!)
-                                                .lineLimit(.none)
-                                        } else {
-                                            Text("Sorry, there are no subject strengths available for this tutor")
-                                                .italic()
-                                        }
-                                        
-                                    }.padding(.vertical, 30)
-                                    .padding(.horizontal, 30)
-                                    .frame(width: proxy.size.width - 60, alignment: .leading)
-                                    .background(
-                                    RoundedRectangle(cornerRadius: 30)
-                                        .foregroundColor(Color(UIColor.secondarySystemBackground))
-                                    )
-                                    .padding(.leading, 20)
-                                    
-                                    VStack(alignment: .leading, spacing: 10) {
-                                        Text("Awards:")
-                                            .font(.title3)
-                                            .fontWeight(.semibold)
-                                            .foregroundColor(Color(UIColor.label))
-                                            .padding(.bottom, 10)
-                                        
-                                        if tutor.awards != nil {
-                                            Text(tutor.awards!)
-                                                .lineLimit(.none)
-                                        } else {
-                                            Text("Sorry, there are no awards available for this tutor")
-                                                .italic()
-                                        }
-                                        
-                                    }.padding(.vertical, 30)
-                                    .padding(.horizontal, 30)
-                                    .frame(width: proxy.size.width - 60, alignment: .leading)
-                                    .background(
-                                    RoundedRectangle(cornerRadius: 30)
-                                        .foregroundColor(Color(UIColor.secondarySystemBackground))
-                                    )
-                                    .padding(.horizontal, 20)
-                                    
-                                }.foregroundColor(Color(UIColor.secondaryLabel))
-                                
+                                }
                             }
                         }
-                        
-                        
                     }
                     
-                    
+                    //top bar
+                    HStack {
+                        Button {
+                            self.presentationMode.wrappedValue.dismiss()
+                        } label: {
+                            Image(isFromModal ? "x": "left")
+                                .renderingMode(.template)
+                                .foregroundColor(.white)
+                        }
+                        
+                        Spacer()
+                        
+                        Button {
+                            //more options
+                        } label: {
+                            Image("more")
+                        }
+
+
+                    }.overlay(Text(tutor.id)
+                                .font(.title2)
+                                .bold()
+                                .foregroundColor(.white))
+                    .padding([.horizontal, .top])
+                    .padding(.top, isFromModal ? 10 : 0)
                     
                 }
                 
-                //top bar
-                HStack {
-                    Button {
-                        self.presentationMode.wrappedValue.dismiss()
-                    } label: {
-                        Image("left")
-                            .renderingMode(.template)
-                            .foregroundColor(.white)
-                    }
-                    
-                    Spacer()
-                    
-                    Button {
-                        //more options
-                    } label: {
-                        Image(systemName: "circle")
-                    }
-
-
-                }.overlay(Text(tutor.id).font(.title2).bold())
-                .padding([.horizontal, .top])
-                
-            }
+            }.navigationTitle(Text(""))
+            .navigationBarHidden(true)
+            .background(isFromModal ? Color("ModalColor")
+                            .edgesIgnoringSafeArea(.all) : Color(UIColor.systemBackground)
+                            .edgesIgnoringSafeArea(.all))
+        } else {
+            Text("Sorry, this tutor was not found")
+                .italic()
+                .font(.title2)
+                .fontWeight(.bold)
+        }
+        
+        
+    }
+    
+    func getGradientColors() -> [Color] {
+        
+        let gradientStrings = ["watermelon-magenta",
+                               "skyBlue-magenta",
+                               "mint-skyBlue",
+                               "watermelon-orange"]
+        
+        switch tutor.gradient {
+        case gradientStrings[0]:
+            return [Color(#colorLiteral(red: 0.929411768913269, green: 0.45098039507865906, blue: 0.4901960790157318, alpha: 1)), Color(#colorLiteral(red: 0.6078431606292725, green: 0.364705890417099, blue: 0.7098039388656616, alpha: 1))]
             
-        }.navigationTitle(Text(""))
-        .navigationBarHidden(true)
+        case gradientStrings[1]:
+            return [Color(#colorLiteral(red: 0.23137255012989044, green: 0.6039215922355652, blue: 0.8509804010391235, alpha: 1)), Color(#colorLiteral(red: 0.4588235318660736, green: 0.3803921639919281, blue: 0.7647058963775635, alpha: 1))]
+            
+        case gradientStrings[2]:
+            return [Color(#colorLiteral(red: 0.16470588743686676, green: 0.7372549176216125, blue: 0.615686297416687, alpha: 1)), Color(#colorLiteral(red: 0.23137255012989044, green: 0.6039215922355652, blue: 0.8509804010391235, alpha: 1))]
+            
+        case gradientStrings[3]:
+            return [Color(#colorLiteral(red: 0.929411768913269, green: 0.45098039507865906, blue: 0.4901960790157318, alpha: 1)), Color(#colorLiteral(red: 0.8980392217636108, green: 0.49803921580314636, blue: 0.1921568661928177, alpha: 1))]
+            
+        default:
+            return [Color(#colorLiteral(red: 0.929411768913269, green: 0.45098039507865906, blue: 0.4901960790157318, alpha: 1)), Color(#colorLiteral(red: 0.6078431606292725, green: 0.364705890417099, blue: 0.7098039388656616, alpha: 1))]
+        }
+        
     }
     
     func getInitals(for tutor: Tutor) -> String {

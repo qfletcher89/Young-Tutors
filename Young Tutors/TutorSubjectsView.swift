@@ -88,35 +88,10 @@ struct TutorSubjectsView: View {
                                 }
                                 
                             }
-                            
-                            
-//                            Spacer()
-//
-//                            VStack {
-//                                ForEach(splitSubjects()[1]) {subject in
-//
-//                                    NavigationLink(destination: TutorClassesView(subject: subject,
-//                                                                                 boxWidth: boxWidth,
-//                                                                                 color: decideColor(for: subject))) {
-//                                        Card(boxWidth: boxWidth,
-//                                             color: decideColor(for: subject),
-//                                             mainText: subject.id,
-//                                             number: decideNumber(subject: subject),
-//                                             course: nil)
-//
-//                                            .padding(.bottom)
-//                                    }
-//                                }
-//
-//                                Spacer()
-//
-//                            }.padding(.trailing, 20)
-                            
                         }
                     }
                 }.customNavBar(proxy: geometry, title: "Select Classes", nil, Button(action: {
-//                    self.model.getData()
-                    model.uploadData()
+                    self.model.getData()
                 }, label: {
                     AnyView(Image("reload"))
                 }))

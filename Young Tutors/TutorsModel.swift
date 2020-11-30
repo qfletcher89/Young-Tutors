@@ -47,8 +47,10 @@ class TutorsModel: ObservableObject {
                         let bio = data["bio"] as? String
                         let strengths = data["strengths"] as? String
                         let prnouns = data["pronouns"] as? String
+                        let gradient = data["gradient"] as! String
                         let times = data["times"] as? [String]
                         let classes = data["classes"] as? [String]
+                        
                         
                         let tutor = Tutor(id: name,
                                           grade: grade,
@@ -57,6 +59,7 @@ class TutorsModel: ObservableObject {
                                           awards: awards,
                                           strengths: strengths,
                                           pronouns: prnouns,
+                                          gradient: gradient,
                                           times: times,
                                           classes: classes)
                         
@@ -70,7 +73,7 @@ class TutorsModel: ObservableObject {
                 }
             }
         }
-    }
+    } 
 }
 
 struct Tutor: Identifiable {
@@ -82,7 +85,9 @@ struct Tutor: Identifiable {
     var awards: String?
     var strengths: String?
     var pronouns: String?
+    var gradient: String
     var times: [String]?
     var classes: [String]?
+    
     
 }

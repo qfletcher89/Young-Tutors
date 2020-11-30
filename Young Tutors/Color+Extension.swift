@@ -39,11 +39,15 @@ extension View {
     }
     
     func gradientForeground(colors: [Color]) -> some View {
-            self.overlay(LinearGradient(gradient: .init(colors: colors),
-                                        startPoint: .top,
-                                        endPoint: .bottomTrailing))
-                .mask(self)
-        }
+        self.overlay(LinearGradient(gradient: .init(colors: colors),
+                                    startPoint: .top,
+                                    endPoint: .bottomTrailing))
+            .mask(self)
+    }
+    
+    func cornerRadius(radius: CGFloat, corners: UIRectCorner) -> some View {
+        ModifiedContent(content: self, modifier: CornerRadiusStyle(radius: radius, corners: corners))
+    }
 }
 
 struct Centered: ViewModifier {
@@ -100,7 +104,7 @@ struct CustomNavBar: ViewModifier {
                     .padding(.top)
             }
             
-//on x models, just do one top padding
+            //on x models, just do one top padding
             
             VStack {
                 VStack {
@@ -170,6 +174,26 @@ struct CustomNavBar: ViewModifier {
     
 }
 
+struct CornerRadiusStyle: ViewModifier {
+    var radius: CGFloat
+    var corners: UIRectCorner
+    
+    struct CornerRadiusShape: Shape {
+        
+        var radius = CGFloat.infinity
+        var corners = UIRectCorner.allCorners
+        
+        func path(in rect: CGRect) -> Path {
+            let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+            return Path(path.cgPath)
+        }
+    }
+    
+    func body(content: Content) -> some View {
+        content
+            .clipShape(CornerRadiusShape(radius: radius, corners: corners))
+    }
+}
 
 class Colors {
     

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LandingScreen: View {
-    
+    //make a series of if step is da, do da. no more navigation view with these guys. make an enumeration for which step we're on
     var model = SignUpModel()
     
     var body: some View {
@@ -30,7 +30,8 @@ struct LandingScreen: View {
                     Text("I'm a tutor")
                     //make sure to set the property in your sign up model to true saying that this is a tutor.
                 }.padding(.bottom, 20)
-            }
+            }.navigationBarTitle(Text(""))
+            .navigationBarHidden(true)
             
         }
     }
@@ -67,7 +68,8 @@ struct StudentName: View {
             
             Spacer()
             
-        }
+        }.navigationBarTitle(Text(""))
+        .navigationBarHidden(true)
     }
     
 }
@@ -109,7 +111,8 @@ struct StudentEmail: View {
             
             NavigationLink(destination: DoneView(), isActive: $model.didFinish) {EmptyView()}
             
-        }
+        }.navigationBarTitle(Text(""))
+        .navigationBarHidden(true)
     }
 
 }
@@ -117,24 +120,30 @@ struct StudentEmail: View {
 
 struct DoneView: View {
     
-    @State var navLinkIsActive = false
+    @State var containerViewActive = false
     
     var body: some View {
         
-        Text("You're all set!")
-            .font(.largeTitle)
-            .bold()
-            .background(NavigationLink(destination: ContainerView(), isActive: $navLinkIsActive, label: {
-                EmptyView()
-            }))
-            .navigationBarBackButtonHidden(true)
-            .onAppear {
-                
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                    navLinkIsActive = true
+        if !containerViewActive {
+            Text("You're all set!")
+                .font(.largeTitle)
+                .bold()
+                .navigationBarTitle(Text(""))
+                .navigationBarHidden(true)
+                .onAppear {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                        withAnimation{
+                        containerViewActive = true
+                        }
+                    }
+                    
                 }
+        } else {
+            //here, you would do a conditonal property asking wheter or not this is a tutor signing up or a student. conteinre view or tutorn contonter viwe
+            ContainerView()
                 
-            }
+        }
+        
         
     }
     

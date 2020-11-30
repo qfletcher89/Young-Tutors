@@ -62,11 +62,8 @@ struct TutorCard: View {
                         } else {
                             ZStack {
                                 Circle()
+                                    .stroke(lineWidth: 2)
                                     .frame(width: 24, height: 24)
-                                    .foregroundColor(Color(UIColor.secondarySystemBackground))
-                                
-                                Image("check-plain")
-                                    .renderingMode(.template)
                                     .foregroundColor(color)
                             }
                         }
