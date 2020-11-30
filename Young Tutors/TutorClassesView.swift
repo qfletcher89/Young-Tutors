@@ -92,27 +92,6 @@ struct TutorClassesView: View {
                             }
                             
                         }
-//
-//
-//
-//                        Spacer()
-//
-//                        VStack {
-//
-//                            ForEach(splitClasses()[1]) {course in
-//
-//                                    TutorCard(selection: isContainedInArray(course: course),
-//                                              removedClasses: $removedClasses,
-//                                              newClasses: $addedClasses,
-//                                              originalSelection: isContainedInArray(course: course),
-//                                              boxWidth: boxWidth,
-//                                              color: color,
-//                                              mainText: course.name,
-//                                              number: 0,
-//                                              course: course)
-//
-//                            }
-//                        }.padding(.trailing, 20)
                     }
                 }
                 

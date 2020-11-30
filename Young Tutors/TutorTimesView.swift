@@ -40,7 +40,6 @@ struct TutorTimesView: View {
                                 .font(.title2)
                                 .fontWeight(.bold)
                                 .padding(.horizontal)
-//                                .foregroundColor(self.cs().watermelon)
                             
                             Spacer()
                         }

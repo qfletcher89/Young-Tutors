@@ -15,15 +15,13 @@ class TutorDataModel: ObservableObject {
     @Published var bookedTimes = [String]()
     
     var db: Firestore!
-    var tutor = "Lila Aspin"
+    var tutor = "kendall"
     
     init() {
         
         let settings = FirestoreSettings()
         
-        
         Firestore.firestore().settings = settings
-        
         
         db = Firestore.firestore()
         
