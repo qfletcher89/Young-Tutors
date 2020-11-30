@@ -8,23 +8,35 @@
 import SwiftUI
 
 struct ContentView: View {
-   
+    
+    @State var view = ""
     
     var body: some View {
-        NavigationView{
-            
-            NavigationLink(destination: Text("destinaiot")) {
-                Text("line")
+        
+        if view == "" {
+            VStack {
+                
+                Button(action: {
+                    view = "student"
+                }, label: {
+                    Text("student")
+                })
+                
+                Button(action: {
+                    view = "tutor"
+                }, label: {
+                    Text("tutor")
+                })
+                
             }
+        } else if view == "student" {
             
+            ContainerView()
+            
+        } else if view == "tutor" {
+            TutorContainerView()
         }
-    }
-}
-
-struct DestinationView: View {
-    
-    var body: some View {
-    Text("DestinationView")
-        .navigationBarHidden(true)
+        
+        
     }
 }

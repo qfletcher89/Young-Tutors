@@ -10,8 +10,10 @@ import FirebaseAuth
 
 struct ContainerView: View {
     
-    @State var selection = 1
+    @ObservedObject var navModel = NavModel()
+    @State var selection = 2
     let subjectsViewModel = SubjectsModel()
+    let tutorsModel = TutorsModel()
     
     var body: some View {
         
@@ -32,7 +34,7 @@ struct ContainerView: View {
                     }
                     .tag(1)
                 
-                AdditionalDivider(content:TutorsView())
+                AdditionalDivider(content:TutorsView(model: tutorsModel))
                     .tabItem {
                         Image(selection == 2 ? "tutors-red" : "tutors")
                     }
@@ -54,6 +56,7 @@ struct ContainerView: View {
             }.onAppear {
                 
                 subjectsViewModel.getSubjects()
+                tutorsModel.getTutors()
                 
             }
         } else {

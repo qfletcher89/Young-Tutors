@@ -13,6 +13,7 @@ class SignUpModel: ObservableObject {
     @Published var password = ""
     @Published var name = ""
     @Published var didFinish = false
+    @Published var isTutor = false
     
     func signUp() {
         

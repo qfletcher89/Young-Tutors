@@ -23,6 +23,12 @@ extension View {
         
     }
     
+    func leading() -> some View {
+        
+        return self.modifier(Leading())
+        
+    }
+    
     func customNavBar(proxy: GeometryProxy,
                       title: String,
                       _ leading: Button<AnyView>?,
@@ -32,6 +38,12 @@ extension View {
         
     }
     
+    func gradientForeground(colors: [Color]) -> some View {
+            self.overlay(LinearGradient(gradient: .init(colors: colors),
+                                        startPoint: .top,
+                                        endPoint: .bottomTrailing))
+                .mask(self)
+        }
 }
 
 struct Centered: ViewModifier {
@@ -41,6 +53,20 @@ struct Centered: ViewModifier {
         HStack {
             
             Spacer()
+            
+            content
+            
+            Spacer()
+            
+        }
+    }
+}
+
+struct Leading: ViewModifier {
+    
+    func body(content: Content) -> some View {
+        
+        HStack {
             
             content
             
@@ -61,34 +87,71 @@ struct CustomNavBar: ViewModifier {
         
         ZStack(alignment: .top) {
             
-            content
-                .padding(.top, proxy.safeAreaInsets.top)
-                .padding(.top)
-//                .padding(.top)
+            if proxy.safeAreaInsets.top > 30 {
+                
+                content
+                    .padding(.top, proxy.safeAreaInsets.top)
+                    .padding(.top)
+                
+            } else {
+                content
+                    .padding(.top, proxy.safeAreaInsets.top)
+                    .padding(.top)
+                    .padding(.top)
+            }
+            
+//on x models, just do one top padding
             
             VStack {
                 VStack {
                     
-                    HStack {
+                    if proxy.safeAreaInsets.top > 30 {
+                        HStack {
+                            
+                            if let leadingItem = leading {
+                                
+                                leadingItem
+                                
+                            }
+                            
+                            Spacer()
+                            
+                            if let trailingItem = trailing {
+                                
+                                trailingItem
+                                
+                            }
+                        }.overlay(Text(title)
+                                    .font(.title2)
+                                    .fontWeight(.bold))
                         
-                        if let leadingItem = leading {
+                        .padding()
+                    } else {
+                        HStack {
                             
-                            leadingItem
+                            if let leadingItem = leading {
+                                
+                                leadingItem
+                                
+                            }
                             
-                        }
+                            Spacer()
+                            
+                            if let trailingItem = trailing {
+                                
+                                trailingItem
+                                
+                            }
+                        }.overlay(Text(title)
+                                    .font(.title2)
+                                    .fontWeight(.bold))
                         
-                        Spacer()
-                        
-                        if let trailingItem = trailing {
-                            
-                            trailingItem
-                            
-                        }
-                    }.overlay(Text(title)
-                                .font(.title2)
-                                .fontWeight(.bold))
+                        .padding(.vertical, 10)
+                        .padding(.horizontal)
+                    }
                     
-                    .padding()
+                    
+                    //on x models, just do one padding with default
                     
                     Divider()
                     

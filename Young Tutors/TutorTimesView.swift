@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TutorTimesView: View {
     
+    @Environment (\.self.presentationMode) var presentationMode
     @State var deletedTimes = [String]()
     @State var addedTimes = [String]()
     @EnvironmentObject var model: TutorDataModel
@@ -73,9 +74,21 @@ struct TutorTimesView: View {
                             model.saveTimes(times: addedTimes)
                             model.removeTimes(times: deletedTimes)
                             model.getData()
+                            self.presentationMode.wrappedValue.dismiss()
                            }, label: {
-                            AnyView(Text("Save"))
-                           }), nil)
+                            AnyView(
+                                HStack(spacing: 0) {
+                                    Image("left")
+                                    Text("Save")
+                                        .foregroundColor(self.cs().watermelon)
+                                }
+                            )
+                           }), Button(action: {
+                            self.presentationMode.wrappedValue.dismiss()
+                           }, label: {
+                            AnyView(Text("Cancel")
+                                        .foregroundColor(self.cs().watermelon))
+                           }))
         }
     }
 }

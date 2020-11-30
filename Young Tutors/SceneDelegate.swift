@@ -22,9 +22,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         // Create the SwiftUI view that provides the window contents.
 //        let subjectsView = ContainerView()
-        let model = TutorDataModel()
-        model.getData()
-        let subjectsView = TutorContainerView().environmentObject(model)
+//        let model = TutorDataModel()
+//        model.getData()
+//        let subjectsView = TutorContainerView()//.environmentObject(model)
+        let subjectsView = ContentView()
+        
         
         
 //                let subjectsView = ContentView()

@@ -6,27 +6,35 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct TutorContainerView: View {
     
-    @EnvironmentObject var model: TutorDataModel
+    let model = TutorDataModel()
     let subjectsModel = SubjectsModel()
-    @State var selection = 1
+    @State var selection = 0
     
     var body: some View {
         
-        TabView(selection: $selection) {
+        if Auth.auth().currentUser != nil {
+            TabView(selection: $selection) {
+                
+                AdditionalDivider(content: TutorSubjectsView(subjectsModel: subjectsModel).environmentObject(model))
+                    .tabItem {
+                        Image("classes")
+                    }
+                    .tag(0)
+                
+            }.onAppear {
+                model.getData()
+                subjectsModel.getSubjects()
+            }
+        } else {
             
-            AdditionalDivider(content: TutorSubjectsView(subjectsModel: subjectsModel).environmentObject(model))
-                .tabItem {
-                    Image("classes")
-                }
-                .tag(0)
+            LandingScreen()
             
-        }.onAppear {
-            model.getData()
-            subjectsModel.getSubjects()
         }
+        
         
     }
 }

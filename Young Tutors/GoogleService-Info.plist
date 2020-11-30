@@ -29,7 +29,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:983727516585:ios:49725e0b2e7028a98ab2b8</string>
+	<string>1:983727516585:ios:b3e81a01a85985ed8ab2b8</string>
 	<key>DATABASE_URL</key>
 	<string>https://young-tutors.firebaseio.com</string>
 </dict>

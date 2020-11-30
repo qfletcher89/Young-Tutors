@@ -28,6 +28,7 @@ struct LandingScreen: View {
                 
                 NavigationLink(destination: Text("i'm a tutor")) {
                     Text("I'm a tutor")
+                    //make sure to set the property in your sign up model to true saying that this is a tutor.
                 }.padding(.bottom, 20)
             }
             
@@ -130,7 +131,7 @@ struct DoneView: View {
             .onAppear {
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                    
+                    navLinkIsActive = true
                 }
                 
             }

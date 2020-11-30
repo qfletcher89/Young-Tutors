@@ -61,5 +61,4 @@ struct Subject: Identifiable {
     var id: String
     var count: Int
     
-    
 }

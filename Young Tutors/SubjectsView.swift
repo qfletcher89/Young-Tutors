@@ -160,29 +160,34 @@ struct SubjectsView: View {
     
     func decideColor(for subject: Subject) -> Color {
         
-        switch subject.id {
-        
-        case "computer science":
-            return self.cs().orange
-        case "math":
-            return self.cs().skyBlue
-        case "english":
-            return self.cs().navyBlue
-        case "science":
-            return self.cs().mint
-        case "social science":
-            return self.cs().red
-        case "performing arts":
-            return self.cs().magenta
-        case "world languages":
-            return self.cs().yellow
-        case "pe":
-            return self.cs().coffe
-        case "visual arts":
-            return self.cs().teal
-        default:
-            return self.cs().black
+        if subject.count != 0 {
+            switch subject.id {
+            
+            case "computer science":
+                return self.cs().orange
+            case "math":
+                return self.cs().skyBlue
+            case "english":
+                return self.cs().navyBlue
+            case "science":
+                return self.cs().mint
+            case "social science":
+                return self.cs().red
+            case "performing arts":
+                return self.cs().magenta
+            case "world languages":
+                return self.cs().yellow
+            case "pe":
+                return self.cs().coffe
+            case "visual arts":
+                return self.cs().teal
+            default:
+                return self.cs().black
+            }
+        } else {
+            return Color(UIColor.quaternaryLabel)
         }
+        
     }
     
     

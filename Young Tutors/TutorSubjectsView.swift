@@ -57,59 +57,66 @@ struct TutorSubjectsView: View {
                         .background(RoundedRectangle(cornerRadius: 15)
                                         .foregroundColor(Color(UIColor.tertiarySystemFill)))
                         .padding(.horizontal)
-                        .padding(.vertical)
-                        
+                        .padding(.vertical)             
                         
                         HStack(alignment: .top) {
                             
-                            VStack {
-                                ForEach(splitSubjects()[0]) {subject in
-                                    
-                                    NavigationLink(destination: TutorClassesView(subject: subject,
-                                                                                 boxWidth: boxWidth,
-                                                                                 color: decideColor(for: subject))) {
+                            ForEach(0..<2) { index in
+                                
+                                VStack {
+                                    ForEach(splitSubjects()[index]) {subject in
                                         
+                                        NavigationLink(destination: subject.id != "times" ?
+                                                        AnyView(TutorClassesView(subject: subject, boxWidth: boxWidth, color: decideColor(for: subject))) : AnyView(TutorTimesView())) {
                                             
-                                        Card(boxWidth: boxWidth,
-                                             color: decideColor(for: subject),
-                                             mainText: subject.id,
-                                             number: decideNumber(subject: subject),
-                                             course: nil)
-                                            
-                                            .padding(.bottom)
+                                                
+                                            Card(boxWidth: boxWidth,
+                                                 color: decideColor(for: subject),
+                                                 mainText: subject.id,
+                                                 number: decideNumber(subject: subject),
+                                                 course: nil)
+                                                .padding(.bottom)
+                                        }
                                     }
-                                }
-                                
-                                Spacer()
-                                
-                            }.padding(.leading, 20)
-                            
-                            Spacer()
-                            
-                            VStack {
-                                ForEach(splitSubjects()[1]) {subject in
                                     
-                                    NavigationLink(destination: TutorClassesView(subject: subject,
-                                                                                 boxWidth: boxWidth,
-                                                                                 color: decideColor(for: subject))) {
-                                        Card(boxWidth: boxWidth,
-                                             color: decideColor(for: subject),
-                                             mainText: subject.id,
-                                             number: decideNumber(subject: subject),
-                                             course: nil)
-                                            
-                                            .padding(.bottom)
-                                    }
+                                    Spacer()
+                                    
+                                }.padding(index == 0 ? .leading : .trailing, 20)
+                                
+                                if index == 0 {
+                                    Spacer()
                                 }
                                 
-                                Spacer()
-                                
-                            }.padding(.trailing, 20)
+                            }
+                            
+                            
+//                            Spacer()
+//
+//                            VStack {
+//                                ForEach(splitSubjects()[1]) {subject in
+//
+//                                    NavigationLink(destination: TutorClassesView(subject: subject,
+//                                                                                 boxWidth: boxWidth,
+//                                                                                 color: decideColor(for: subject))) {
+//                                        Card(boxWidth: boxWidth,
+//                                             color: decideColor(for: subject),
+//                                             mainText: subject.id,
+//                                             number: decideNumber(subject: subject),
+//                                             course: nil)
+//
+//                                            .padding(.bottom)
+//                                    }
+//                                }
+//
+//                                Spacer()
+//
+//                            }.padding(.trailing, 20)
                             
                         }
                     }
                 }.customNavBar(proxy: geometry, title: "Select Classes", nil, Button(action: {
-                    self.model.getData()
+//                    self.model.getData()
+                    model.uploadData()
                 }, label: {
                     AnyView(Image("reload"))
                 }))
@@ -128,13 +135,19 @@ extension TutorSubjectsView {
         
         var count = 0
         
-        for course in model.classes {
-            
-            if course.subject == subject.id {
+        if subject.id != "times" {
+            for course in model.classes {
                 
-                count = count + 1
+                if course.subject == subject.id {
+                    
+                    count = count + 1
+                    
+                }
                 
             }
+        } else {
+            
+            count = model.times.count
             
         }
         
@@ -145,12 +158,12 @@ extension TutorSubjectsView {
     func decideData() -> [Subject] {
         
         if customSearchText == "" {
-            subjectsModel.subjects.append(Subject(id: "times", count: model.times.count))
+            
             return subjectsModel.subjects
         } else {
             
             var resultArray = [Subject]()
-            subjectsModel.subjects.append(Subject(id: "times", count: model.times.count))
+            
             for subject in subjectsModel.subjects {
                 
                 if subject.id.contains(customSearchText.lowercased()) {
@@ -182,6 +195,14 @@ extension TutorSubjectsView {
                 rightSubjects.append(subject)
                 
                 left.toggle()
+            }
+        }
+        
+        if !subjectsModel.subjects.isEmpty {
+            if left {
+                leftSubjects.append(Subject(id: "times", count: 0))
+            } else {
+                rightSubjects.append(Subject(id: "times", count: 0))
             }
         }
         
