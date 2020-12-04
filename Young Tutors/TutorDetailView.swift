@@ -10,6 +10,7 @@ import SwiftUI
 struct TutorDetailView: View {
     
     @Environment (\.self.presentationMode) var presentationMode
+    @State var moreIsShowing = false
     var tutor: Tutor
     var isFromModal: Bool
     
@@ -25,7 +26,7 @@ struct TutorDetailView: View {
                     VStack {
                         
                         ZStack(alignment: .top){
-                           
+                            
                             Rectangle()
                                 .fill(LinearGradient(gradient: Gradient(colors: getGradientColors()),
                                                      startPoint: UnitPoint(x: 0.5, y: 0),
@@ -80,8 +81,8 @@ struct TutorDetailView: View {
                                         .padding(.horizontal, 30)
                                         .frame(width: proxy.size.width - 60, alignment: .leading)
                                         .background(
-                                        RoundedRectangle(cornerRadius: 30)
-                                            .foregroundColor(Color(UIColor.secondarySystemBackground))
+                                            RoundedRectangle(cornerRadius: 30)
+                                                .foregroundColor(Color(UIColor.secondarySystemBackground))
                                         )
                                         .padding(.leading, 20)
                                         
@@ -95,8 +96,8 @@ struct TutorDetailView: View {
                                             
                                             if tutor.bio != nil {
                                                 ScrollView {
-                                                Text(tutor.bio!)
-                                                    .lineLimit(.none)
+                                                    Text(tutor.bio!)
+                                                        .lineLimit(.none)
                                                 }
                                             } else {
                                                 Text("Sorry, there is no bio available for this tutor")
@@ -107,8 +108,8 @@ struct TutorDetailView: View {
                                         .padding(.horizontal, 30)
                                         .frame(width: proxy.size.width - 60, alignment: .leading)
                                         .background(
-                                        RoundedRectangle(cornerRadius: 30)
-                                            .foregroundColor(Color(UIColor.secondarySystemBackground))
+                                            RoundedRectangle(cornerRadius: 30)
+                                                .foregroundColor(Color(UIColor.secondarySystemBackground))
                                         )
                                         .padding(.leading, 20)
                                         .padding(.bottom, 20)
@@ -133,8 +134,8 @@ struct TutorDetailView: View {
                                         .padding(.horizontal, 30)
                                         .frame(width: proxy.size.width - 60, alignment: .leading)
                                         .background(
-                                        RoundedRectangle(cornerRadius: 30)
-                                            .foregroundColor(Color(UIColor.secondarySystemBackground))
+                                            RoundedRectangle(cornerRadius: 30)
+                                                .foregroundColor(Color(UIColor.secondarySystemBackground))
                                         )
                                         .padding(.leading, 20)
                                         
@@ -157,8 +158,8 @@ struct TutorDetailView: View {
                                         .padding(.horizontal, 30)
                                         .frame(width: proxy.size.width - 60, alignment: .leading)
                                         .background(
-                                        RoundedRectangle(cornerRadius: 30)
-                                            .foregroundColor(Color(UIColor.secondarySystemBackground))
+                                            RoundedRectangle(cornerRadius: 30)
+                                                .foregroundColor(Color(UIColor.secondarySystemBackground))
                                         )
                                         .padding(.horizontal, 20)
                                         
@@ -182,12 +183,25 @@ struct TutorDetailView: View {
                         Spacer()
                         
                         Button {
-                            //more options
+                            
+                            if let email = tutor.email {
+                                if let url = URL(string: "mailto:\(email)"){
+                                    UIApplication.shared.open(url) { (result) in
+                                        if result {
+                                            print("successful")
+                                        }
+                                    }
+                                } else {
+                                    print("url was invalid")
+                                }
+                            }
+                            
                         } label: {
-                            Image("more")
+                            Image("mail")
+                                .renderingMode(.template)
+                                .foregroundColor(tutor.email != nil && tutor.email != "not-found" ? .white : Color(UIColor.quaternaryLabel))
                         }
-
-
+                        
                     }.overlay(Text(tutor.id)
                                 .font(.title2)
                                 .bold()
@@ -272,15 +286,15 @@ struct TutorDetailView: View {
         
     }
     
-//    func getCardWidth(proxy: GeometryProxy) -> CGFloat {
-//
-//        //give me sixty les than the width of the frame
-//
-//        let width = proxy.size.width
-//        let percent = 60 / width
-//        return width - percent
-//
-//    }
+    //    func getCardWidth(proxy: GeometryProxy) -> CGFloat {
+    //
+    //        //give me sixty les than the width of the frame
+    //
+    //        let width = proxy.size.width
+    //        let percent = 60 / width
+    //        return width - percent
+    //
+    //    }
     
 }
 

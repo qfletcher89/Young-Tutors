@@ -7,12 +7,41 @@
 
 import SwiftUI
 
-struct LandingScreen: View {
-    //make a series of if step is da, do da. no more navigation view with these guys. make an enumeration for which step we're on
-    var model = SignUpModel()
+struct MainView: View {
+    
+    @ObservedObject var model = SignUpModel()
     
     var body: some View {
-        NavigationView {
+        
+        switch model.step {
+        
+        case .landing:
+            LandingScreen(model: model)
+        case .studentName:
+            StudentName(model: model)
+        case .tutor:
+            TutorSignUpView(model: model)
+        case .studentEmailPassword:
+            StudentEmailPassword(model: model)
+        case .container:
+            if model.isTutor {
+                TutorContainerView()
+            } else {
+                ContainerView()
+            }
+        case .done:
+            DoneView(model: model)
+        }
+        
+    }
+}
+
+struct LandingScreen: View {
+    //make a series of if step is da, do da. no more navigation view with these guys. make an enumeration for which step we're on
+    var model: SignUpModel
+    
+    var body: some View {
+        
             VStack {
                 
                 Text("Tutoring made simple.")
@@ -22,18 +51,20 @@ struct LandingScreen: View {
                 
                 Spacer()
                 
-                NavigationLink(destination: StudentName(model: model)) {
+                Button {
+                    model.step = .studentName
+                } label: {
                     Text("I'm a student")
                 }
-                
-                NavigationLink(destination: Text("i'm a tutor")) {
+
+                Button {
+                    model.step = .tutor
+                } label: {
                     Text("I'm a tutor")
-                    //make sure to set the property in your sign up model to true saying that this is a tutor.
-                }.padding(.bottom, 20)
-            }.navigationBarTitle(Text(""))
-            .navigationBarHidden(true)
-            
-        }
+                }
+
+                
+            }
     }
 }
 
@@ -56,25 +87,34 @@ struct StudentName: View {
             
             TextField("Michelle Obama", text: $model.name)
             
-            NavigationLink(destination: StudentEmail(model: model)) {
-                
+            Button {
+                model.step = SignUpStep.studentEmailPassword
+            } label: {
                 Text("Next")
                     .padding(.vertical)
                     .padding(.horizontal, 20)
                     .background(RoundedRectangle(cornerRadius: 30))
-                
             }
             
             
             Spacer()
             
-        }.navigationBarTitle(Text(""))
-        .navigationBarHidden(true)
+        }
     }
-    
 }
 
-struct StudentEmail: View {
+struct TutorSignUpView: View {
+    
+    @ObservedObject var model: SignUpModel
+    
+    var body: some View {
+        
+        Text("im a tutor")
+        
+    }
+}
+
+struct StudentEmailPassword: View {
     
     @ObservedObject var model: SignUpModel
     @State var email = ""
@@ -109,8 +149,6 @@ struct StudentEmail: View {
             Spacer()
             
             
-            NavigationLink(destination: DoneView(), isActive: $model.didFinish) {EmptyView()}
-            
         }.navigationBarTitle(Text(""))
         .navigationBarHidden(true)
     }
@@ -120,31 +158,37 @@ struct StudentEmail: View {
 
 struct DoneView: View {
     
-    @State var containerViewActive = false
+    @ObservedObject var model: SignUpModel
+    
     
     var body: some View {
         
-        if !containerViewActive {
+        
             Text("You're all set!")
                 .font(.largeTitle)
                 .bold()
-                .navigationBarTitle(Text(""))
-                .navigationBarHidden(true)
                 .onAppear {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                         withAnimation{
-                        containerViewActive = true
+                            model.step = .container
                         }
                     }
                     
                 }
-        } else {
-            //here, you would do a conditonal property asking wheter or not this is a tutor signing up or a student. conteinre view or tutorn contonter viwe
-            ContainerView()
-                
-        }
-        
-        
     }
+    
+}
+
+enum SignUpStep {
+    
+    case landing
+    
+    case studentName
+    case studentEmailPassword
+    
+    case tutor
+    
+    case done
+    case container
     
 }

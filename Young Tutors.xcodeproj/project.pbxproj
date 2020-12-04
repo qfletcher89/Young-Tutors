@@ -11,6 +11,8 @@
 		C61BE3A12569B61A0025F494 /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61BE3A02569B61A0025F494 /* ContainerView.swift */; };
 		C620BB05256A40270088F11F /* LandingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C620BB04256A40270088F11F /* LandingScreen.swift */; };
 		C620BB08256A40490088F11F /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C620BB07256A40490088F11F /* SignUpModel.swift */; };
+		C62BD45825788C9F0027B387 /* EventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62BD45725788C9F0027B387 /* EventsView.swift */; };
+		C62BD45B25788FCD0027B387 /* StudentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62BD45A25788FCD0027B387 /* StudentModel.swift */; };
 		C64644352565E1D600C52883 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64644342565E1D600C52883 /* Color+Extension.swift */; };
 		C65A2CC9256618C2003FB1AB /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65A2CC8256618C2003FB1AB /* Card.swift */; };
 		C65B1CB5257452CB0007DD9F /* TutorDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65B1CB4257452CB0007DD9F /* TutorDetailView.swift */; };
@@ -49,6 +51,8 @@
 		C61BE3A02569B61A0025F494 /* ContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerView.swift; sourceTree = "<group>"; };
 		C620BB04256A40270088F11F /* LandingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingScreen.swift; sourceTree = "<group>"; };
 		C620BB07256A40490088F11F /* SignUpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpModel.swift; sourceTree = "<group>"; };
+		C62BD45725788C9F0027B387 /* EventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsView.swift; sourceTree = "<group>"; };
+		C62BD45A25788FCD0027B387 /* StudentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentModel.swift; sourceTree = "<group>"; };
 		C64644342565E1D600C52883 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		C65A2CC8256618C2003FB1AB /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		C65B1CB4257452CB0007DD9F /* TutorDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorDetailView.swift; sourceTree = "<group>"; };
@@ -186,6 +190,7 @@
 				C6FDA963256ED147006B3110 /* Extensions */,
 				C6E9AFEB2565B8C700065AE0 /* System */,
 				C6F9508025717623002A9993 /* TutorSubjectsView.swift */,
+				C62BD45725788C9F0027B387 /* EventsView.swift */,
 				C6F9509225718697002A9993 /* TutorClassesView.swift */,
 				C6F950832571763E002A9993 /* TutorTimesView.swift */,
 				C6F9508E2571854D002A9993 /* TutorCard.swift */,
@@ -244,6 +249,7 @@
 			isa = PBXGroup;
 			children = (
 				C6FDA96C256ED205006B3110 /* CalendarView.swift */,
+				C62BD45A25788FCD0027B387 /* StudentModel.swift */,
 			);
 			name = Calendar;
 			sourceTree = "<group>";
@@ -393,6 +399,7 @@
 				C6E9AFFA2565B99C00065AE0 /* ClassView.swift in Sources */,
 				C6EADF0A25659A7F00D6EA29 /* SceneDelegate.swift in Sources */,
 				C6E9AFF72565B98E00065AE0 /* SubjectsView.swift in Sources */,
+				C62BD45B25788FCD0027B387 /* StudentModel.swift in Sources */,
 				C6FDA96A256ED1AB006B3110 /* TutorsView.swift in Sources */,
 				C65D8AB82573115B00B80DF0 /* AppDelegate.swift in Sources */,
 				C6EADF0C25659A7F00D6EA29 /* ContentView.swift in Sources */,
@@ -400,6 +407,7 @@
 				C69C4D612573520D0071A865 /* TutorsModel.swift in Sources */,
 				C6F9508125717623002A9993 /* TutorSubjectsView.swift in Sources */,
 				C65D707425748D33005CED5E /* NavModel.swift in Sources */,
+				C62BD45825788C9F0027B387 /* EventsView.swift in Sources */,
 				C65A2CC9256618C2003FB1AB /* Card.swift in Sources */,
 				C6E9AFF42565B97500065AE0 /* ClassModel.swift in Sources */,
 				C6EADF3725659D5C00D6EA29 /* TestModel.swift in Sources */,

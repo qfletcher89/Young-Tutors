@@ -12,7 +12,7 @@ class TutorDataModel: ObservableObject {
     
     @Published var classes = [Class]()
     @Published var times = [String]()
-    @Published var bookedTimes = [String]()
+    @Published var events = [Event]()
     
     var db: Firestore!
     var tutor = "kendall"
@@ -93,12 +93,52 @@ class TutorDataModel: ObservableObject {
         }
         //Update our values in this class
         
+        self.getBookedTimes()
+        
     }
     
     ///To be called in the on appeaer of the times view
     func getBookedTimes() {
         
         //Filter all the events, only the ones where the tutor field is our tutor. Then, extract the time and put it in our bookedTimes value.
+        
+        db.collection("events")
+            .whereField("tutor", isEqualTo: tutor)
+            .getDocuments { (snapshot, erorr) in
+                
+                if let err = erorr {
+                    
+                    print("ther was an error getting the booked times \(err)")
+                    
+                } else {
+                    
+                    if let documents = snapshot?.documents {
+                        
+                        var eventsArray = [Event]()
+                        
+                        for document in documents {
+                            
+                            let data = document.data()
+                            
+                            let student = data["student"] as! String
+                            let time = data["time"] as! String
+                            let studentID = data["studentID"] as! String
+                            let studentEmail = data["studentEmail"] as! String
+                            let course = data["class"] as! String
+                            
+                            let event = Event(id: document.documentID, time: time, student: student, studentID: studentID, course: course, tutor: self.tutor, email: studentEmail)
+                            
+                            eventsArray.append(event)
+                            
+                        }
+                        
+                        self.events = eventsArray
+                        
+                    }
+                    
+                }
+                
+            }
         
     }
     
@@ -238,4 +278,20 @@ class TutorDataModel: ObservableObject {
             
         }
     }
+}
+
+struct Event: Identifiable, Comparable {
+    
+    static func < (lhs: Event, rhs: Event) -> Bool {
+        return lhs.time < rhs.time
+    }
+    
+    var id: String
+    var time: String
+    var student: String
+    var studentID: String
+    var course: String
+    var tutor: String
+    var email: String
+    
 }

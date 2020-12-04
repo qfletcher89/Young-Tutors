@@ -25,8 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        let model = TutorDataModel()
 //        model.getData()
 //        let subjectsView = TutorContainerView()//.environmentObject(model)
-        let subjectsView = ContentView()
-        
+        let subjectsView = MainView()
         
         
 //                let subjectsView = ContentView()

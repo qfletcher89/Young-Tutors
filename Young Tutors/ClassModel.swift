@@ -80,6 +80,8 @@ class ClassModel: ObservableObject {
                             }
                         }
                         
+                        sessionArray.sort()
+                        
                         classArray.append(Class(id: document.documentID, name: name, levels: levels, sessions: sessionArray, subject: subject.id))
                         
                     }
@@ -104,7 +106,10 @@ struct Class: Identifiable {
     
 }
 
-struct Session: Identifiable {
+struct Session: Identifiable, Comparable {
+    static func < (lhs: Session, rhs: Session) -> Bool {
+        return lhs.id < rhs.id
+    }
     
     var id: String
     var day: String
@@ -136,8 +141,20 @@ extension ClassModel {
         let funcCourse = subject.id + "-" + course.id
         
         if let profile = Auth.auth().currentUser {
-            db.collection("events").addDocument(data: ["isCompleted": false,
-                                                       "student": profile.uid,
+            var email = "not-found"
+            var name = "not-found"
+            
+            if let funcEmail = profile.email {
+                email = funcEmail
+            }
+            
+            if let funcName = profile.displayName {
+                name = funcName
+            }
+            
+            db.collection("events").addDocument(data: ["student": name,
+                                                       "studentID": profile.uid,
+                                                       "sstudentEmail":email,
                                                        "time":time,
                                                        "tutor":tutor,
                                                        "class":funcCourse])
@@ -149,5 +166,4 @@ extension ClassModel {
                 .setData([time:FieldValue.arrayRemove([tutor])], merge: true)
         }
     }
-    
 }

@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import FirebaseAuth
 
 struct TutorContainerView: View {
     
@@ -16,7 +15,7 @@ struct TutorContainerView: View {
     
     var body: some View {
         
-        if Auth.auth().currentUser != nil {
+        
             TabView(selection: $selection) {
                 
                 AdditionalDivider(content: TutorSubjectsView(subjectsModel: subjectsModel).environmentObject(model))
@@ -25,17 +24,16 @@ struct TutorContainerView: View {
                     }
                     .tag(0)
                 
+                AdditionalDivider(content: EventsView().environmentObject(model))
+                    .tabItem {
+                        Image("calendar")
+                    }
+                    .tag(1)
+                
             }.onAppear {
                 model.getData()
                 subjectsModel.getSubjects()
             }
-        } else {
-            
-            LandingScreen()
-            
-        }
-        
-        
     }
 }
 

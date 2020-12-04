@@ -67,6 +67,7 @@ class TutorsModel: ObservableObject {
                     }
                     
                     self.tutors = tutorsArray
+                    self.objectWillChange.send()
                     
                 } else {
                     print("there was an error retrieving documents")
@@ -76,7 +77,7 @@ class TutorsModel: ObservableObject {
     } 
 }
 
-struct Tutor: Identifiable {
+struct Tutor: Identifiable, Equatable {
     
     var id: String
     var grade: String?

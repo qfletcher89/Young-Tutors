@@ -69,7 +69,7 @@ struct TutorSubjectsView: View {
                                         NavigationLink(destination: subject.id != "times" ?
                                                         AnyView(TutorClassesView(subject: subject, boxWidth: boxWidth, color: decideColor(for: subject))) : AnyView(TutorTimesView())) {
                                             
-                                                
+                                            
                                             Card(boxWidth: boxWidth,
                                                  color: decideColor(for: subject),
                                                  mainText: subject.id,
@@ -156,8 +156,14 @@ extension TutorSubjectsView {
         var leftSubjects = [Subject]()
         var rightSubjects = [Subject]()
         
-        var left = true
-    
+        var left = false
+        
+        if !subjectsModel.subjects.isEmpty {
+            rightSubjects.append((Subject(id: "times", count: 0)))
+            left.toggle()
+        }
+        
+        
         for subject in decideData() {
             
             if left {
@@ -170,14 +176,6 @@ extension TutorSubjectsView {
                 rightSubjects.append(subject)
                 
                 left.toggle()
-            }
-        }
-        
-        if !subjectsModel.subjects.isEmpty {
-            if left {
-                leftSubjects.append(Subject(id: "times", count: 0))
-            } else {
-                rightSubjects.append(Subject(id: "times", count: 0))
             }
         }
         

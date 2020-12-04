@@ -15,6 +15,7 @@ struct SessionView: View {
     @State var session = Session(id: "", day: "", time: "", tutors: [""])
     @State var isShowingTutors = false
     @State var tutorIsPresented = false
+    @State var infoForTutor = Tutor(id: "not-found", grade: nil, email: nil, bio: nil, awards: nil, strengths: nil, pronouns: nil, gradient: "", times: nil, classes: nil)
     var subject: Subject
     var course: Class
     var model = ClassModel()
@@ -73,6 +74,7 @@ struct SessionView: View {
                             HStack {
                                 
                                 Button {
+                                    self.infoForTutor = getTutor(tutorID: session.selectedTutor)
                                     self.tutorIsPresented = true
                                 } label: {
                                     Image("info")
@@ -107,6 +109,7 @@ struct SessionView: View {
                                             
                                             Button {
                                                 
+                                                self.infoForTutor = getTutor(tutorID: tutor)
                                                 self.tutorIsPresented = true
                                             } label: {
                                                 Image("info")
@@ -255,7 +258,7 @@ struct SessionView: View {
                     
                 }.padding(.top)
             }.padding(.horizontal)
-            .sheet(isPresented: $tutorIsPresented, content: {TutorDetailView(tutor: getSelectedTutor(), isFromModal: true)})
+            .sheet(isPresented: $tutorIsPresented, content: {TutorDetailView(tutor: infoForTutor, isFromModal: true)})
             .customNavBar(proxy: geometry, title: "Book a Session", Button(action: {
                 self.presentationMode.wrappedValue.dismiss()
             }, label: {
@@ -266,7 +269,7 @@ struct SessionView: View {
         .navigationBarHidden(true)
     }
     
-    func getSelectedTutor() -> Tutor {
+    func getTutor(tutorID: String) -> Tutor {
         
         var funcTutor = Tutor(id: "not-found", grade: nil,
                           email: nil,
@@ -280,7 +283,7 @@ struct SessionView: View {
         
         for tutor in self.tutorsModel.tutors {
             
-            if tutor.id == self.session.selectedTutor {
+            if tutor.id == tutorID {
                 funcTutor = tutor
             }
             

@@ -1,18 +1,15 @@
 //
-//  CalendarView.swift
+//  EventsView.swift
 //  Young Tutors
 //
-//  Created by Kendall Easterly on 11/25/20.
+//  Created by Kendall Easterly on 12/2/20.
 //
 
 import SwiftUI
 
-struct CalendarView: View {
+struct EventsView: View {
     
-    @EnvironmentObject var model: StudentModel
-    @ObservedObject var tutorsModel: TutorsModel
-    @State var detailTutor = Tutor(id: "not-found", grade: nil, email: nil, bio: nil, awards: nil, strengths: nil, pronouns: nil, gradient: "watermelon-magenta", times: nil, classes: nil)
-    @State var tutorIsPresented = false
+    @EnvironmentObject var model: TutorDataModel
     
     var body: some View {
         
@@ -30,27 +27,21 @@ struct CalendarView: View {
                                     .bold()
                                     .padding(.bottom, 20)
                                 
-                                
                                 Text(getClassName(course: event.course))
                                     .padding(.bottom, 10)
                                 
-                                if !tutorsModel.tutors.isEmpty {
-                                    if let tutor = getTutorObjectFor(teacher: event.tutor) {
-                                        if let email = tutor.email {
-                                            Text(event.tutor + " • " + email)
-                                                .foregroundColor(Color(UIColor.secondaryLabel))
-                                                .padding(.bottom, 20)
-                                        } else {
-                                            Text(event.tutor)
-                                                .foregroundColor(Color(UIColor.secondaryLabel))
-                                                .padding(.bottom, 20)
-                                        }
+                                if event.student != "not-found" {
+                                    if event.email != "not-found" {
+                                        Text(event.student + " • " + event.email)
+                                            .foregroundColor(Color(UIColor.secondaryLabel))
+                                            .padding(.bottom, 20)
                                     } else {
-                                        Text(event.tutor)
+                                        Text(event.student)
                                             .foregroundColor(Color(UIColor.secondaryLabel))
                                             .padding(.bottom, 20)
                                     }
                                 }
+                                
                                 
                                 HStack {
                                     
@@ -75,20 +66,24 @@ struct CalendarView: View {
                                     Spacer()
                                     
                                     Button {
-                                            self.detailTutor = getTutorObjectFor(teacher: event.tutor)
-                                        
-                                            self.tutorIsPresented = true
-                                        
+                                          
+                                        if event.email != "not-found" {
+                                            let url = URL(string: "mailto:\(event.email)")
+                                            
+                                            UIApplication.shared.open(url!) { (result) in
+                                                if result {
+                                                   print("successful")
+                                                }
+                                            }
+                                        }
                                     } label: {
-                                        
-                                        Text("View Profile")
+                                        Text("Email")
                                             .fontWeight(.semibold)
-                                            .foregroundColor(.white)
+                                            .foregroundColor(event.email == "not-found" ? Color(UIColor.quaternaryLabel) : .white)
                                             .padding(.vertical, 10)
                                             .padding(.horizontal, 40)
                                             .background(RoundedRectangle(cornerRadius: 30)
-                                                            .foregroundColor(self.cs().watermelon))
-                                        
+                                                            .foregroundColor(event.email != "not-found" ? self.cs().watermelon  : Color(UIColor.quaternarySystemFill)))
                                     }
                                     
                                 }
@@ -101,45 +96,33 @@ struct CalendarView: View {
                             .padding(.vertical, 15)
                         }
                     } else {
-                        Text("You don't have any sessions yet!\nTo get started, go make one now!")
+                        Text("You don't have any sessions yet...\nTo get started, go make one now!")
+                            .fontWeight(.semibold)
                             .italic()
+                            .lineSpacing(2.0)
+                            .font(.title2)
+                            
                     }
                     
-                    
-                }.background(Text(String(detailTutor.id)).foregroundColor(.clear))
-                .sheet(isPresented: $tutorIsPresented) {
-                    TutorDetailView(tutor: self.detailTutor, isFromModal: true)
                 }
             }
             .customNavBar(proxy: reader,
                           title: "Upcoming Sessions", nil,
                           Button(action: {
-                            model.getEvents()
+                            model.getBookedTimes()
                           }, label: {
                             AnyView(Image("reload"))
                           }))
+            
+            
+            
         }
+        
         
     }
 }
 
-extension CalendarView {
-    
-    func getTutorObjectFor(teacher: String) -> Tutor {
-        
-        var funcTutor = Tutor(id: "", grade: nil, email: nil, bio: nil, awards: nil, strengths: nil, pronouns: nil, gradient: "watermelon-magenta", times: nil, classes: nil)
-        
-        for tutor in tutorsModel.tutors {
-            
-            if tutor.id == teacher {
-                funcTutor = tutor
-            }
-            
-        }
-        
-        return funcTutor
-        
-    }
+extension EventsView {
     
     func getCompleteDate(date: String) -> String {
         

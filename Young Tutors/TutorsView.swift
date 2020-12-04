@@ -47,7 +47,9 @@ struct TutorsView: View {
                                                 .foregroundColor(Color(UIColor.secondaryLabel))
                                                 .lineLimit(1)
                                         } else {
-                                            Text(" ")
+                                            Text("Sorry, no strengths available yet.")
+                                                .foregroundColor(Color(UIColor.secondaryLabel))
+                                                .italic()
                                                 .font(.subheadline)
                                         }
                                     }
@@ -64,7 +66,7 @@ struct TutorsView: View {
                         }
                         
                     }
-                }.padding(.horizontal)
+                }.padding()
                 .navigationTitle(Text(""))
                 .navigationBarHidden(true)
                 .customNavBar(proxy: proxy, title: "Tutors", nil, Button(action: {

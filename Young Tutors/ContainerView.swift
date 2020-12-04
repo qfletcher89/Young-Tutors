@@ -6,17 +6,16 @@
 //
 
 import SwiftUI
-import FirebaseAuth
 
 struct ContainerView: View {
     
-    @State var selection = 2
-    let subjectsViewModel = SubjectsModel()
-    let tutorsModel = TutorsModel()
+    @State var selection = 3
+    var subjectsViewModel = SubjectsModel()
+    var tutorsModel = TutorsModel()
+    var studentModel = StudentModel()
     
     var body: some View {
-        
-        if Auth.auth().currentUser != nil {
+
             
             
             TabView(selection: $selection) {
@@ -41,7 +40,8 @@ struct ContainerView: View {
                     .tag(2)
                 
                 
-                AdditionalDivider(content: CalendarView())
+                AdditionalDivider(content: CalendarView(tutorsModel: tutorsModel)
+                                    .environmentObject(studentModel))
                     .tabItem {
                         Image(selection == 3 ? "calendar-red" : "calendar")
                     }
@@ -57,11 +57,10 @@ struct ContainerView: View {
                 
                 subjectsViewModel.getSubjects()
                 tutorsModel.getTutors()
+                studentModel.getEvents()
                 
             }
-        } else {
-            LandingScreen()
-        }
+        
     }
 }
 
