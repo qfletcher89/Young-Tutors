@@ -20,13 +20,13 @@ struct TutorContainerView: View {
                 
                 AdditionalDivider(content: TutorSubjectsView(subjectsModel: subjectsModel).environmentObject(model))
                     .tabItem {
-                        Image("classes")
+                        Image(selection == 1 ? "classes-red" : "classes")
                     }
                     .tag(0)
                 
                 AdditionalDivider(content: EventsView().environmentObject(model))
                     .tabItem {
-                        Image("calendar")
+                        Image(selection == 1 ? "calendar-red" : "calendar")
                     }
                     .tag(1)
                 

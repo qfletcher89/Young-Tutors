@@ -31,10 +31,33 @@ extension View {
     
     func customNavBar(proxy: GeometryProxy,
                       title: String,
-                      _ leading: Button<AnyView>?,
-                      _ trailing: Button<AnyView>?) -> some View {
+                      _ leading: Button<AnyView>,
+                      _ trailing: Button<AnyView>) -> some View {
         
         return self.modifier(CustomNavBar(title: title, leading: leading, trailing: trailing, proxy: proxy))
+        
+    }
+    
+    func customNavBar(proxy: GeometryProxy,
+                      title: String,
+                      leading: Button<AnyView>) -> some View {
+        
+        return self.modifier(CustomNavBar(title: title, leading: leading, trailing: nil, proxy: proxy))
+        
+    }
+    
+    func customNavBar(proxy: GeometryProxy,
+                      title: String,
+                      trailing: Button<AnyView>) -> some View {
+        
+        return self.modifier(CustomNavBar(title: title, leading: nil, trailing: trailing, proxy: proxy))
+        
+    }
+    
+    func customNavBar(proxy: GeometryProxy,
+                      title: String) -> some View {
+        
+        return self.modifier(CustomNavBar(title: title, leading: nil, trailing: nil, proxy: proxy))
         
     }
     

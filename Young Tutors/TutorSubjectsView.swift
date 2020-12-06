@@ -90,7 +90,7 @@ struct TutorSubjectsView: View {
                             }
                         }
                     }
-                }.customNavBar(proxy: geometry, title: "Select Classes", nil, Button(action: {
+                }.customNavBar(proxy: geometry, title: "Select Classes", trailing: Button(action: {
                     self.model.getData()
                 }, label: {
                     AnyView(Image("reload"))

@@ -107,7 +107,7 @@ struct EventsView: View {
                 }
             }
             .customNavBar(proxy: reader,
-                          title: "Upcoming Sessions", nil,
+                          title: "Upcoming Sessions", trailing:
                           Button(action: {
                             model.getBookedTimes()
                           }, label: {

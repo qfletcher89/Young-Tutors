@@ -112,7 +112,7 @@ struct CalendarView: View {
                 }
             }
             .customNavBar(proxy: reader,
-                          title: "Upcoming Sessions", nil,
+                          title: "Upcoming Sessions", trailing:
                           Button(action: {
                             model.getEvents()
                           }, label: {

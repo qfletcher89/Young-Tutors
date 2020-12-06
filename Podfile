@@ -9,4 +9,5 @@ target 'Young Tutors' do
 pod 'Firebase/Analytics'
 pod 'Firebase/Firestore'
 pod 'Firebase/Auth'
+pod 'Firebase/DynamicLinks'
 end

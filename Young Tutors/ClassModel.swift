@@ -154,7 +154,7 @@ extension ClassModel {
             
             db.collection("events").addDocument(data: ["student": name,
                                                        "studentID": profile.uid,
-                                                       "sstudentEmail":email,
+                                                       "studentEmail":email,
                                                        "time":time,
                                                        "tutor":tutor,
                                                        "class":funcCourse])

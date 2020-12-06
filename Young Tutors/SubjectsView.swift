@@ -99,7 +99,7 @@ struct SubjectsView: View {
                         }
                     }
                 }
-                .customNavBar(proxy: geometry, title: "Subjects", nil, Button(action: {
+                .customNavBar(proxy: geometry, title: "Subjects", trailing: Button(action: {
                     self.model.getSubjects()
                   }, label: {
                     AnyView(Image("reload"))

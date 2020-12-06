@@ -9,15 +9,13 @@ import SwiftUI
 
 struct ContainerView: View {
     
-    @State var selection = 3
+    @State var selection = 1
     var subjectsViewModel = SubjectsModel()
     var tutorsModel = TutorsModel()
     var studentModel = StudentModel()
     
     var body: some View {
 
-            
-            
             TabView(selection: $selection) {
                 
                 AdditionalDivider(content: HomeView())
@@ -47,9 +45,9 @@ struct ContainerView: View {
                     }
                     .tag(3)
                 
-                AdditionalDivider(content: NotificationsView())
+                AdditionalDivider(content: ProfileView())
                     .tabItem {
-                        Image(selection == 4 ? "notifications-red" : "notifications")
+                        Image(selection == 4 ? "profile-red" : "profile")
                     }
                     .tag(4)
                 

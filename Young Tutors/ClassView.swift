@@ -108,12 +108,12 @@ struct ClassView: View {
                 model.getClasses(for: subject) { (classes) in
                     self.classes = classes
                 }
-            }.customNavBar(proxy: geometry, title: subject.id.capitalized, Button(action: {
+            }.customNavBar(proxy: geometry, title: subject.id.capitalized, leading:  Button(action: {
                 self.presentationMode.wrappedValue.dismiss()
                 
             }, label: {
                 AnyView(Image("left"))
-            }), nil)
+            }))
         }
     }
     

@@ -259,11 +259,11 @@ struct SessionView: View {
                 }.padding(.top)
             }.padding(.horizontal)
             .sheet(isPresented: $tutorIsPresented, content: {TutorDetailView(tutor: infoForTutor, isFromModal: true)})
-            .customNavBar(proxy: geometry, title: "Book a Session", Button(action: {
+            .customNavBar(proxy: geometry, title: "Book a Session", leading: Button(action: {
                 self.presentationMode.wrappedValue.dismiss()
             }, label: {
                 AnyView(Image("left"))
-            }), nil)
+            }))
         }
         .navigationTitle("")
         .navigationBarHidden(true)
