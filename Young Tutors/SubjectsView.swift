@@ -24,39 +24,8 @@ struct SubjectsView: View {
                     VStack {
                         
                         //Search bar
-                        HStack {
-                            Image(systemName: "magnifyingglass")
-                                .foregroundColor(Color(UIColor.tertiaryLabel))
-                            
-                            TextField("Search", text: $searchFieldText) { (changing) in } onCommit: {
-                                self.hideKeyboard()
-                                self.searchFieldText = ""
-                            }.onChange(of: searchFieldText) { (value) in
-                                withAnimation {
-                                    
-                                    self.customSearchText = value
-                                    
-                                }
-                            }
-                            
-                            Spacer()
-                            
-                            Button {
-                                self.searchFieldText = ""
-                                self.hideKeyboard()
-                            } label: {
-                                Image(systemName: "xmark.circle")
-                                    .foregroundColor(.white)
-                            }
-                        }
-                        .padding(.horizontal)
-                        .padding(.vertical, 10)
-                        .background(RoundedRectangle(cornerRadius: 15)
-                                        .foregroundColor(Color(UIColor.tertiarySystemFill)))
-                        .padding(.horizontal)
-                        .padding(.vertical)
-                        
-                        
+                        SearchBar(searchFieldText: $searchFieldText, customSearchText: $customSearchText)
+                            .padding()
                         HStack(alignment: .top) {
                             
                             VStack {

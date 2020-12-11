@@ -47,7 +47,7 @@ struct SessionView: View {
                             .font(.title3)
                             .fontWeight(.semibold)
                         
-                        Text(Calendar.current.weekdaySymbols[self.calendarSelection - 1])
+                        Text(formatDate())
                             .font(.title2)
                             .fontWeight(.bold)
                     }
@@ -360,6 +360,37 @@ struct SessionView: View {
         return weekday
         
     }
+    
+    func formatDate() -> String{
+        
+        var weekday = Calendar.current.weekdaySymbols[calendarSelection - 1]
+        let todayInt = Calendar.current.component(.weekday, from: Date())
+        if calendarSelection == todayInt {
+            weekday = "Today"
+        }
+        
+        let offset = calendarSelection - todayInt
+        guard offset >= 0 else {
+            fatalError("the offset was negative, meaning the today int was bigger than the day")
+            
+        }
+        
+        var formattedDate = weekday
+        
+        if let date = Calendar.current.date(byAdding: .day, value: offset, to: Date()) {
+            
+            let monthInt = Calendar.current.component(.month, from: date)
+            let month = Calendar.current.monthSymbols[monthInt - 1]
+            let day = Calendar.current.component(.day, from: date)
+            
+            formattedDate = "\(weekday), \(month) \(day)"
+            
+        }
+        
+        return formattedDate
+        
+    }
+    
 }
 
 struct Day: Identifiable {

@@ -18,7 +18,7 @@ struct LogInView: View {
         GeometryReader {reader in
             VStack {
                 Spacer()
-                TextField("Email", text: $model.email).onChange(of: email, perform: { value in
+                TextField("Email", text: $email).onChange(of: email, perform: { value in
                     withAnimation {
                         model.email = value
                     }
@@ -31,7 +31,7 @@ struct LogInView: View {
                     .padding(.horizontal)
                     .padding(.bottom, 20)
                 
-                SecureField("Password", text: $model.password).onChange(of: password, perform: { value in
+                SecureField("Password", text: $password).onChange(of: password, perform: { value in
                     withAnimation {
                         model.password = value
                     }
@@ -42,6 +42,11 @@ struct LogInView: View {
                     .background(RoundedRectangle(cornerRadius: 30)
                                     .stroke())
                     .padding(.horizontal)
+                
+                Text(model.error)
+                    .foregroundColor(.red)
+                    .font(.footnote)
+                    .multilineTextAlignment(.center)
                 
                 Spacer()
                 

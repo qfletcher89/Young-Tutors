@@ -10,14 +10,19 @@ import SwiftUI
 struct TutorsView: View {
     
     @ObservedObject var model: TutorsModel
+    @State var searchFieldText = ""
+    @State var customSearchText = ""
     
     var body: some View {
         NavigationView {
             GeometryReader { proxy in
                 ScrollView {
+                    
+                    SearchBar(searchFieldText: $searchFieldText, customSearchText: $customSearchText)
+                    
                     VStack(alignment: .leading) {
                         
-                        ForEach(model.tutors) { tutor in
+                        ForEach(decideData()) { tutor in
                             
                             NavigationLink(destination: TutorDetailView(tutor: tutor, isFromModal: false)) {
                                 
@@ -64,9 +69,8 @@ struct TutorsView: View {
                                 .padding(.leading, 45)
                             
                         }
-                        
-                    }
-                }.padding()
+                    }.padding(.top)
+                }.padding([.horizontal, .top])
                 .navigationTitle(Text(""))
                 .navigationBarHidden(true)
                 .customNavBar(proxy: proxy, title: "Tutors", trailing:  Button(action: {
@@ -78,6 +82,28 @@ struct TutorsView: View {
             }
             
         }
+    }
+    
+    func decideData() -> [Tutor] {
+        
+        if customSearchText == "" {
+            return model.tutors
+        } else {
+            
+            var tutorArray = [Tutor]()
+            
+            for tutor in model.tutors {
+                
+                if tutor.id.contains(customSearchText.capitalized) {
+                    tutorArray.append(tutor)
+                }
+                
+            }
+            
+            return tutorArray
+            
+        }
+        
     }
     
     func getGradientColors(for tutor: Tutor) -> [Color] {

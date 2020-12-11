@@ -22,8 +22,11 @@ class SignUpModel: ObservableObject {
     init() {
         
         if let user = Auth.auth().currentUser {
-            if user.displayName == "tutor" {
-                isTutor = true
+            
+            if let displayName = user.displayName {
+                if displayName.contains("@YOUNGTUTOR:") {
+                    isTutor = true
+                }
             }
             
             step = .container
@@ -65,7 +68,11 @@ class SignUpModel: ObservableObject {
             if let err = error {
                 
                 print("ther was an error signing in \(err.localizedDescription)")
-                self.error = err.localizedDescription
+                if let localizedDescription = err.localizedDescription.split(separator: ".").first {
+                    self.error = String(localizedDescription)
+                } else {
+                    self.error = err.localizedDescription
+                }
                 
             } else {
                 withAnimation {
@@ -89,14 +96,14 @@ class SignUpModel: ObservableObject {
                 } else {
                     if let result = result {
                         
-//                        let changeRequest = result.user.createProfileChangeRequest()
+                        let changeRequest = result.user.createProfileChangeRequest()
 
-//                        changeRequest.displayName = self.name
-//                        changeRequest.commitChanges { (error) in
+                        changeRequest.displayName = self.name
+                        changeRequest.commitChanges { (error) in
 
-//                            if let err = error {
-//                                print("there was error commitign chages \(err)")
-//                            } else {
+                            if let err = error {
+                                print("there was error commitign chages \(err)")
+                            } else {
                         withAnimation {
                                 self.step = .complete
                         }
@@ -104,8 +111,8 @@ class SignUpModel: ObservableObject {
                                     .document(result.user.uid)
                                     .setData(["name":self.name,
                                               "email":self.email])
-//                            }
-//                        }
+                            }
+                        }
                     }
                 }
             }
