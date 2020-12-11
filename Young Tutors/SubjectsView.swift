@@ -67,14 +67,14 @@ struct SubjectsView: View {
                             
                         }
                     }
-                }
+                }//.addProgressHUD(isAnimating: $model.hudShowing)
                 .customNavBar(proxy: geometry, title: "Subjects", trailing: Button(action: {
                     self.model.getSubjects()
                   }, label: {
                     AnyView(Image("reload"))
                   }))
-            }.navigationBarTitle("")
-            .navigationBarHidden(true)
+            }//.navigationBarTitle("")
+//            .navigationBarHidden(true)
             .background(self.cs().background.edgesIgnoringSafeArea(.all))
         }
         

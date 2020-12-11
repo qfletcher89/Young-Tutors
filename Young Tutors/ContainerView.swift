@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContainerView: View {
     
-    @State var selection = 3
+    @State var selection = 1
     var subjectsViewModel = SubjectsModel()
     var tutorsModel = TutorsModel()
     var studentModel = StudentModel()

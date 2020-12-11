@@ -15,6 +15,7 @@ struct SessionView: View {
     @State var session = Session(id: "", day: "", time: "", tutors: [""])
     @State var isShowingTutors = false
     @State var tutorIsPresented = false
+    @State var isShowingRecap = false
     @State var infoForTutor = Tutor(id: "not-found", grade: nil, email: nil, bio: nil, awards: nil, strengths: nil, pronouns: nil, gradient: "", times: nil, classes: nil)
     var subject: Subject
     var course: Class
@@ -28,7 +29,7 @@ struct SessionView: View {
                     
                     VStack(alignment: .leading, spacing: 0) {
                         
-                        Text("Subject")
+                        Text("Class")
                             .foregroundColor(Color(UIColor.secondaryLabel))
                             .font(.title3)
                             .fontWeight(.semibold)
@@ -234,7 +235,9 @@ struct SessionView: View {
                         model.createSession(at: session.id,
                                             with: session.selectedTutor,
                                             subject: subject,
-                                            course: course)
+                                            course: course, completion: {
+                                                self.isShowingRecap = true
+                                            })
                         
                     } label: {
                         
@@ -258,6 +261,10 @@ struct SessionView: View {
                     
                 }.padding(.top)
             }.padding(.horizontal)
+            .background(NavigationLink(destination: RecapView(course: course,
+                                                              date: formatDate(),
+                                                              time: session.time,
+                                                              tutor: getTutor(tutorID: session.selectedTutor)), isActive: $isShowingRecap, label: {EmptyView()}))
             .sheet(isPresented: $tutorIsPresented, content: {TutorDetailView(tutor: infoForTutor, isFromModal: true)})
             .customNavBar(proxy: geometry, title: "Book a Session", leading: Button(action: {
                 self.presentationMode.wrappedValue.dismiss()
@@ -265,8 +272,8 @@ struct SessionView: View {
                 AnyView(Image("left"))
             }))
         }
-        .navigationTitle("")
-        .navigationBarHidden(true)
+//        .navigationTitle("")
+//        .navigationBarHidden(true)
     }
     
     func getTutor(tutorID: String) -> Tutor {

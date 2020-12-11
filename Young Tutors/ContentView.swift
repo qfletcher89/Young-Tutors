@@ -9,34 +9,18 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State var view = ""
+    @State var isShowing = false
     
     var body: some View {
         
-        if view == "" {
-            VStack {
-                
-                Button(action: {
-                    view = "student"
-                }, label: {
-                    Text("student")
-                })
-                
-                Button(action: {
-                    view = "tutor"
-                }, label: {
-                    Text("tutor")
-                })
-                
-            }
-        } else if view == "student" {
-            
-            ContainerView()
-            
-        } else if view == "tutor" {
-            TutorContainerView()
+        VStack {
+            Button(action: {
+                isShowing.toggle()
+            }, label: {
+                Text("animate")
+            })
         }
-        
+        .addProgressHUD(placeholder: "lookame", isAnimating: $isShowing)
         
     }
 }

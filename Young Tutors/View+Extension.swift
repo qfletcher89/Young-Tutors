@@ -71,6 +71,37 @@ extension View {
     func cornerRadius(radius: CGFloat, corners: UIRectCorner) -> some View {
         ModifiedContent(content: self, modifier: CornerRadiusStyle(radius: radius, corners: corners))
     }
+    
+    func addProgressHUD(placeholder: String, isAnimating: Binding<Bool>) -> some View {
+        
+        return self.modifier(HUD(placeholder: placeholder, isAnimating: isAnimating))
+        
+    }
+    
+    func addProgressHUD(isAnimating: Binding<Bool>) -> some View {
+        
+        return self.modifier(HUD(placeholder: "Loading...", isAnimating: isAnimating))
+        
+    }
+    
+}
+
+private struct HUD: ViewModifier {
+    
+    var placeholder: String
+    @Binding var isAnimating: Bool
+    
+    func body(content: Content) -> some View {
+        
+        ZStack {
+            
+            content
+            if isAnimating {
+                ProgressHUD(placeholder: placeholder, show: $isAnimating)
+                    .edgesIgnoringSafeArea(.all)
+            }
+        }
+    }
 }
 
 struct Centered: ViewModifier {
@@ -119,6 +150,8 @@ struct CustomNavBar: ViewModifier {
                 content
                     .padding(.top, proxy.safeAreaInsets.top)
                     .padding(.top)
+                    .navigationTitle("")
+                    .navigationBarHidden(true)
                 
             } else {
                 content

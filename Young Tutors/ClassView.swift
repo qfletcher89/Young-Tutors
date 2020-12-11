@@ -76,7 +76,7 @@ struct ClassView: View {
                 Spacer()
                 
             }
-            .navigationBarHidden(true)
+//            .navigationBarHidden(true)
             .onAppear {
                 
                 model.getClasses(for: subject) { (classes) in

@@ -95,8 +95,8 @@ struct TutorSubjectsView: View {
                 }, label: {
                     AnyView(Image("reload"))
                 }))
-            }.navigationBarTitle("")
-            .navigationBarHidden(true)
+            }//.navigationBarTitle("")
+//            .navigationBarHidden(true)
             .background(self.cs().background.edgesIgnoringSafeArea(.all))
         }
         

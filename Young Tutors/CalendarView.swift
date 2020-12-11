@@ -117,12 +117,10 @@ struct CalendarView: View {
                                                 
                                                 Text("Cancel")
                                                     .fontWeight(.semibold)
-                                                    //                                    .foregroundColor(Color(UIColor.label))
                                                     .padding(.vertical, 10)
                                                     .padding(.horizontal, 40)
                                                     .background(RoundedRectangle(cornerRadius: 30)
                                                                     .stroke()
-                                                                //                                                    .foregroundColor(Color(UIColor.label)))
                                                     )
                                                 
                                             }.accentColor(Color(UIColor.label))
@@ -194,6 +192,8 @@ extension CalendarView {
         
         if hour < 0 {
             hour = 0
+        } else if hour > 9 {
+            hour = 9
         }
         
         var time = "\(day)\(hour)\(minute)"

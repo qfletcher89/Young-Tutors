@@ -98,7 +98,7 @@ struct TutorClassesView: View {
                 Spacer()
                 
             }
-            .navigationBarHidden(true)
+//            .navigationBarHidden(true)
             .onAppear {
                 
                 classModel.getClasses(for: subject) { (classes) in

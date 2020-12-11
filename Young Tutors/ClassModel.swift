@@ -136,7 +136,7 @@ struct Session: Identifiable, Comparable {
 ///For the handling of the session methods
 extension ClassModel {
     
-    func createSession(at time: String, with tutor: String, subject: Subject, course: Class) {
+    func createSession(at time: String, with tutor: String, subject: Subject, course: Class, completion: @escaping () -> Void) {
         
         let funcCourse = subject.id + "-" + course.id
         
@@ -157,7 +157,13 @@ extension ClassModel {
                                                        "studentEmail":email,
                                                        "time":time,
                                                        "tutor":tutor,
-                                                       "class":funcCourse])
+                                                       "class":funcCourse]) { (error) in
+                if let err = error {
+                    print("there was an error adding the event \(err.localizedDescription)")
+                } else {
+                    completion()
+                }
+            }
             
             db.collection("subjects")
                 .document(subject.id)

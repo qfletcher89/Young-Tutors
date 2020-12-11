@@ -71,8 +71,8 @@ struct TutorsView: View {
                         }
                     }.padding(.top)
                 }.padding([.horizontal, .top])
-                .navigationTitle(Text(""))
-                .navigationBarHidden(true)
+//                .navigationTitle(Text(""))
+//                .navigationBarHidden(true)
                 .customNavBar(proxy: proxy, title: "Tutors", trailing:  Button(action: {
                     model.getTutors()
                     

@@ -10,6 +10,7 @@ import FirebaseFirestore
 
 class SubjectsModel: ObservableObject {
     
+    //ur gonna need to make an object to handle your hud
     @Published var subjects = [Subject]()
     var db: Firestore!
     var lastDocument: DocumentSnapshot? = nil
@@ -24,6 +25,9 @@ class SubjectsModel: ObservableObject {
     }
     
     func getSubjects() {
+        
+//        hudShowing = true
+//        print(hudShowing)
         
         db.collection("subjects").order(by: "order").getDocuments { (snapshot, error) in
             
@@ -45,10 +49,14 @@ class SubjectsModel: ObservableObject {
                         subjectsArray.append(Subject(id: id, count: count))
                         
                     }
+//                    self.hudShowing = false
+//                    print(self.hudShowing)
                     withAnimation{
                     self.subjects = subjectsArray
                     }
+                    
                 } else {
+//                    self.hudShowing = false
                     print("could not get documents in snapshot")
                 }
             }
