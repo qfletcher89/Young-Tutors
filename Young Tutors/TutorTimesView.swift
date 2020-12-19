@@ -52,13 +52,15 @@ struct TutorTimesView: View {
                                                      deletedTimes: $deletedTimes,
                                                      selection: true,
                                                      initalSelection: true,
-                                                     time: "\(day)\(time)")
+                                                     time: "\(day)\(time)",
+                                                     isDisabled: timeIsBooked(time: "\(day)\(time)"))
                                     } else {
                                         TimeSelector(addedTimes: $addedTimes,
                                                      deletedTimes: $deletedTimes,
                                                      selection: false,
                                                      initalSelection: false,
-                                                     time: "\(day)\(time)")
+                                                     time: "\(day)\(time)",
+                                                     isDisabled: timeIsBooked(time: "\(day)\(time)"))
                                     }
                                 }
                             }.padding(.vertical, 5)
@@ -67,6 +69,9 @@ struct TutorTimesView: View {
                     }
                 }
             }.padding(.vertical)
+            .onAppear {
+                model.getBookedTimes()
+            }
             .customNavBar(proxy: reader,
                            title: "Times",
                            Button(action: {
@@ -90,6 +95,23 @@ struct TutorTimesView: View {
                            }))
         }
     }
+    
+    func timeIsBooked(time: String) -> Bool {
+        
+        var isBooked = false
+        
+        for event in model.events {
+            print(time)
+            print(event.time)
+            if event.time == time {
+                isBooked = true
+            }
+        }
+        
+        return isBooked
+        
+    }
+    
 }
 
 struct TimeSelector: View {
@@ -99,6 +121,7 @@ struct TimeSelector: View {
     @State var selection: Bool
     var initalSelection: Bool
     var time: String
+    var isDisabled: Bool
     
     var body: some View {
         
@@ -107,23 +130,45 @@ struct TimeSelector: View {
             update()
         } label: {
             
-            HStack {
+            if !isDisabled {
                 
-                Text(formatTime())
-                    .foregroundColor(selection ? Color(UIColor.systemBackground) : self.cs().watermelon)
+                HStack {
                     
-                Image("check-plain")
-                    .renderingMode(.template)
-                    .foregroundColor(selection ? Color(UIColor.systemBackground) : self.cs().watermelon)
+                    Text(formatTime())
+                        .foregroundColor(selection ? Color(UIColor.systemBackground) : self.cs().watermelon)
+                        
+                    Image("check-plain")
+                        .renderingMode(.template)
+                        .foregroundColor(selection ? Color(UIColor.systemBackground) : self.cs().watermelon)
+                    
+                }.padding(.vertical, 5)
+                .padding(.horizontal, 10)
+                .background(selection ?
+                    AnyView(RoundedRectangle(cornerRadius: 30).foregroundColor(self.cs().watermelon)) :
+                                AnyView(RoundedRectangle(cornerRadius: 30).stroke(lineWidth: 2).foregroundColor(self.cs().watermelon)))
                 
-            }.padding(.vertical, 5)
-            .padding(.horizontal, 10)
-            .background(selection ?
-                AnyView(RoundedRectangle(cornerRadius: 30).foregroundColor(self.cs().watermelon)) :
-                            AnyView(RoundedRectangle(cornerRadius: 30).stroke(lineWidth: 2).foregroundColor(self.cs().watermelon)))
-//            .background(RoundedRectangle(cornerRadius: 30)
-//                            .foregroundColor(Color(UIColor.secondarySystemBackground)))
-        }
+            } else {
+                
+                HStack {
+                    
+                    Text(formatTime())
+                        .foregroundColor(selection ? Color(UIColor.systemBackground) : Color(UIColor.quaternaryLabel))
+                        
+                    Image("check-plain")
+                        .renderingMode(.template)
+                        .foregroundColor(selection ? Color(UIColor.systemBackground) : Color(UIColor.quaternaryLabel))
+                    
+                }.padding(.vertical, 5)
+                .padding(.horizontal, 10)
+                .background(selection ?
+                    AnyView(RoundedRectangle(cornerRadius: 30).foregroundColor(Color(UIColor.quaternaryLabel))) :
+                                AnyView(RoundedRectangle(cornerRadius: 30).stroke(lineWidth: 2).foregroundColor(Color(UIColor.quaternaryLabel))))
+                
+            }
+            
+            
+
+        }.disabled(isDisabled)
     }
     
     

@@ -71,7 +71,8 @@ struct Card: View {
                 .padding(.bottom, 5)
                 .padding(.horizontal)
                 
-                Text("\(mainText.capitalized)")
+//                Text("\(capitalizeMainText())")
+                Text(mainText)
                     .foregroundColor(color)
                     .font(.body)
                     .fontWeight(.semibold)
@@ -114,4 +115,19 @@ struct Card: View {
             return Image("book")
         }
     }
+    
+//    func capitalizeMainText() -> String {
+//
+//        var funcName = self.mainText.capitalized
+//
+//        if funcName.contains("Ii") {
+//            funcName = funcName.replacingOccurrences(of: "Ii", with: "II")
+//        } else if funcName.contains("Iii") {
+//            funcName = funcName.replacingOccurrences(of: "Iii", with: "III")
+//        }
+//
+//        return funcName
+//
+//    }
+    
 }

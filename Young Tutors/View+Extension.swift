@@ -72,36 +72,37 @@ extension View {
         ModifiedContent(content: self, modifier: CornerRadiusStyle(radius: radius, corners: corners))
     }
     
-    func addProgressHUD(placeholder: String, isAnimating: Binding<Bool>) -> some View {
+    func hud(isActive: Binding<Bool>, type: TTProgressHUDType) -> some View {
         
-        return self.modifier(HUD(placeholder: placeholder, isAnimating: isAnimating))
+        var configuration = TTProgressHUDConfig(type: type, lineWidth: 1, imageViewSize: CGSize(width: 100, height: 100))
         
-    }
-    
-    func addProgressHUD(isAnimating: Binding<Bool>) -> some View {
+        if type != .Loading {
+            configuration.shouldAutoHide = true
+            configuration.autoHideInterval = 1.5
+        } 
         
-        return self.modifier(HUD(placeholder: "Loading...", isAnimating: isAnimating))
+        return self.modifier(HUD(configuration: configuration, isVisible: isActive))
         
     }
     
 }
 
-private struct HUD: ViewModifier {
+struct HUD: ViewModifier {
     
-    var placeholder: String
-    @Binding var isAnimating: Bool
+    var configuration: TTProgressHUDConfig
+    @Binding var isVisible: Bool
     
     func body(content: Content) -> some View {
         
         ZStack {
             
             content
-            if isAnimating {
-                ProgressHUD(placeholder: placeholder, show: $isAnimating)
-                    .edgesIgnoringSafeArea(.all)
-            }
+            
+            TTProgressHUD($isVisible, config: configuration)
         }
+        
     }
+    
 }
 
 struct Centered: ViewModifier {
@@ -254,7 +255,7 @@ struct CornerRadiusStyle: ViewModifier {
 class Colors {
     
     let black = Color(#colorLiteral(red: 0.16862745583057404, green: 0.16862745583057404, blue: 0.16862745583057404, alpha: 1))
-    let darkGrey = Color(#colorLiteral(red: 0.501960813999176, green: 0.5490196347236633, blue: 0.5529412031173706, alpha: 1))
+    let darkGrey = Color(#colorLiteral(red: 0.501960814, green: 0.5490196347, blue: 0.5529412031, alpha: 1))
     let grey = Color(#colorLiteral(red: 0.7450980544090271, green: 0.7686274647712708, blue: 0.7843137383460999, alpha: 1))
     let sand = Color(#colorLiteral(red: 0.9411764740943909, green: 0.8705882430076599, blue: 0.7176470756530762, alpha: 1))
     

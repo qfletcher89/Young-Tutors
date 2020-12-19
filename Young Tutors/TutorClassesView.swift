@@ -47,7 +47,7 @@ struct TutorClassesView: View {
                             self.hideKeyboard()
                             self.searchFieldText = ""
                         }.onChange(of: searchFieldText) { (value) in
-                            withAnimation {
+                            withAnimation(Animation.easeInOut(duration: 0.2)) {
                                 self.customSearchText = value
                                 
                             }

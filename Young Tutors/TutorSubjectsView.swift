@@ -35,7 +35,7 @@ struct TutorSubjectsView: View {
                                 self.hideKeyboard()
                                 self.searchFieldText = ""
                             }.onChange(of: searchFieldText) { (value) in
-                                withAnimation {
+                                withAnimation(Animation.easeInOut(duration: 0.2)) {
                                     
                                     self.customSearchText = value
                                     
@@ -72,7 +72,7 @@ struct TutorSubjectsView: View {
                                             
                                             Card(boxWidth: boxWidth,
                                                  color: decideColor(for: subject),
-                                                 mainText: subject.id,
+                                                 mainText: subject.id.capitalized,
                                                  number: decideNumber(subject: subject),
                                                  course: nil)
                                                 .padding(.bottom)

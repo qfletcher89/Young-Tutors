@@ -19,7 +19,7 @@ struct SessionView: View {
     @State var infoForTutor = Tutor(id: "not-found", grade: nil, email: nil, bio: nil, awards: nil, strengths: nil, pronouns: nil, gradient: "", times: nil, classes: nil)
     var subject: Subject
     var course: Class
-    var model = ClassModel()
+    @EnvironmentObject var model: ClassModel
     
     var body: some View {
         
@@ -35,7 +35,7 @@ struct SessionView: View {
                             .fontWeight(.semibold)
                             .lineLimit(3)
                         
-                        Text(course.levels + " " + course.name.capitalized)
+                        Text(course.levels + " " + course.name)//was capitalized
                             .font(.title2)
                             .fontWeight(.bold)
                         
@@ -90,7 +90,7 @@ struct SessionView: View {
                                 
                                 if session.tutors.count != 1 {
                                     Button {
-                                        withAnimation {
+                                        withAnimation(Animation.easeOut(duration: 0.3)) {
                                             self.isShowingTutors.toggle()
                                         }
                                     } label: {
@@ -125,7 +125,10 @@ struct SessionView: View {
                                             Spacer()
                                             
                                             Button {
-                                                withAnimation {
+                                                withAnimation(Animation.easeOut(duration: 0.3)) {
+                                                    let generator = UISelectionFeedbackGenerator()
+                                                    generator.prepare()
+                                                    generator.selectionChanged()
                                                     self.session.selectedTutor = tutor
                                                     self.isShowingTutors = false
                                                 }
@@ -163,7 +166,7 @@ struct SessionView: View {
                                                     .fontWeight(.semibold)
                                                 
                                                 Button {
-                                                    withAnimation {
+                                                    withAnimation(Animation.easeInOut(duration: 0.3)) {
                                                         self.calendarSelection = day.dayOfWeek
                                                     }
                                                 } label: {
@@ -194,8 +197,11 @@ struct SessionView: View {
                                         ForEach(getSessionsForSelectedDate()) {session in
                                             
                                             Button {
-                                                withAnimation {
+                                                
+                                                withAnimation(Animation.easeInOut(duration: 0.3)) {
+                                                    
                                                     self.session = session
+                                                    
                                                 }
                                             } label: {
                                                 if self.session.id == session.id {
@@ -234,6 +240,7 @@ struct SessionView: View {
                         
                         model.createSession(at: session.id,
                                             with: session.selectedTutor,
+                                            using: tutorsModel,
                                             subject: subject,
                                             course: course, completion: {
                                                 self.isShowingRecap = true

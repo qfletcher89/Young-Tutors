@@ -22,11 +22,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         // Create the SwiftUI view that provides the window contents.
 //        let mainView = ContentView()
-//        let mainView = RecapView()
-        let mainView = MainView()
+        let navModel = NavModel()
+        let mainView = MainView().environmentObject(navModel)
         
-        
-//                let subjectsView = ContentView()
         UITabBar.appearance().shadowImage = UIImage()
         UITabBar.appearance().backgroundImage = UIImage()
         UITabBar.appearance().isTranslucent = true

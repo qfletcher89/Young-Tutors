@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -23,8 +23,11 @@
 		C65D8AB82573115B00B80DF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65D8AB72573115B00B80DF0 /* AppDelegate.swift */; };
 		C65D8ABD2573120800B80DF0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C65D8ABC2573120800B80DF0 /* GoogleService-Info.plist */; };
 		C65E687A256F8EAF00E264C5 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65E6879256F8EAF00E264C5 /* String+Extension.swift */; };
+		C666388325867403003B48F8 /* TTProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = C666388225867403003B48F8 /* TTProgressHUD */; };
+		C666388625868BBA003B48F8 /* ProgressHudActivator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C666388525868BBA003B48F8 /* ProgressHudActivator.swift */; };
 		C67215722583232600A58956 /* RecapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67215712583232600A58956 /* RecapView.swift */; };
 		C679405B2582D6FA00DAD7B4 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C679405A2582D6FA00DAD7B4 /* SearchBar.swift */; };
+		C67C5A11258BD8A600F08F2D /* TutorProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67C5A10258BD8A600F08F2D /* TutorProfileView.swift */; };
 		C68439492583027E00EBE80D /* ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68439482583027E00EBE80D /* ProgressHUD.swift */; };
 		C684394D25830F0800EBE80D /* EnvironmentKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = C684394C25830F0800EBE80D /* EnvironmentKeys.swift */; };
 		C69C4D612573520D0071A865 /* TutorsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69C4D602573520D0071A865 /* TutorsModel.swift */; };
@@ -70,9 +73,11 @@
 		C65D8AB72573115B00B80DF0 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C65D8ABC2573120800B80DF0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C65E6879256F8EAF00E264C5 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		C666388525868BBA003B48F8 /* ProgressHudActivator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressHudActivator.swift; sourceTree = "<group>"; };
 		C67215712583232600A58956 /* RecapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecapView.swift; sourceTree = "<group>"; };
 		C67408DA257C96D90047D7FC /* Young Tutors.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Young Tutors.entitlements"; sourceTree = "<group>"; };
 		C679405A2582D6FA00DAD7B4 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		C67C5A10258BD8A600F08F2D /* TutorProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorProfileView.swift; sourceTree = "<group>"; };
 		C68439482583027E00EBE80D /* ProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressHUD.swift; sourceTree = "<group>"; };
 		C684394C25830F0800EBE80D /* EnvironmentKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentKeys.swift; sourceTree = "<group>"; };
 		C69C4D602573520D0071A865 /* TutorsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorsModel.swift; sourceTree = "<group>"; };
@@ -107,6 +112,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5505BCF4B94B57FD9A987593 /* Pods_Young_Tutors.framework in Frameworks */,
+				C666388325867403003B48F8 /* TTProgressHUD in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,6 +157,25 @@
 			name = SubViews;
 			sourceTree = "<group>";
 		};
+		C67C5A13258BD8AE00F08F2D /* (T) Create Flow */ = {
+			isa = PBXGroup;
+			children = (
+				C6F9508025717623002A9993 /* TutorSubjectsView.swift */,
+				C6F9509225718697002A9993 /* TutorClassesView.swift */,
+				C6F950832571763E002A9993 /* TutorTimesView.swift */,
+				C6F9508E2571854D002A9993 /* TutorCard.swift */,
+			);
+			name = "(T) Create Flow";
+			sourceTree = "<group>";
+		};
+		C67C5A15258BD8FF00F08F2D /* (T) Profile */ = {
+			isa = PBXGroup;
+			children = (
+				C67C5A10258BD8A600F08F2D /* TutorProfileView.swift */,
+			);
+			name = "(T) Profile";
+			sourceTree = "<group>";
+		};
 		C6E9AFEB2565B8C700065AE0 /* System */ = {
 			isa = PBXGroup;
 			children = (
@@ -166,13 +191,13 @@
 			name = System;
 			sourceTree = "<group>";
 		};
-		C6E9AFEC2565B8CD00065AE0 /* (S) Schedule  */ = {
+		C6E9AFEC2565B8CD00065AE0 /* (S) Schedule Flow  */ = {
 			isa = PBXGroup;
 			children = (
 				C6FDA95C256ECC9E006B3110 /* Views */,
 				C6E9AFEE2565B8DA00065AE0 /* Models */,
 			);
-			name = "(S) Schedule ";
+			name = "(S) Schedule Flow ";
 			sourceTree = "<group>";
 		};
 		C6E9AFEE2565B8DA00065AE0 /* Models */ = {
@@ -206,11 +231,12 @@
 			isa = PBXGroup;
 			children = (
 				C632E2A42582F2C000E12758 /* SubViews */,
+				C666388525868BBA003B48F8 /* ProgressHudActivator.swift */,
 				C61BE3A02569B61A0025F494 /* ContainerView.swift */,
 				C6F9508A25717E39002A9993 /* TutorContainerView.swift */,
 				C65D707325748D33005CED5E /* NavModel.swift */,
 				C6FDA95F256ED0E2006B3110 /* Home */,
-				C6E9AFEC2565B8CD00065AE0 /* (S) Schedule  */,
+				C6E9AFEC2565B8CD00065AE0 /* (S) Schedule Flow  */,
 				C6FDA960256ED0E7006B3110 /* (S) Tutors */,
 				C6FDA961256ED0F9006B3110 /* (S) Calendar */,
 				C6FDA962256ED104006B3110 /* (S) Profile */,
@@ -218,13 +244,11 @@
 				C6FDA95E256ED0DB006B3110 /* Test */,
 				C6FDA963256ED147006B3110 /* Extensions */,
 				C6E9AFEB2565B8C700065AE0 /* System */,
-				C6F9508025717623002A9993 /* TutorSubjectsView.swift */,
+				C67C5A13258BD8AE00F08F2D /* (T) Create Flow */,
 				C62BD45725788C9F0027B387 /* EventsView.swift */,
-				C6F9509225718697002A9993 /* TutorClassesView.swift */,
-				C6F950832571763E002A9993 /* TutorTimesView.swift */,
-				C6F9508E2571854D002A9993 /* TutorCard.swift */,
-				C6F9508625717751002A9993 /* TutorDataModel.swift */,
+				C67C5A15258BD8FF00F08F2D /* (T) Profile */,
 				C684394C25830F0800EBE80D /* EnvironmentKeys.swift */,
+				C6F9508625717751002A9993 /* TutorDataModel.swift */,
 			);
 			path = "Young Tutors";
 			sourceTree = "<group>";
@@ -320,6 +344,9 @@
 			dependencies = (
 			);
 			name = "Young Tutors";
+			packageProductDependencies = (
+				C666388225867403003B48F8 /* TTProgressHUD */,
+			);
 			productName = "Young Tutors";
 			productReference = C6EADF0425659A7F00D6EA29 /* Young Tutors.app */;
 			productType = "com.apple.product-type.application";
@@ -347,6 +374,9 @@
 				Base,
 			);
 			mainGroup = C6EADEFB25659A7E00D6EA29;
+			packageReferences = (
+				C666388125867403003B48F8 /* XCRemoteSwiftPackageReference "TTProgressHUD" */,
+			);
 			productRefGroup = C6EADF0525659A7F00D6EA29 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -423,10 +453,12 @@
 				C6F9508F2571854D002A9993 /* TutorCard.swift in Sources */,
 				C6E9AFFD2565B9A900065AE0 /* SessionView.swift in Sources */,
 				C6F9508725717751002A9993 /* TutorDataModel.swift in Sources */,
+				C666388625868BBA003B48F8 /* ProgressHudActivator.swift in Sources */,
 				C65E687A256F8EAF00E264C5 /* String+Extension.swift in Sources */,
 				C6F9509325718697002A9993 /* TutorClassesView.swift in Sources */,
 				C6FDA96D256ED205006B3110 /* CalendarView.swift in Sources */,
 				C6FDA967256ED186006B3110 /* HomeView.swift in Sources */,
+				C67C5A11258BD8A600F08F2D /* TutorProfileView.swift in Sources */,
 				C6E9AFFA2565B99C00065AE0 /* ClassView.swift in Sources */,
 				C6EADF0A25659A7F00D6EA29 /* SceneDelegate.swift in Sources */,
 				C6E9AFF72565B98E00065AE0 /* SubjectsView.swift in Sources */,
@@ -657,6 +689,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C666388125867403003B48F8 /* XCRemoteSwiftPackageReference "TTProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/honkmaster/TTProgressHUD";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C666388225867403003B48F8 /* TTProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C666388125867403003B48F8 /* XCRemoteSwiftPackageReference "TTProgressHUD" */;
+			productName = TTProgressHUD;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C6EADEFC25659A7E00D6EA29 /* Project object */;
 }

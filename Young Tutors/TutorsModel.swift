@@ -8,20 +8,9 @@
 import Foundation
 import Firebase
 
-class TutorsModel: ObservableObject {
+class TutorsModel: ProgressHudActivator {
     
     @Published var tutors = [Tutor]()
-    var db: Firestore!
-    
-    init() {
-        
-        let settings = FirestoreSettings()
-        
-        Firestore.firestore().settings = settings
-        
-        db = Firestore.firestore()
-        
-    }
     
     func getTutors() {
         //when you're retreiving these tutors, you need to have two different versions of each picture that they upload. A small one for the rows in the tutors view, and then the full one or at least bigger for the detail view.

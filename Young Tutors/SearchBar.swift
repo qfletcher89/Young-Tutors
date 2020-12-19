@@ -21,7 +21,7 @@ struct SearchBar: View {
                 self.hideKeyboard()
                 self.searchFieldText = ""
             }.onChange(of: searchFieldText) { (value) in
-                withAnimation {
+                withAnimation(Animation.easeInOut(duration: 0.4)) {
                     
                     self.customSearchText = value
                     
@@ -35,7 +35,7 @@ struct SearchBar: View {
                 self.hideKeyboard()
             } label: {
                 Image(systemName: "xmark.circle")
-                    .foregroundColor(.white)
+                    .foregroundColor(Color(UIColor.secondaryLabel))
             }
         }
         .padding(.horizontal)

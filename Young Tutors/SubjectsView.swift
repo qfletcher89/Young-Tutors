@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SubjectsView: View {
     
+    
     @ObservedObject var model: SubjectsModel
     @State var searchFieldText = ""
     //I do a custom value so I can animate the changing of the text in search field
@@ -35,7 +36,7 @@ struct SubjectsView: View {
                                     NavigationLink(destination: ClassView(subject: subject, boxWidth: boxWidth, color: decideColor(for: subject))) {
                                         Card(boxWidth: boxWidth,
                                              color: decideColor(for: subject),
-                                             mainText: subject.id,
+                                             mainText: subject.id.capitalized,
                                              number: subject.count,
                                              course: nil)
                                             .padding(.bottom)
@@ -54,7 +55,7 @@ struct SubjectsView: View {
                                     NavigationLink(destination: ClassView(subject: subject, boxWidth: boxWidth, color: decideColor(for: subject))) {
                                         Card(boxWidth: boxWidth,
                                              color: decideColor(for: subject),
-                                             mainText: subject.id,
+                                             mainText: subject.id.capitalized,
                                              number: subject.count,
                                              course: nil)
                                             .padding(.bottom)
@@ -67,17 +68,14 @@ struct SubjectsView: View {
                             
                         }
                     }
-                }//.addProgressHUD(isAnimating: $model.hudShowing)
-                .customNavBar(proxy: geometry, title: "Subjects", trailing: Button(action: {
+                }.customNavBar(proxy: geometry, title: "Subjects", trailing: Button(action: {
                     self.model.getSubjects()
                   }, label: {
                     AnyView(Image("reload"))
                   }))
-            }//.navigationBarTitle("")
-//            .navigationBarHidden(true)
+            }
             .background(self.cs().background.edgesIgnoringSafeArea(.all))
         }
-        
     }
     
     func decideData() -> [Subject] {

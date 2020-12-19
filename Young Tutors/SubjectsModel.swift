@@ -8,26 +8,14 @@
 import SwiftUI
 import FirebaseFirestore
 
-class SubjectsModel: ObservableObject {
+class SubjectsModel: ProgressHudActivator {
     
     //ur gonna need to make an object to handle your hud
     @Published var subjects = [Subject]()
-    var db: Firestore!
-    var lastDocument: DocumentSnapshot? = nil
-    
-    init() {
-        
-        let settings = FirestoreSettings()
-        Firestore.firestore().settings = settings
-        
-        db = Firestore.firestore()
-        
-    }
     
     func getSubjects() {
         
-//        hudShowing = true
-//        print(hudShowing)
+        super.activate()
         
         db.collection("subjects").order(by: "order").getDocuments { (snapshot, error) in
             
@@ -49,14 +37,16 @@ class SubjectsModel: ObservableObject {
                         subjectsArray.append(Subject(id: id, count: count))
                         
                     }
-//                    self.hudShowing = false
-//                    print(self.hudShowing)
-                    withAnimation{
-                    self.subjects = subjectsArray
+                    
+                    super.deactivateHud()
+                    super.success()
+                    
+                    withAnimation(Animation.easeOut(duration: 0.5)){
+                        self.subjects = subjectsArray
                     }
                     
                 } else {
-//                    self.hudShowing = false
+                    super.error()
                     print("could not get documents in snapshot")
                 }
             }

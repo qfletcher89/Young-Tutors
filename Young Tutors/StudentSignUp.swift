@@ -22,23 +22,22 @@ struct StudentName: View {
                 
                 TextField("Michelle Obama", text: $name).onChange(of: name, perform: { value in
                     
-                    withAnimation {
+                    withAnimation(Animation.easeInOut(duration: 0.2)) {
                         model.name = value
                     }
-                    
                 })
-                    .font(.system(size: 20, weight: .semibold))
-                    .multilineTextAlignment(.center)
-                    .padding(.vertical)
-                    .background(RoundedRectangle(cornerRadius: 30)
-                                    .stroke())
-                    .padding(.horizontal)
+                .font(.system(size: 20, weight: .semibold))
+                .multilineTextAlignment(.center)
+                .padding(.vertical)
+                .background(RoundedRectangle(cornerRadius: 30)
+                                .stroke())
+                .padding(.horizontal)
                 
                 Spacer()
                 
                 Button(action: {
-                    withAnimation {
-                    model.step = .studentEmailPassword
+                    withAnimation(Animation.easeOut(duration: 0.3)) {
+                        model.step = .studentEmailPassword
                     }
                 }, label: {
                     
@@ -63,11 +62,14 @@ struct StudentName: View {
                 name = model.name
             }
             .customNavBar(proxy: reader,
-                           title: "What's Your Name?", leading:
-                           
+                          title: "What's Your Name?", leading:
+                            
                             Button(action: {
-                                withAnimation {
-                                model.step = .landing
+                                withAnimation(Animation.easeInOut(duration: 0.2)) {
+                                    model.error = " "
+                                    model.password = ""
+                                    model.step = .landing
+                                    
                                 }
                             }, label: {
                                 AnyView(Image("left"))
@@ -92,30 +94,30 @@ struct StudentEmailPassword: View {
                 
                 TextField("Email", text: $email).onChange(of: email, perform: { value in
                     
-                    withAnimation {
+                    withAnimation(Animation.easeInOut(duration: 0.2)) {
                         model.email = value
                     }
                     
                 })
-                    .font(.system(size: 20, weight: .semibold))
-                    .multilineTextAlignment(.center)
-                    .padding(.vertical)
-                    .background(RoundedRectangle(cornerRadius: 30)
-                                    .stroke())
-                    .padding(.horizontal)
-                    .padding(.bottom, 20)
+                .font(.system(size: 20, weight: .semibold))
+                .multilineTextAlignment(.center)
+                .padding(.vertical)
+                .background(RoundedRectangle(cornerRadius: 30)
+                                .stroke())
+                .padding(.horizontal)
+                .padding(.bottom, 20)
                 
                 SecureField("Password", text: $password).onChange(of: password, perform: { value in
-                    withAnimation {
+                    withAnimation(Animation.easeInOut(duration: 0.2)) {
                         model.password = value
                     }
                 })
-                    .font(.system(size: 20, weight: .semibold))
-                    .multilineTextAlignment(.center)
-                    .padding(.vertical)
-                    .background(RoundedRectangle(cornerRadius: 30)
-                                    .stroke())
-                    .padding(.horizontal)
+                .font(.system(size: 20, weight: .semibold))
+                .multilineTextAlignment(.center)
+                .padding(.vertical)
+                .background(RoundedRectangle(cornerRadius: 30)
+                                .stroke())
+                .padding(.horizontal)
                 .padding(.bottom)
                 
                 Text(model.error)
@@ -152,16 +154,18 @@ struct StudentEmailPassword: View {
                 password = model.password
             }
             .customNavBar(proxy: reader,
-                           title: "Email & Password", leading:
-                           
+                          title: "Email & Password", leading:
+                            
                             Button(action: {
-                                withAnimation {
-                                model.step = .studentName
+                                withAnimation(Animation.easeInOut(duration: 0.2)) {
+                                    model.error = " "
+                                    model.password = ""
+                                    model.step = .studentName
                                 }
                             }, label: {
                                 AnyView(Image("left"))
                             }))
         }
     }
-
+    
 }

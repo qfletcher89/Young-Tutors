@@ -27,7 +27,7 @@ struct CalendarView: View {
                         Spacer()
                         
                         Button(action: {
-                            withAnimation{
+                            withAnimation(Animation.easeOut(duration: 0.3)){
                                 upcomingSelected = true
                             }
                             
@@ -35,15 +35,14 @@ struct CalendarView: View {
                             Text("Upcoming")
                                 .font(.title3)
                                 .fontWeight(.semibold)
-                                .foregroundColor(self.cs().watermelon)
+                                .foregroundColor(upcomingSelected ? Color(UIColor.label) : Color(UIColor.secondaryLabel))
                         })
-                        .opacity(0.75)
                         .frame(width: reader.size.width * 0.45)
                         
                         Spacer()
                         
                         Button(action: {
-                            withAnimation {
+                            withAnimation(Animation.easeOut(duration: 0.3)){
                                 upcomingSelected = false
                             }
                             
@@ -51,9 +50,8 @@ struct CalendarView: View {
                             Text("Past")
                                 .font(.title3)
                                 .fontWeight(.semibold)
-                                .foregroundColor(self.cs().watermelon)
+                                .foregroundColor(!upcomingSelected ? Color(UIColor.label) : Color(UIColor.secondaryLabel))
                         })
-                        .opacity(0.75)
                         .frame(width: reader.size.width * 0.45)
                         
                         Spacer()
@@ -72,8 +70,6 @@ struct CalendarView: View {
                         }
                         
                     }.padding([.horizontal, .bottom])
-                    
-                    if upcomingSelected {
                         
                         VStack {
                             
@@ -107,43 +103,90 @@ struct CalendarView: View {
                                             }
                                         }
                                         
-                                        HStack {
-                                            
-                                            
-                                            Button {
-                                                print("cancel event")
-                                                //cancel
-                                            } label: {
+                                        if upcomingSelected {
+                                            HStack {
                                                 
-                                                Text("Cancel")
-                                                    .fontWeight(.semibold)
-                                                    .padding(.vertical, 10)
-                                                    .padding(.horizontal, 40)
-                                                    .background(RoundedRectangle(cornerRadius: 30)
-                                                                    .stroke()
-                                                    )
+                                                Spacer()
                                                 
-                                            }.accentColor(Color(UIColor.label))
-                                            
-                                            Spacer()
-                                            
-                                            Button {
-                                                self.detailTutor = getTutorObjectFor(teacher: event.tutor)
+                                                Button {
+                                                    print("cancel event")
+                                                    //cancel
+                                                } label: {
+                                                    
+                                                    Text("Cancel")
+                                                        .fontWeight(.semibold)
+                                                        .padding(.vertical, 10)
+                                                        .padding(.horizontal, 40)
+                                                        .background(RoundedRectangle(cornerRadius: 30)
+                                                                        .stroke()
+                                                        )
+                                                    
+                                                }.accentColor(Color(UIColor.label))
                                                 
-                                                self.tutorIsPresented = true
+                                                Spacer()
                                                 
-                                            } label: {
+                                                Button {
+                                                    self.detailTutor = getTutorObjectFor(teacher: event.tutor)
+                                                    
+                                                    self.tutorIsPresented = true
+                                                    
+                                                } label: {
+                                                    
+                                                    Text("Profile")
+                                                        .fontWeight(.semibold)
+                                                        .foregroundColor(.white)
+                                                        .padding(.vertical, 10)
+                                                        .padding(.horizontal, 40)
+                                                        .background(RoundedRectangle(cornerRadius: 30)
+                                                                        .foregroundColor(self.cs().watermelon))
+                                                    
+                                                }
                                                 
-                                                Text("View Profile")
-                                                    .fontWeight(.semibold)
-                                                    .foregroundColor(.white)
-                                                    .padding(.vertical, 10)
-                                                    .padding(.horizontal, 40)
-                                                    .background(RoundedRectangle(cornerRadius: 30)
-                                                                    .foregroundColor(self.cs().watermelon))
+                                                Spacer()
                                                 
                                             }
-                                            
+                                        } else {
+                                            HStack {
+                                                
+                                                Spacer()
+                                                
+                                                Button {
+                                                    self.detailTutor = getTutorObjectFor(teacher: event.tutor)
+                                                    
+                                                    self.tutorIsPresented = true
+                                                } label: {
+                                                    
+                                                    Text("Profile")
+                                                        .fontWeight(.semibold)
+                                                        .padding(.vertical, 10)
+                                                        .padding(.horizontal, 40)
+                                                        .background(RoundedRectangle(cornerRadius: 30)
+                                                                        .stroke()
+                                                        )
+                                                    
+                                                }.accentColor(Color(UIColor.label))
+                                                
+                                                Spacer()
+                                                
+                                                Button {
+                                                    
+                                                    print("write review")
+                                                    
+                                                } label: {
+                                                    
+                                                    Text("Review")
+                                                        .fontWeight(.semibold)
+                                                        .foregroundColor(.white)
+                                                        .padding(.vertical, 10)
+                                                        .padding(.horizontal, 40)
+                                                        .background(RoundedRectangle(cornerRadius: 30)
+                                                                        .foregroundColor(self.cs().watermelon))
+                                                    
+                                                }
+                                                
+                                                Spacer()
+                                                
+                                            }
                                         }
                                         
                                     }.padding(.vertical, 30)
@@ -154,8 +197,20 @@ struct CalendarView: View {
                                     .padding(.vertical, 15)
                                 }
                             } else {
-                                Text("You don't have any sessions yet!\nTo get started, go make one now!")
-                                    .italic()
+                                VStack {
+                                    
+                                    
+                                    Text(upcomingSelected ? "You don't have any upcoming sessions. \n Go make one!" : "You don't have any past sessions.")
+                                        .italic()
+                                        .multilineTextAlignment(.center)
+                                        .padding()
+                                        
+                                        
+                                    
+                                    
+                                    
+                                }
+                                
                             }
                             
                             
@@ -165,9 +220,7 @@ struct CalendarView: View {
                         }
                         
                         
-                    } else {
-                        Text("second")
-                    }
+                    
                 }
             }.customNavBar(proxy: reader,
                            title: "Sessions", trailing:
@@ -268,36 +321,53 @@ extension CalendarView {
         
         let id = course.split(separator: "-").last!
         
+        var className = id.capitalized
+        
         if id.starts(with: "RH") {
             
-            let name = id.replacingOccurrences(of: "RH", with: "")
+            let name = id.replacingOccurrences(of: "RH", with: "", options: .anchored)
             
-            return name.capitalized
+            className = name.capitalized
             
+        } else if id.starts(with: "APH") {
+            
+            let name = id.replacingOccurrences(of: "APH", with: "", options: .anchored)
+            
+            className = name.capitalized
         } else if id.starts(with: "AP") {
             
-            let name = id.replacingOccurrences(of: "AP", with: "")
+            let name = id.replacingOccurrences(of: "AP", with: "", options: .anchored)
             
-            return name.capitalized
+            className = name.capitalized
             
         } else if id.starts(with: "H") {
             
-            let name = id.replacingOccurrences(of: "H", with: "")
+            let name = id.replacingOccurrences(of: "H", with: "", options: .anchored)
             
-            return name.capitalized
+            className = name.capitalized
         } else if id.starts(with: "KAMI") {
             
-            let name = id.replacingOccurrences(of: "KAMI", with: "")
+            let name = id.replacingOccurrences(of: "KAMI", with: "", options: .anchored)
             
-            return name.capitalized
+            className = name.capitalized
         } else if id.starts(with: "KAMII") {
             
-            let name = id.replacingOccurrences(of: "KAMII", with: "")
+            let name = id.replacingOccurrences(of: "KAMII", with: "", options: .anchored)
             
-            return name.capitalized
+            className = name.capitalized
         } else {
-            return String(id)
+            className = String(id)
         }
+        
+        var funcName = className.capitalized
+        
+        if funcName.contains("Ii") {
+            funcName = funcName.replacingOccurrences(of: "Ii", with: "II")
+        } else if funcName.contains("Iii") {
+            funcName = funcName.replacingOccurrences(of: "Iii", with: "III")
+        }
+        
+        return funcName
         
     }
 }

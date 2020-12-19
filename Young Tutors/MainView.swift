@@ -10,6 +10,7 @@ import SwiftUI
 struct MainView: View {
     
     @ObservedObject var model = SignUpModel()
+    @EnvironmentObject var navModel: NavModel
     
     var body: some View {
         
@@ -22,7 +23,7 @@ struct MainView: View {
         case .studentEmailPassword:
             StudentEmailPassword(model: model)
         case .tutorSignIn:
-            TutorSignInView(model: model)
+            TutorSignInView(model: model, tutorModel: TutorsModel())
         case .logIn:
             LogInView(model: model)
         case .complete:
@@ -59,8 +60,8 @@ struct LandingScreen: View {
                     .padding(.bottom, 50)
                 
                 Button(action: {
-                    withAnimation {
-                    model.step = .studentName
+                    withAnimation(Animation.easeOut(duration: 0.3)) {
+                        model.step = .studentName
                     }
                 }, label: {
                     
@@ -80,8 +81,8 @@ struct LandingScreen: View {
                 }).padding(.bottom, 20)
                 
                 Button(action: {
-                    withAnimation {
-                    model.step = .tutorSignIn
+                    withAnimation(Animation.easeOut(duration: 0.3)) {
+                        model.step = .tutorSignIn
                     }
                 }, label: {
                     
@@ -106,8 +107,8 @@ struct LandingScreen: View {
                     Text("Already a member?")
                     
                     Button(action: {
-                        withAnimation {
-                        model.step = .logIn
+                        withAnimation(Animation.easeOut(duration: 0.3)) {
+                            model.step = .logIn
                         }
                     }, label: {
                         Text("Sign in.")
@@ -159,10 +160,8 @@ struct CompleteView: View {
             .bold()
             .onAppear {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                    withAnimation{
-                        withAnimation {
+                    withAnimation(Animation.easeOut(duration: 0.3)) {
                         model.step = .container
-                        }
                     }
                 }
             }

@@ -20,7 +20,7 @@ struct TutorContainerView: View {
                 
                 AdditionalDivider(content: TutorSubjectsView(subjectsModel: subjectsModel).environmentObject(model))
                     .tabItem {
-                        Image(selection == 1 ? "classes-red" : "classes")
+                        Image(selection == 0  ? "classes-red" : "classes")
                     }
                     .tag(0)
                 
@@ -29,6 +29,12 @@ struct TutorContainerView: View {
                         Image(selection == 1 ? "calendar-red" : "calendar")
                     }
                     .tag(1)
+                
+                AdditionalDivider(content: TutorProfileView().environmentObject(model))
+                    .tabItem {
+                        Image(selection == 2 ? "profile-red" : "profile")
+                    }
+                    .tag(2)
                 
             }.onAppear {
                 model.getData()

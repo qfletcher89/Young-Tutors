@@ -19,7 +19,7 @@ struct LogInView: View {
             VStack {
                 Spacer()
                 TextField("Email", text: $email).onChange(of: email, perform: { value in
-                    withAnimation {
+                    withAnimation(Animation.easeInOut(duration: 0.2)) {
                         model.email = value
                     }
                 })
@@ -32,7 +32,7 @@ struct LogInView: View {
                     .padding(.bottom, 20)
                 
                 SecureField("Password", text: $password).onChange(of: password, perform: { value in
-                    withAnimation {
+                    withAnimation(Animation.easeInOut(duration: 0.2)) {
                         model.password = value
                     }
                 })
@@ -77,8 +77,11 @@ struct LogInView: View {
                 password = model.password
             }
             .customNavBar(proxy: reader, title: "Enter Credentials", leading: Button(action: {
-                withAnimation {
+                withAnimation(Animation.easeInOut(duration: 0.2)) {
+                    model.error = " "
+                    model.password = ""
                 model.step = .landing
+                    
                 }
             }, label: {
                 AnyView(Image("left"))

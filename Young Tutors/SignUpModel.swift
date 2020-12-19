@@ -14,7 +14,7 @@ class SignUpModel: ObservableObject {
     @Published var password = ""
     @Published var name = ""
     @Published var isTutor = false
-    @Published var error = ""
+    @Published var error = " "
     @Published var step: SignUpStep = .landing
     
     var db: Firestore!
@@ -53,8 +53,8 @@ class SignUpModel: ObservableObject {
                 print("there was an error signing in tutor \(err) ")
             } else {
                 print("successful")
-                withAnimation {
-                self.step = .complete
+                withAnimation(Animation.easeOut(duration: 0.3)) {
+                    self.step = .complete
                 }
             }
             
@@ -68,15 +68,11 @@ class SignUpModel: ObservableObject {
             if let err = error {
                 
                 print("ther was an error signing in \(err.localizedDescription)")
-                if let localizedDescription = err.localizedDescription.split(separator: ".").first {
-                    self.error = String(localizedDescription)
-                } else {
-                    self.error = err.localizedDescription
-                }
+                self.error = self.editError(error: err.localizedDescription)
                 
             } else {
-                withAnimation {
-                self.step = .complete
+                withAnimation(Animation.easeOut(duration: 0.3)) {
+                    self.step = .complete
                 }
             }
             
@@ -87,38 +83,56 @@ class SignUpModel: ObservableObject {
     func signUp() {
         
         
-            Auth.auth().createUser(withEmail: email, password: password) { (result, erorr) in
+        Auth.auth().createUser(withEmail: email, password: password) { (result, erorr) in
             
-                if let err = erorr {
+            if let err = erorr {
+                
+                print("error signing up user \(err)")
+                self.error = self.editError(error: err.localizedDescription)
+                
+                
+            } else {
+                if let result = result {
                     
-                    print("error signing up user \(err.localizedDescription)")
-                    self.error = err.localizedDescription
-                } else {
-                    if let result = result {
+                    let changeRequest = result.user.createProfileChangeRequest()
+                    
+                    changeRequest.displayName = self.name
+                    changeRequest.commitChanges { (error) in
                         
-                        let changeRequest = result.user.createProfileChangeRequest()
-
-                        changeRequest.displayName = self.name
-                        changeRequest.commitChanges { (error) in
-
-                            if let err = error {
-                                print("there was error commitign chages \(err)")
-                            } else {
-                        withAnimation {
+                        if let err = error {
+                            print("there was error commitign chages \(err)")
+                        } else {
+                            withAnimation(Animation.easeOut(duration: 0.3)) {
                                 self.step = .complete
-                        }
-                                self.db.collection("students")
-                                    .document(result.user.uid)
-                                    .setData(["name":self.name,
-                                              "email":self.email])
                             }
+                            self.db.collection("students")
+                                .document(result.user.uid)
+                                .setData(["name":self.name,
+                                          "email":self.email])
                         }
                     }
                 }
             }
+        }
+    }
+    
+    private func editError(error: String) -> String {
         
+        switch error {
+        
+        case "There is no user record corresponding to this identifier. The user may have been deleted.":
+            return "Couldn't find an account with that email."
+        case "The password is invalid or the user does not have a password.":
+            return "Wrong password, try again."
+        case "The email address is badly formatted.":
+            return "Couldn't find an account with that email."
+        default:
+            return error
+        
+        }
         
     }
+    
 }
 
 enum SignUpStep {

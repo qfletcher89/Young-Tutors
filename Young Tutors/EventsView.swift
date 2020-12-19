@@ -143,33 +143,38 @@ extension EventsView {
     
     func getClassName(course: String) -> String {
         
-        let id = course.split(separator: "-").last!
+        let id = course.split(separator: "-").last!.uppercased()
         
         if id.starts(with: "RH") {
             
-            let name = id.replacingOccurrences(of: "RH", with: "")
+            let name = id.replacingOccurrences(of: "RH", with: "", options: .anchored)
             
             return name.capitalized
             
+        } else if id.starts(with: "APH") {
+            
+            let name = id.replacingOccurrences(of: "APH", with: "", options: .anchored)
+            
+            return name.capitalized
         } else if id.starts(with: "AP") {
             
-            let name = id.replacingOccurrences(of: "AP", with: "")
+            let name = id.replacingOccurrences(of: "AP", with: "", options: .anchored)
             
             return name.capitalized
             
         } else if id.starts(with: "H") {
             
-            let name = id.replacingOccurrences(of: "H", with: "")
+            let name = id.replacingOccurrences(of: "H", with: "", options: .anchored)
             
             return name.capitalized
         } else if id.starts(with: "KAMI") {
             
-            let name = id.replacingOccurrences(of: "KAMI", with: "")
+            let name = id.replacingOccurrences(of: "KAMI", with: "", options: .anchored)
             
             return name.capitalized
         } else if id.starts(with: "KAMII") {
             
-            let name = id.replacingOccurrences(of: "KAMII", with: "")
+            let name = id.replacingOccurrences(of: "KAMII", with: "", options: .anchored)
             
             return name.capitalized
         } else {

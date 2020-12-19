@@ -27,7 +27,9 @@ struct TutorCard: View {
     var body: some View {
         
         Button  {
-            
+            let generator = UISelectionFeedbackGenerator()
+            generator.prepare()
+            generator.selectionChanged()
             self.selection.toggle()
             update()
         } label: {
@@ -90,7 +92,8 @@ struct TutorCard: View {
                 .padding(.bottom, 5)
                 .padding(.horizontal)
                 
-                Text("\(mainText.capitalized)")
+//                Text("\(capitalizeMainText())")
+                Text(mainText)
                     .foregroundColor(color)
                     .font(.body)
                     .fontWeight(.semibold)
@@ -186,7 +189,7 @@ extension TutorCard {
             return Image("math-percent")
         case "english":
             return Image("book")
-        case "science":
+        case "science": 
             return Image(systemName: "staroflife")
         case "social science":
             return Image("globe")
@@ -202,5 +205,19 @@ extension TutorCard {
             return Image("book")
         }
     }
+    
+//    func capitalizeMainText() -> String {
+//
+//        var funcName = self.mainText.capitalized
+//
+//        if funcName.contains("Ii") {
+//            funcName = funcName.replacingOccurrences(of: "Ii", with: "II")
+//        } else if funcName.contains("Iii") {
+//            funcName = funcName.replacingOccurrences(of: "Iii", with: "III")
+//        }
+//
+//        return funcName
+//
+//    }
     
 }

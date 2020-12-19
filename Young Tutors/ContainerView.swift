@@ -9,49 +9,53 @@ import SwiftUI
 
 struct ContainerView: View {
     
-    @State var selection = 1
-    var subjectsViewModel = SubjectsModel()
+    
+    @State var selection = 0
+    @ObservedObject var subjectsViewModel = SubjectsModel()
     var tutorsModel = TutorsModel()
     var studentModel = StudentModel()
+    @ObservedObject var classModel = ClassModel()
     
     var body: some View {
-
+        
             TabView(selection: $selection) {
                 
-                AdditionalDivider(content: HomeView())
+//                AdditionalDivider(content: HomeView())
+//                    .tabItem {
+//                        Image(selection == 0 ? "home-red" : "home")
+//
+//                    }
+//                    .tag(0)
+                
+                AdditionalDivider(content: SubjectsView(model: subjectsViewModel).environmentObject(tutorsModel).environmentObject(classModel))
                     .tabItem {
-                        Image(selection == 0 ? "home-red" : "home")
-                            
+                        Image(selection == 0 ? "classes-red" : "classes")
                     }
                     .tag(0)
                 
-                AdditionalDivider(content: SubjectsView(model: subjectsViewModel).environmentObject(tutorsModel))
-                    .tabItem {
-                        Image(selection == 1 ? "classes-red" : "classes")
-                    }
-                    .tag(1)
-                
                 AdditionalDivider(content:TutorsView(model: tutorsModel))
                     .tabItem {
-                        Image(selection == 2 ? "tutors-red" : "tutors")
+                        Image(selection == 1 ? "tutors-red" : "tutors")
                     }
-                    .tag(2)
+                    .tag(1)
                 
                 
                 AdditionalDivider(content: CalendarView(tutorsModel: tutorsModel)
                                     .environmentObject(studentModel))
                     .tabItem {
-                        Image(selection == 3 ? "calendar-red" : "calendar")
+                        Image(selection == 2 ? "calendar-red" : "calendar")
                     }
-                    .tag(3)
+                    .tag(2)
                 
                 AdditionalDivider(content: ProfileView())
                     .tabItem {
-                        Image(selection == 4 ? "profile-red" : "profile")
+                        Image(selection == 3 ? "profile-red" : "profile")
                     }
-                    .tag(4)
+                    .tag(3)
                 
-            }.onAppear {
+            }.hud(isActive: $subjectsViewModel.hudIsActive, type: subjectsViewModel.hudType)
+            .hud(isActive: $classModel.hudIsActive, type: classModel.hudType)
+            .onAppear {
                 
                 subjectsViewModel.getSubjects()
                 tutorsModel.getTutors()

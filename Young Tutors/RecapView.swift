@@ -43,7 +43,7 @@ struct RecapView: View {
                             .foregroundColor(Color(UIColor.secondaryLabel))
                         
                     }
-                    Text(course.levels + " " + course.name.capitalized)
+                    Text(course.levels + " " + course.name)//was capitalized
                         .font(.title2)
                         .fontWeight(.bold)
                         .padding(.leading, 24 + 10)
