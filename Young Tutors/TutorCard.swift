@@ -58,7 +58,7 @@ struct TutorCard: View {
                                 
                                 Image("check-plain")
                                     .renderingMode(.template)
-                                    .foregroundColor(Color(UIColor.secondarySystemBackground))
+                                    .foregroundColor(.secondaryBackground)
                             }
                             
                         } else {
@@ -106,7 +106,7 @@ struct TutorCard: View {
         .padding(.vertical, 20)
         .background(RoundedRectangle(cornerRadius: 30)
                         .frame(width: boxWidth)
-                        .foregroundColor(self.cs().background6))
+                        .foregroundColor(.secondaryBackground))
     }
 }
 

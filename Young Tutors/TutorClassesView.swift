@@ -41,7 +41,7 @@ struct TutorClassesView: View {
                     //Search bar
                     HStack {
                         Image(systemName: "magnifyingglass")
-                            .foregroundColor(Color(UIColor.tertiaryLabel))
+                            .foregroundColor(.tertiaryLabel)
                         
                         TextField("Search", text: $searchFieldText) { (changing) in } onCommit: {
                             self.hideKeyboard()
@@ -63,7 +63,7 @@ struct TutorClassesView: View {
                     }.padding(.horizontal)
                     .padding(.vertical, 10)
                     .background(RoundedRectangle(cornerRadius: 15)
-                                    .foregroundColor(Color(UIColor.tertiarySystemFill)))
+                                    .foregroundColor(.tertiarySystemFill))
                     .padding(.horizontal)
                     .padding(.vertical, 10)
                     
@@ -118,7 +118,7 @@ struct TutorClassesView: View {
                         Image("left")
                         
                         Text("Save")
-                            .foregroundColor(self.cs().watermelon)
+                            .foregroundColor(.cswatermelon)
                     }
                     
                 )
@@ -127,7 +127,7 @@ struct TutorClassesView: View {
                 self.presentationMode.wrappedValue.dismiss()
                 
             }, label: {
-                AnyView(Text("Cancel").foregroundColor(self.cs().watermelon))
+                AnyView(Text("Cancel").foregroundColor(.cswatermelon))
             }))
         }
     }

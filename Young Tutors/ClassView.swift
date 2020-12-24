@@ -42,41 +42,33 @@ struct ClassView: View {
                         .padding()
                     HStack(alignment: .top) {
                         
-                        VStack {
-                            ForEach(splitClasses()[0]) {course in
-                                
-                                NavigationLink(destination: SessionView(subject: subject, course: course)) {
-                                    Card(boxWidth: boxWidth,
-                                         color: color,
-                                         mainText: course.name,
-                                         number: getSessionsCount(course: course),
-                                         course: course)
-                                }.disabled(getSessionsCount(course: course) == 0 ? true : false)
-                            }
-                        }.padding(.leading, 20)
-                        
-                        Spacer()
-                        
-                        VStack {
+                        ForEach(0..<2) {i in
                             
-                            ForEach(splitClasses()[1]) {course in
+                            VStack {
                                 
-                                NavigationLink(destination: SessionView(subject: subject, course: course)) {
-                                    Card(boxWidth: boxWidth,
-                                         color: color,
-                                         mainText: course.name,
-                                         number: getSessionsCount(course: course),
-                                         course: course)
-                                }.disabled(getSessionsCount(course: course) == 0 ? true : false)
+                                ForEach(splitClasses()[i]) {course in
+                                    
+                                    NavigationLink(destination: SessionView(subject: subject, course: course)) {
+                                        Card(boxWidth: boxWidth,
+                                             color: color,
+                                             mainText: course.name,
+                                             number: getSessionsCount(course: course),
+                                             course: course)
+                                    }.disabled(getSessionsCount(course: course) == 0 ? true : false)
+                                }
+                            }.padding(i == 0 ? .leading : .trailing, 20)
+                            
+                            if i == 0 {
+                                Spacer()
                             }
-                        }.padding(.trailing, 20)
+                            
+                        }
                     }
                 }
                 
                 Spacer()
                 
             }
-//            .navigationBarHidden(true)
             .onAppear {
                 
                 model.getClasses(for: subject) { (classes) in

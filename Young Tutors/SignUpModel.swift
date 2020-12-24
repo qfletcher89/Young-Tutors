@@ -53,9 +53,10 @@ class SignUpModel: ObservableObject {
                 print("there was an error signing in tutor \(err) ")
             } else {
                 print("successful")
-                withAnimation(Animation.easeOut(duration: 0.3)) {
-                    self.step = .complete
-                }
+//                withAnimation(Animation.easeOut(duration: 0.3)) {
+//                    self.step = .complete
+//                }
+                self.setStep(.complete, .appear)
             }
             
         }
@@ -71,9 +72,10 @@ class SignUpModel: ObservableObject {
                 self.error = self.editError(error: err.localizedDescription)
                 
             } else {
-                withAnimation(Animation.easeOut(duration: 0.3)) {
-                    self.step = .complete
-                }
+//                withAnimation(Animation.easeOut(duration: 0.3)) {
+//                    self.step = .complete
+//                }
+                self.setStep(.complete, .appear)
             }
             
         }
@@ -102,9 +104,10 @@ class SignUpModel: ObservableObject {
                         if let err = error {
                             print("there was error commitign chages \(err)")
                         } else {
-                            withAnimation(Animation.easeOut(duration: 0.3)) {
-                                self.step = .complete
-                            }
+//                            withAnimation(Animation.easeOut(duration: 0.3)) {
+//                                self.step = .complete
+//                            }
+                            self.setStep(.complete, .appear)
                             self.db.collection("students")
                                 .document(result.user.uid)
                                 .setData(["name":self.name,
@@ -133,6 +136,21 @@ class SignUpModel: ObservableObject {
         
     }
     
+    func setStep(_ step: SignUpStep, _ transition: TransitionType) {
+        
+        var animation = Animation.linear
+        
+        switch transition {
+        case .appear:
+            animation = Animation.easeOut(duration: 0.3)
+        case .disappear:
+            animation = Animation.easeInOut(duration: 0.2)
+        }
+        
+        withAnimation(animation) {
+            self.step = step
+        }
+    }
 }
 
 enum SignUpStep {
@@ -148,5 +166,12 @@ enum SignUpStep {
     
     case complete
     case container
+    
+}
+
+enum TransitionType {
+    
+    case appear
+    case disappear
     
 }

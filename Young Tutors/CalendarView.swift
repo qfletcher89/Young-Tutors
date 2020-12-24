@@ -35,7 +35,7 @@ struct CalendarView: View {
                             Text("Upcoming")
                                 .font(.title3)
                                 .fontWeight(.semibold)
-                                .foregroundColor(upcomingSelected ? Color(UIColor.label) : Color(UIColor.secondaryLabel))
+                                .foregroundColor(upcomingSelected ? .label : .secondaryLabel)
                         })
                         .frame(width: reader.size.width * 0.45)
                         
@@ -50,7 +50,7 @@ struct CalendarView: View {
                             Text("Past")
                                 .font(.title3)
                                 .fontWeight(.semibold)
-                                .foregroundColor(!upcomingSelected ? Color(UIColor.label) : Color(UIColor.secondaryLabel))
+                                .foregroundColor(!upcomingSelected ? .label : .secondaryLabel)
                         })
                         .frame(width: reader.size.width * 0.45)
                         
@@ -64,7 +64,7 @@ struct CalendarView: View {
                         }
                         Rectangle()
                             .frame(width: reader.size.width * 0.45, height: 2)
-                            .foregroundColor(self.cs().watermelon)
+                            .foregroundColor(.cswatermelon)
                         if upcomingSelected {
                             Spacer()
                         }
@@ -89,16 +89,16 @@ struct CalendarView: View {
                                             if let tutor = getTutorObjectFor(teacher: event.tutor) {
                                                 if let email = tutor.email {
                                                     Text(event.tutor + " • " + email)
-                                                        .foregroundColor(Color(UIColor.secondaryLabel))
+                                                        .foregroundColor(.secondaryLabel)
                                                         .padding(.bottom, 20)
                                                 } else {
                                                     Text(event.tutor)
-                                                        .foregroundColor(Color(UIColor.secondaryLabel))
+                                                        .foregroundColor(.secondaryLabel)
                                                         .padding(.bottom, 20)
                                                 }
                                             } else {
                                                 Text(event.tutor)
-                                                    .foregroundColor(Color(UIColor.secondaryLabel))
+                                                    .foregroundColor(.secondaryLabel)
                                                     .padding(.bottom, 20)
                                             }
                                         }
@@ -121,7 +121,7 @@ struct CalendarView: View {
                                                                         .stroke()
                                                         )
                                                     
-                                                }.accentColor(Color(UIColor.label))
+                                                }.accentColor(.label)
                                                 
                                                 Spacer()
                                                 
@@ -138,7 +138,7 @@ struct CalendarView: View {
                                                         .padding(.vertical, 10)
                                                         .padding(.horizontal, 40)
                                                         .background(RoundedRectangle(cornerRadius: 30)
-                                                                        .foregroundColor(self.cs().watermelon))
+                                                                        .foregroundColor(.cswatermelon))
                                                     
                                                 }
                                                 
@@ -164,7 +164,7 @@ struct CalendarView: View {
                                                                         .stroke()
                                                         )
                                                     
-                                                }.accentColor(Color(UIColor.label))
+                                                }.accentColor(.label)
                                                 
                                                 Spacer()
                                                 
@@ -180,7 +180,7 @@ struct CalendarView: View {
                                                         .padding(.vertical, 10)
                                                         .padding(.horizontal, 40)
                                                         .background(RoundedRectangle(cornerRadius: 30)
-                                                                        .foregroundColor(self.cs().watermelon))
+                                                                        .foregroundColor(.cswatermelon))
                                                     
                                                 }
                                                 

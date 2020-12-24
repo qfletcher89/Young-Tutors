@@ -34,7 +34,7 @@ struct TutorsView: View {
                                         
                                         Circle()
                                             .frame(width: 45, height: 45)
-                                            .foregroundColor(Color(UIColor.tertiarySystemBackground))
+                                            .foregroundColor(.tertiaryBackground)
                                         
                                         Text(getInitals(for: tutor).uppercased())
                                             .font(.system(size: 20, weight: .regular, design: .rounded)).gradientForeground(colors: getGradientColors(for: tutor))
@@ -43,17 +43,17 @@ struct TutorsView: View {
                                     VStack(alignment: .leading) {
                                         //name
                                         Text(tutor.id)
-                                            .foregroundColor(Color(UIColor.label))
+                                            .foregroundColor(.label)
                                         
                                         //subject strengths
                                         if tutor.strengths != nil {
                                             Text(tutor.strengths!)
                                                 .font(.subheadline)
-                                                .foregroundColor(Color(UIColor.secondaryLabel))
+                                                .foregroundColor(.secondaryLabel)
                                                 .lineLimit(1)
                                         } else {
                                             Text("Sorry, no strengths available yet.")
-                                                .foregroundColor(Color(UIColor.secondaryLabel))
+                                                .foregroundColor(.secondaryLabel)
                                                 .italic()
                                                 .font(.subheadline)
                                         }

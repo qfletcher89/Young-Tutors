@@ -84,14 +84,14 @@ struct TutorTimesView: View {
                                 HStack(spacing: 0) {
                                     Image("left")
                                     Text("Save")
-                                        .foregroundColor(self.cs().watermelon)
+                                        .foregroundColor(.cswatermelon)
                                 }
                             )
                            }), Button(action: {
                             self.presentationMode.wrappedValue.dismiss()
                            }, label: {
                             AnyView(Text("Cancel")
-                                        .foregroundColor(self.cs().watermelon))
+                                        .foregroundColor(.cswatermelon))
                            }))
         }
     }
@@ -135,34 +135,34 @@ struct TimeSelector: View {
                 HStack {
                     
                     Text(formatTime())
-                        .foregroundColor(selection ? Color(UIColor.systemBackground) : self.cs().watermelon)
+                        .foregroundColor(selection ? .background : .cswatermelon)
                         
                     Image("check-plain")
                         .renderingMode(.template)
-                        .foregroundColor(selection ? Color(UIColor.systemBackground) : self.cs().watermelon)
+                        .foregroundColor(selection ? .background : .cswatermelon)
                     
                 }.padding(.vertical, 5)
                 .padding(.horizontal, 10)
                 .background(selection ?
-                    AnyView(RoundedRectangle(cornerRadius: 30).foregroundColor(self.cs().watermelon)) :
-                                AnyView(RoundedRectangle(cornerRadius: 30).stroke(lineWidth: 2).foregroundColor(self.cs().watermelon)))
+                    AnyView(RoundedRectangle(cornerRadius: 30).foregroundColor(.cswatermelon)) :
+                                AnyView(RoundedRectangle(cornerRadius: 30).stroke(lineWidth: 2).foregroundColor(.cswatermelon)))
                 
             } else {
                 
                 HStack {
                     
                     Text(formatTime())
-                        .foregroundColor(selection ? Color(UIColor.systemBackground) : Color(UIColor.quaternaryLabel))
+                        .foregroundColor(selection ? .background : .quatrentaryLabel)
                         
                     Image("check-plain")
                         .renderingMode(.template)
-                        .foregroundColor(selection ? Color(UIColor.systemBackground) : Color(UIColor.quaternaryLabel))
+                        .foregroundColor(selection ? .background : .quatrentaryLabel)
                     
                 }.padding(.vertical, 5)
                 .padding(.horizontal, 10)
                 .background(selection ?
-                    AnyView(RoundedRectangle(cornerRadius: 30).foregroundColor(Color(UIColor.quaternaryLabel))) :
-                                AnyView(RoundedRectangle(cornerRadius: 30).stroke(lineWidth: 2).foregroundColor(Color(UIColor.quaternaryLabel))))
+                                AnyView(RoundedRectangle(cornerRadius: 30).foregroundColor(.quatrentaryLabel)) :
+                                AnyView(RoundedRectangle(cornerRadius: 30).stroke(lineWidth: 2).foregroundColor(.quatrentaryLabel)))
                 
             }
             

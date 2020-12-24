@@ -8,8 +8,23 @@
 import SwiftUI
 
 struct TutorProfileView: View {
+    
+    @EnvironmentObject var tutorDataModel: TutorDataModel
+    @EnvironmentObject var signUpModel: SignUpModel
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        Button(action: {
+            
+            tutorDataModel.signOut({
+                signUpModel.setStep(.landing, .disappear)
+                //made sure when ur in a modal to dismiss presentation mode
+            })
+            
+        }, label: {
+            /*@START_MENU_TOKEN@*/Text("Button")/*@END_MENU_TOKEN@*/
+        })
+        
     }
 }
 

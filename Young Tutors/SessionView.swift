@@ -30,7 +30,7 @@ struct SessionView: View {
                     VStack(alignment: .leading, spacing: 0) {
                         
                         Text("Class")
-                            .foregroundColor(Color(UIColor.secondaryLabel))
+                            .foregroundColor(.secondaryLabel)
                             .font(.title3)
                             .fontWeight(.semibold)
                             .lineLimit(3)
@@ -44,7 +44,7 @@ struct SessionView: View {
                     VStack(alignment: .leading, spacing: 0) {
                         
                         Text("Date")
-                            .foregroundColor(Color(UIColor.secondaryLabel))
+                            .foregroundColor(.secondaryLabel)
                             .font(.title3)
                             .fontWeight(.semibold)
                         
@@ -56,7 +56,7 @@ struct SessionView: View {
                     VStack(alignment: .leading, spacing: 0) {
                         
                         Text("Time")
-                            .foregroundColor(Color(UIColor.secondaryLabel))
+                            .foregroundColor(.secondaryLabel)
                             .font(.title3)
                             .fontWeight(.semibold)
                         
@@ -67,7 +67,7 @@ struct SessionView: View {
                     
                     VStack(alignment: .leading, spacing: 0) {
                         Text("Tutor")
-                            .foregroundColor(Color(UIColor.secondaryLabel))
+                            .foregroundColor(.secondaryLabel)
                             .font(.title3)
                             .fontWeight(.semibold)
                         
@@ -79,7 +79,7 @@ struct SessionView: View {
                                     self.tutorIsPresented = true
                                 } label: {
                                     Image("info")
-                                        .foregroundColor(self.cs().watermelon)
+                                        .foregroundColor(.cswatermelon)
                                 }
                                 
                                 Text(session.selectedTutor)
@@ -95,7 +95,7 @@ struct SessionView: View {
                                         }
                                     } label: {
                                         Image("switch")
-                                            .foregroundColor(self.cs().watermelon)
+                                            .foregroundColor(.cswatermelon)
                                     }
                                 }
                             }
@@ -171,11 +171,11 @@ struct SessionView: View {
                                                     }
                                                 } label: {
                                                     Text(String(day.id))
-                                                        .foregroundColor(day.id < getDayNumber() ? Color(UIColor.quaternaryLabel) : calendarSelection != day.dayOfWeek ? Color(UIColor.label) : .white)
+                                                        .foregroundColor(day.id < getDayNumber() ? .quatrentaryLabel : calendarSelection != day.dayOfWeek ? .label : .white)
                                                         .font(.subheadline)
                                                         .fontWeight(.semibold)
                                                         .background(Circle().frame(width: 28, height: 28)
-                                                                        .foregroundColor(calendarSelection == day.dayOfWeek ? self.cs().watermelon : .clear))
+                                                                        .foregroundColor(calendarSelection == day.dayOfWeek ? .cswatermelon : .clear))
                                                 }.padding(.vertical, 5)
                                             }.padding(.horizontal, 10)
                                             .disabled(day.id < getDayNumber())
@@ -210,15 +210,15 @@ struct SessionView: View {
                                                         .padding(.vertical, 2)
                                                         .padding(.horizontal, 10)
                                                         .background(RoundedRectangle(cornerRadius: 30)
-                                                                        .foregroundColor(self.cs().watermelon))
+                                                                        .foregroundColor(.cswatermelon))
                                                 } else {
                                                     Text(session.time)
-                                                        .foregroundColor(self.cs().watermelon)
+                                                        .foregroundColor(.cswatermelon)
                                                         .padding(.vertical, 2)
                                                         .padding(.horizontal, 10)
                                                         .background(RoundedRectangle(cornerRadius: 30)
                                                                         .strokeBorder(lineWidth: 2)
-                                                                        .foregroundColor(self.cs().watermelon))
+                                                                        .foregroundColor(.cswatermelon))
                                                 }
                                             }.padding(.trailing, 5)
                                         }
@@ -233,7 +233,7 @@ struct SessionView: View {
                             
                         }.padding()
                         .background(RoundedRectangle(cornerRadius: 15)
-                                        .foregroundColor(Color(UIColor.secondarySystemBackground)))
+                                        .foregroundColor(.secondaryBackground))
                     }
                     
                     Button {
@@ -252,17 +252,17 @@ struct SessionView: View {
                             
                             Image("check")
                                 .renderingMode(.template)
-                                .foregroundColor(session.id != "" ? .white : Color(UIColor.quaternaryLabel))
+                                .foregroundColor(session.id != "" ? .white : .quatrentaryLabel)
                             
                             Text("Confirm")
                                 .font(.title3)
                                 .fontWeight(.semibold)
-                                .foregroundColor(session.id != "" ? .white : Color(UIColor.quaternaryLabel))
+                                .foregroundColor(session.id != "" ? .white : .quatrentaryLabel)
                                 
                         }.padding(.vertical, 10)
                         .padding(.horizontal, 40)
                         .background(RoundedRectangle(cornerRadius: 30)
-                                        .foregroundColor(session.id != "" ? self.cs().watermelon : Color(UIColor.quaternarySystemFill)))
+                                        .foregroundColor(session.id != "" ? .cswatermelon : .quatrentaryLabel))
                     }.centered()
                     .padding(.bottom)
                     

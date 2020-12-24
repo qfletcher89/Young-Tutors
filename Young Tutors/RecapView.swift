@@ -35,12 +35,12 @@ struct RecapView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 24, height: 24)
-                            .foregroundColor(Color(UIColor.secondaryLabel))
+                            .foregroundColor(.secondaryLabel)
                         
                         Text("Class")
                             .font(.title3)
                             .fontWeight(.semibold)
-                            .foregroundColor(Color(UIColor.secondaryLabel))
+                            .foregroundColor(.secondaryLabel)
                         
                     }
                     Text(course.levels + " " + course.name)//was capitalized
@@ -58,12 +58,12 @@ struct RecapView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 24, height: 24)
-                            .foregroundColor(Color(UIColor.secondaryLabel))
+                            .foregroundColor(.secondaryLabel)
                         
                         Text("Date")
                             .font(.title3)
                             .fontWeight(.semibold)
-                            .foregroundColor(Color(UIColor.secondaryLabel))
+                            .foregroundColor(.secondaryLabel)
                         
                     }
                     Text(date)
@@ -81,12 +81,12 @@ struct RecapView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 24, height: 24)
-                            .foregroundColor(Color(UIColor.secondaryLabel))
+                            .foregroundColor(.secondaryLabel)
                         
                         Text("Time")
                             .font(.title3)
                             .fontWeight(.semibold)
-                            .foregroundColor(Color(UIColor.secondaryLabel))
+                            .foregroundColor(.secondaryLabel)
                         
                     }
                     Text(time)
@@ -104,12 +104,12 @@ struct RecapView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 24, height: 24)
-                            .foregroundColor(Color(UIColor.secondaryLabel))
+                            .foregroundColor(.secondaryLabel)
                         
                         Text("Tutor")
                             .font(.title3)
                             .fontWeight(.semibold)
-                            .foregroundColor(Color(UIColor.secondaryLabel))
+                            .foregroundColor(.secondaryLabel)
                         
                     }
                     Text(tutor.id)
@@ -129,7 +129,7 @@ struct RecapView: View {
                         .padding(.vertical, 10)
                         .frame(maxWidth: .infinity)
                         .background(RoundedRectangle(cornerRadius: 30)
-                                        .foregroundColor(self.cs().watermelon))
+                                        .foregroundColor(.cswatermelon))
                         .padding(.horizontal)
                 }
                 
@@ -145,7 +145,7 @@ struct RecapView: View {
                         )
                         .padding()
                 }
-                .accentColor(Color(UIColor.label))
+                .accentColor(.label)
                 
             }.padding()
             .customNavBar(proxy: proxy, title: "Recap", trailing: Button(action: {
@@ -153,7 +153,7 @@ struct RecapView: View {
             }, label: {
                 AnyView(Text("Done")
                             .fontWeight(.semibold)
-                            .foregroundColor(self.cs().watermelon))
+                            .foregroundColor(.cswatermelon))
             }))
         }
     }

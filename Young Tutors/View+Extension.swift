@@ -76,6 +76,8 @@ extension View {
         
         var configuration = TTProgressHUDConfig(type: type, lineWidth: 1, imageViewSize: CGSize(width: 100, height: 100))
         
+        
+        
         if type != .Loading {
             configuration.shouldAutoHide = true
             configuration.autoHideInterval = 1.5
@@ -285,7 +287,7 @@ class Colors {
     let magenta = Color(#colorLiteral(red: 0.6078431606292725, green: 0.364705890417099, blue: 0.7098039388656616, alpha: 1))
     
     let white = Color(#colorLiteral(red: 0.929411768913269, green: 0.9450980424880981, blue: 0.9490196108818054, alpha: 1))
-    let background = Color(UIColor.systemBackground)
+//    let background = Color(UIColor.systemBackground)
     
     let background6 = Color(UIColor.secondarySystemBackground)
     let card = Color(red: 142 / 255, green: 142 / 255, blue: 147 / 255)

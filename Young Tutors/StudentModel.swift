@@ -64,9 +64,28 @@ class StudentModel: ObservableObject {
                         }
                         
                     }
-                    
                 }
         }
     }
+    
+    func signOut(_ completion: @escaping () -> Void) {
+        
+        do {
+            try Auth.auth().signOut()
+            completion()
+        } catch {
+            print("could not sign out")
+        }
+        
+    }
+    
+    func getSettings() {
+        
+    }
+    
+    func saveSettings() {
+        //when you get a success back from the server, show it with the progress hud
+    }
+    
 }
 

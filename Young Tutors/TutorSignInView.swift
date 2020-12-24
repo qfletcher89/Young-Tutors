@@ -18,7 +18,8 @@ struct TutorSignInView: View {
         
         Button {
             model.isTutor = true
-            model.step = .complete
+//            model.step = .complete
+            model.setStep(.complete, .appear)
         } label: {
             Text("tua")
         }
@@ -78,7 +79,7 @@ struct TutorSignInView: View {
 //                    .padding([.vertical, .trailing], 10)
 //                    .frame(width: reader.size.width - 40)
 //                    .background(RoundedRectangle(cornerRadius: 30)
-//                                    .foregroundColor(selectedTutor == "" ? self.cs().darkGrey.opacity(0.5) : self.cs().watermelon))
+//                                    .foregroundColor(selectedTutor == "" ? .csdarkGrey.opacity(0.5) : .cswatermelon))
 //
 //                }).padding(.bottom, 30)
 //                .disabled(selectedTutor == "")
@@ -116,9 +117,10 @@ struct TutorSignInView: View {
 //                tutorModel.getTutors()
 //            }
 //            .customNavBar(proxy: reader, title: "Which Tutor are You?", leading: Button(action: {
-//                withAnimation(Animation.easeInOut(duration: 0.2)) {
-//                model.step = .landing
-//                }
+///                withAnimation(Animation.easeInOut(duration: 0.2)) {
+///                model.step = .landing
+///                }
+//        model.setStep(.landing, .disappear)
 //            }, label: {
 //                AnyView(Image("left"))
 //            }))

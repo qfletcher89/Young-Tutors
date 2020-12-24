@@ -36,9 +36,10 @@ struct StudentName: View {
                 Spacer()
                 
                 Button(action: {
-                    withAnimation(Animation.easeOut(duration: 0.3)) {
-                        model.step = .studentEmailPassword
-                    }
+//                    withAnimation(Animation.easeOut(duration: 0.3)) {
+//                        model.step = .studentEmailPassword
+//                    }
+                    model.setStep(.studentEmailPassword, .appear)
                 }, label: {
                     
                     HStack {
@@ -52,7 +53,7 @@ struct StudentName: View {
                     .padding([.vertical, .trailing], 10)
                     .frame(width: reader.size.width - 40)
                     .background(RoundedRectangle(cornerRadius: 30)
-                                    .foregroundColor(model.name == "" ? self.cs().darkGrey.opacity(0.5) : self.cs().watermelon))
+                                    .foregroundColor(model.name == "" ? Color.csdarkGrey.opacity(0.5) : .cswatermelon))
                     
                 }).disabled(model.name == "")
                 .padding(.bottom, 30)
@@ -65,12 +66,15 @@ struct StudentName: View {
                           title: "What's Your Name?", leading:
                             
                             Button(action: {
-                                withAnimation(Animation.easeInOut(duration: 0.2)) {
+//                                withAnimation(Animation.easeInOut(duration: 0.2)) {
                                     model.error = " "
                                     model.password = ""
-                                    model.step = .landing
-                                    
-                                }
+//                                    model.step = .landing
+//
+//                                }
+                                
+                                model.setStep(.landing, .disappear)
+                                
                             }, label: {
                                 AnyView(Image("left"))
                             }))
@@ -143,7 +147,7 @@ struct StudentEmailPassword: View {
                     .padding([.vertical, .trailing], 10)
                     .frame(width: reader.size.width - 40)
                     .background(RoundedRectangle(cornerRadius: 30)
-                                    .foregroundColor(model.email != "" && model.password != "" ? self.cs().watermelon : self.cs().darkGrey.opacity(0.5)))
+                                    .foregroundColor(model.email != "" && model.password != "" ? .cswatermelon : Color.csdarkGrey.opacity(0.5)))
                     
                 }).disabled(model.email == "" || model.password == "")
                 .padding(.bottom, 30)
@@ -157,11 +161,13 @@ struct StudentEmailPassword: View {
                           title: "Email & Password", leading:
                             
                             Button(action: {
-                                withAnimation(Animation.easeInOut(duration: 0.2)) {
+//                                withAnimation(Animation.easeInOut(duration: 0.2)) {
                                     model.error = " "
                                     model.password = ""
-                                    model.step = .studentName
-                                }
+//                                    model.step = .studentName
+//                            }
+                                model.setStep(.studentName, .disappear)
+                                
                             }, label: {
                                 AnyView(Image("left"))
                             }))

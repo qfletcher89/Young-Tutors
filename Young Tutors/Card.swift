@@ -29,7 +29,7 @@ struct Card: View {
         
         if course != nil {
             if number == 0 {
-                self.color = Color(UIColor.quaternaryLabel)
+                self.color = .quatrentaryLabel
             }
         }
         
@@ -84,7 +84,7 @@ struct Card: View {
         .padding(.vertical, 20)
         .background(RoundedRectangle(cornerRadius: 30)
                         .frame(width: boxWidth)
-                        .foregroundColor(self.cs().background6))
+                        .foregroundColor(.secondaryBackground))
     }
     
     func decideImage() -> Image {

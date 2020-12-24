@@ -33,11 +33,11 @@ struct EventsView: View {
                                 if event.student != "not-found" {
                                     if event.email != "not-found" {
                                         Text(event.student + " • " + event.email)
-                                            .foregroundColor(Color(UIColor.secondaryLabel))
+                                            .foregroundColor(.secondaryLabel)
                                             .padding(.bottom, 20)
                                     } else {
                                         Text(event.student)
-                                            .foregroundColor(Color(UIColor.secondaryLabel))
+                                            .foregroundColor(.secondaryLabel)
                                             .padding(.bottom, 20)
                                     }
                                 }
@@ -45,6 +45,7 @@ struct EventsView: View {
                                 
                                 HStack {
                                     
+                                    Spacer()
                                     
                                     Button {
                                         print("cancel event")
@@ -61,7 +62,9 @@ struct EventsView: View {
                                                         //                                                    .foregroundColor(Color(UIColor.label)))
                                             )
                                         
-                                    }.accentColor(Color(UIColor.label))
+                                    }.accentColor(.label)
+                                    
+                                    Spacer()
                                     
                                     Spacer()
                                     
@@ -79,12 +82,14 @@ struct EventsView: View {
                                     } label: {
                                         Text("Email")
                                             .fontWeight(.semibold)
-                                            .foregroundColor(event.email == "not-found" ? Color(UIColor.quaternaryLabel) : .white)
+                                            .foregroundColor(event.email == "not-found" ? .quatrentaryLabel : .white)
                                             .padding(.vertical, 10)
                                             .padding(.horizontal, 40)
                                             .background(RoundedRectangle(cornerRadius: 30)
-                                                            .foregroundColor(event.email != "not-found" ? self.cs().watermelon  : Color(UIColor.quaternarySystemFill)))
+                                                            .foregroundColor(event.email != "not-found" ? .cswatermelon  : .quatrentarySystemFill))
                                     }
+                                    
+                                    Spacer()
                                     
                                 }
                                 
@@ -92,7 +97,7 @@ struct EventsView: View {
                             .padding(.horizontal, 30)
                             .frame(width: reader.size.width - 30, alignment: .leading)
                             .background(RoundedRectangle(cornerRadius: 30)
-                                            .foregroundColor(Color(UIColor.secondarySystemBackground)))
+                                            .foregroundColor(.secondaryBackground))
                             .padding(.vertical, 15)
                         }
                     } else {

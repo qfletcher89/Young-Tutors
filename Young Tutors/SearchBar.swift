@@ -15,7 +15,7 @@ struct SearchBar: View {
     var body: some View {
         HStack {
             Image(systemName: "magnifyingglass")
-                .foregroundColor(Color(UIColor.tertiaryLabel))
+                .foregroundColor(.tertiaryLabel)
             
             TextField("Search", text: $searchFieldText) { (changing) in } onCommit: {
                 self.hideKeyboard()
@@ -35,12 +35,12 @@ struct SearchBar: View {
                 self.hideKeyboard()
             } label: {
                 Image(systemName: "xmark.circle")
-                    .foregroundColor(Color(UIColor.secondaryLabel))
+                    .foregroundColor(.secondaryLabel)
             }
         }
         .padding(.horizontal)
         .padding(.vertical, 10)
         .background(RoundedRectangle(cornerRadius: 15)
-                        .foregroundColor(Color(UIColor.tertiarySystemFill)))
+                        .foregroundColor(.tertiarySystemFill))
     }
 }

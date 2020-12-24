@@ -15,58 +15,37 @@ struct ContentView: View {
     
     var body: some View {
         
-        ZStack {
-            HStack {
-                TestSubView(string: "loading", type: .Loading, globalType: $type, isLoading: $isShowing)
-                
-                TestSubView(string: "success", type: .Success, globalType: $type, isLoading: $isShowing)
-                
-                TestSubView(string: "error", type: .Error, globalType: $type, isLoading: $isShowing)
-                
-                TestSubView(string: "warning", type: .Warning, globalType: $type, isLoading: $isShowing)
-            }
-            
-            TTProgressHUD($isShowing, config: getConfig())
-            
-            
-        }
+        
+        Button(action: {isShowing.toggle()}) {
+            Text("show")
+        }//.fullScreenCover(isPresented: $isShowing, content: {TestSubView()})
+        
     }
     
-    func getConfig() -> TTProgressHUDConfig {
+    func executable() {
         
-        TTProgressHUDConfig(type: type, lineWidth: 1, imageViewSize: CGSize(width: 100, height: 100), shouldAutoHide: true, autoHideInterval: 1.5)
+        let array = [String]()
+        let dictionary = [String:String]()
+        
+        let arrayValue = array[0]
+        let dictionaryValue = dictionary["Me"]
+        
+        
         
     }
     
 }
 
 
-struct TestSubView: View {
-    
-    
-    var string: String
-    var type: TTProgressHUDType
-    @Binding var globalType: TTProgressHUDType
-    @Binding var isLoading: Bool
-    
-    
-    var body: some View {
-        
-        Button {
-            globalType = type
-            isLoading.toggle()
-        } label: {
-            VStack {
-                Text(String(string))
-                
-                
-                Spacer()
-            }
-            
-        }
-
-        
-        
-    }
-    
-}
+//struct TestSubView: View {
+//
+//
+//    var body: some View {
+//
+//        Slider
+//
+//
+//
+//    }
+//
+//}

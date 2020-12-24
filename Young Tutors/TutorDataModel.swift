@@ -132,14 +132,13 @@ class TutorDataModel: ObservableObject {
                             
                         }
                         
+                        eventsArray.sort()
+                        
                         self.events = eventsArray
                         
                     }
-                    
                 }
-                
             }
-        
     }
     
     func saveClasses(classes: [Class]) {
@@ -278,6 +277,17 @@ class TutorDataModel: ObservableObject {
             
         }
     }
+    
+    func signOut(_ completion: @escaping ()-> Void) {
+        
+        do {
+            try Auth.auth().signOut()
+            completion()
+        } catch {
+            print("there was an issue signing out")
+        }
+    }
+    
 }
 
 struct Event: Identifiable, Comparable {

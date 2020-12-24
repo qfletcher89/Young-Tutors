@@ -14,6 +14,7 @@ struct SubjectsView: View {
     @State var searchFieldText = ""
     //I do a custom value so I can animate the changing of the text in search field
     @State var customSearchText = ""
+    @State var settingsIsShowing = false
     
     var body: some View {
         
@@ -29,52 +30,51 @@ struct SubjectsView: View {
                             .padding()
                         HStack(alignment: .top) {
                             
-                            VStack {
-                                ForEach(splitSubjects()[0]) {subject in
+                            ForEach(0..<2) {i in
+                                
+                                VStack {
+                                    ForEach(splitSubjects()[i]) {subject in
+                                        
+                                        
+                                        NavigationLink(destination: ClassView(subject: subject, boxWidth: boxWidth, color: decideColor(for: subject))) {
+                                            Card(boxWidth: boxWidth,
+                                                 color: decideColor(for: subject),
+                                                 mainText: subject.id.capitalized,
+                                                 number: subject.count,
+                                                 course: nil)
+                                                .padding(.bottom)
+                                        }.disabled(subject.count == 0 ? true : false)
+                                    }
                                     
+                                    Spacer()
                                     
-                                    NavigationLink(destination: ClassView(subject: subject, boxWidth: boxWidth, color: decideColor(for: subject))) {
-                                        Card(boxWidth: boxWidth,
-                                             color: decideColor(for: subject),
-                                             mainText: subject.id.capitalized,
-                                             number: subject.count,
-                                             course: nil)
-                                            .padding(.bottom)
-                                    }.disabled(subject.count == 0 ? true : false)
+                                }.padding(i == 0 ? .leading : .trailing, 20)
+                                
+                                if i == 0 {
+                                    Spacer()
                                 }
                                 
-                                Spacer()
-                                
-                            }.padding(.leading, 20)
-                            
-                            Spacer()
-                            
-                            VStack {
-                                ForEach(splitSubjects()[1]) {subject in
-                                    
-                                    NavigationLink(destination: ClassView(subject: subject, boxWidth: boxWidth, color: decideColor(for: subject))) {
-                                        Card(boxWidth: boxWidth,
-                                             color: decideColor(for: subject),
-                                             mainText: subject.id.capitalized,
-                                             number: subject.count,
-                                             course: nil)
-                                            .padding(.bottom)
-                                    }.disabled(subject.count == 0 ? true : false)
-                                }
-                                
-                                Spacer()
-                                
-                            }.padding(.trailing, 20)
-                            
+                            }
                         }
                     }
-                }.customNavBar(proxy: geometry, title: "Subjects", trailing: Button(action: {
-                    self.model.getSubjects()
-                  }, label: {
-                    AnyView(Image("reload"))
-                  }))
+                }.customNavBar(proxy: geometry, title: "Subjects",
+                               Button(action: {
+                                self.settingsIsShowing = true
+                               }, label: {
+                                AnyView(
+                                    Circle()
+                                        .frame(width: 24, height: 24)
+                                )
+                               }) , Button(action: {
+                                self.model.getSubjects()
+                            }, label: {
+                                AnyView(Image("reload"))
+                            }))
+                .fullScreenCover(isPresented: $settingsIsShowing, content: {
+                    SettingsView()
+                })
             }
-            .background(self.cs().background.edgesIgnoringSafeArea(.all))
+            .background(Color.background.edgesIgnoringSafeArea(.all))
         }
     }
     
@@ -131,28 +131,28 @@ struct SubjectsView: View {
             switch subject.id {
             
             case "computer science":
-                return self.cs().orange
+                return .csorange
             case "math":
-                return self.cs().skyBlue
+                return .csskyBlue
             case "english":
-                return self.cs().navyBlue
+                return .csnavyBlue
             case "science":
-                return self.cs().mint
+                return .csmint
             case "social science":
-                return self.cs().red
+                return .csred
             case "performing arts":
-                return self.cs().magenta
+                return .csmagenta
             case "world languages":
-                return self.cs().yellow
+                return .csyellow
             case "pe":
-                return self.cs().coffe
+                return .cscoffe
             case "visual arts":
-                return self.cs().teal
+                return .csteal
             default:
-                return self.cs().black
+                return .csblack
             }
         } else {
-            return Color(UIColor.quaternaryLabel)
+            return .quatrentaryLabel
         }
         
     }

@@ -67,7 +67,7 @@ struct LogInView: View {
                     .padding([.vertical, .trailing], 10)
                     .frame(width: reader.size.width - 40)
                     .background(RoundedRectangle(cornerRadius: 30)
-                                    .foregroundColor(model.email != "" && model.password != "" ? self.cs().watermelon : self.cs().darkGrey.opacity(0.5)))
+                                    .foregroundColor(model.email != "" && model.password != "" ? .cswatermelon : Color.csdarkGrey.opacity(0.5)))
                     
                 }).padding(.bottom, 30)
                 .disabled(model.email == "" || model.password == "")
@@ -77,12 +77,13 @@ struct LogInView: View {
                 password = model.password
             }
             .customNavBar(proxy: reader, title: "Enter Credentials", leading: Button(action: {
-                withAnimation(Animation.easeInOut(duration: 0.2)) {
+//                withAnimation(Animation.easeInOut(duration: 0.2)) {
                     model.error = " "
                     model.password = ""
-                model.step = .landing
-                    
-                }
+//                model.step = .landing
+//
+//                }
+                model.setStep(.landing, .disappear)
             }, label: {
                 AnyView(Image("left"))
             }))

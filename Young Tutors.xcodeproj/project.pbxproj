@@ -17,6 +17,7 @@
 		C62BD45825788C9F0027B387 /* EventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62BD45725788C9F0027B387 /* EventsView.swift */; };
 		C62BD45B25788FCD0027B387 /* StudentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62BD45A25788FCD0027B387 /* StudentModel.swift */; };
 		C64644352565E1D600C52883 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64644342565E1D600C52883 /* View+Extension.swift */; };
+		C64F24292595245500A24ABD /* Image+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64F24282595245500A24ABD /* Image+Extension.swift */; };
 		C65A2CC9256618C2003FB1AB /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65A2CC8256618C2003FB1AB /* Card.swift */; };
 		C65B1CB5257452CB0007DD9F /* TutorDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65B1CB4257452CB0007DD9F /* TutorDetailView.swift */; };
 		C65D707425748D33005CED5E /* NavModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65D707325748D33005CED5E /* NavModel.swift */; };
@@ -25,6 +26,7 @@
 		C65E687A256F8EAF00E264C5 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65E6879256F8EAF00E264C5 /* String+Extension.swift */; };
 		C666388325867403003B48F8 /* TTProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = C666388225867403003B48F8 /* TTProgressHUD */; };
 		C666388625868BBA003B48F8 /* ProgressHudActivator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C666388525868BBA003B48F8 /* ProgressHudActivator.swift */; };
+		C6695805259460CA004258EB /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6695804259460CA004258EB /* Color+Extension.swift */; };
 		C67215722583232600A58956 /* RecapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67215712583232600A58956 /* RecapView.swift */; };
 		C679405B2582D6FA00DAD7B4 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C679405A2582D6FA00DAD7B4 /* SearchBar.swift */; };
 		C67C5A11258BD8A600F08F2D /* TutorProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67C5A10258BD8A600F08F2D /* TutorProfileView.swift */; };
@@ -48,10 +50,9 @@
 		C6F9508B25717E39002A9993 /* TutorContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F9508A25717E39002A9993 /* TutorContainerView.swift */; };
 		C6F9508F2571854D002A9993 /* TutorCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F9508E2571854D002A9993 /* TutorCard.swift */; };
 		C6F9509325718697002A9993 /* TutorClassesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F9509225718697002A9993 /* TutorClassesView.swift */; };
-		C6FDA967256ED186006B3110 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FDA966256ED186006B3110 /* HomeView.swift */; };
 		C6FDA96A256ED1AB006B3110 /* TutorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FDA969256ED1AB006B3110 /* TutorsView.swift */; };
 		C6FDA96D256ED205006B3110 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FDA96C256ED205006B3110 /* CalendarView.swift */; };
-		C6FDA971256ED20F006B3110 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FDA970256ED20F006B3110 /* ProfileView.swift */; };
+		C6FDA971256ED20F006B3110 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FDA970256ED20F006B3110 /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +68,7 @@
 		C62BD45725788C9F0027B387 /* EventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsView.swift; sourceTree = "<group>"; };
 		C62BD45A25788FCD0027B387 /* StudentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentModel.swift; sourceTree = "<group>"; };
 		C64644342565E1D600C52883 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
+		C64F24282595245500A24ABD /* Image+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Extension.swift"; sourceTree = "<group>"; };
 		C65A2CC8256618C2003FB1AB /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		C65B1CB4257452CB0007DD9F /* TutorDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorDetailView.swift; sourceTree = "<group>"; };
 		C65D707325748D33005CED5E /* NavModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavModel.swift; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 		C65D8ABC2573120800B80DF0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C65E6879256F8EAF00E264C5 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		C666388525868BBA003B48F8 /* ProgressHudActivator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressHudActivator.swift; sourceTree = "<group>"; };
+		C6695804259460CA004258EB /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		C67215712583232600A58956 /* RecapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecapView.swift; sourceTree = "<group>"; };
 		C67408DA257C96D90047D7FC /* Young Tutors.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Young Tutors.entitlements"; sourceTree = "<group>"; };
 		C679405A2582D6FA00DAD7B4 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
@@ -100,10 +103,9 @@
 		C6F9508A25717E39002A9993 /* TutorContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorContainerView.swift; sourceTree = "<group>"; };
 		C6F9508E2571854D002A9993 /* TutorCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorCard.swift; sourceTree = "<group>"; };
 		C6F9509225718697002A9993 /* TutorClassesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorClassesView.swift; sourceTree = "<group>"; };
-		C6FDA966256ED186006B3110 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		C6FDA969256ED1AB006B3110 /* TutorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorsView.swift; sourceTree = "<group>"; };
 		C6FDA96C256ED205006B3110 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
-		C6FDA970256ED20F006B3110 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		C6FDA970256ED20F006B3110 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -235,20 +237,19 @@
 				C61BE3A02569B61A0025F494 /* ContainerView.swift */,
 				C6F9508A25717E39002A9993 /* TutorContainerView.swift */,
 				C65D707325748D33005CED5E /* NavModel.swift */,
-				C6FDA95F256ED0E2006B3110 /* Home */,
 				C6E9AFEC2565B8CD00065AE0 /* (S) Schedule Flow  */,
 				C6FDA960256ED0E7006B3110 /* (S) Tutors */,
 				C6FDA961256ED0F9006B3110 /* (S) Calendar */,
-				C6FDA962256ED104006B3110 /* (S) Profile */,
+				C6FDA962256ED104006B3110 /* (S) Settings */,
 				C620BB03256A400C0088F11F /* Sign Up Flow */,
-				C6FDA95E256ED0DB006B3110 /* Test */,
 				C6FDA963256ED147006B3110 /* Extensions */,
-				C6E9AFEB2565B8C700065AE0 /* System */,
 				C67C5A13258BD8AE00F08F2D /* (T) Create Flow */,
 				C62BD45725788C9F0027B387 /* EventsView.swift */,
 				C67C5A15258BD8FF00F08F2D /* (T) Profile */,
 				C684394C25830F0800EBE80D /* EnvironmentKeys.swift */,
 				C6F9508625717751002A9993 /* TutorDataModel.swift */,
+				C6FDA95E256ED0DB006B3110 /* Test */,
+				C6E9AFEB2565B8C700065AE0 /* System */,
 			);
 			path = "Young Tutors";
 			sourceTree = "<group>";
@@ -282,14 +283,6 @@
 			name = Test;
 			sourceTree = "<group>";
 		};
-		C6FDA95F256ED0E2006B3110 /* Home */ = {
-			isa = PBXGroup;
-			children = (
-				C6FDA966256ED186006B3110 /* HomeView.swift */,
-			);
-			name = Home;
-			sourceTree = "<group>";
-		};
 		C6FDA960256ED0E7006B3110 /* (S) Tutors */ = {
 			isa = PBXGroup;
 			children = (
@@ -309,12 +302,12 @@
 			name = "(S) Calendar";
 			sourceTree = "<group>";
 		};
-		C6FDA962256ED104006B3110 /* (S) Profile */ = {
+		C6FDA962256ED104006B3110 /* (S) Settings */ = {
 			isa = PBXGroup;
 			children = (
-				C6FDA970256ED20F006B3110 /* ProfileView.swift */,
+				C6FDA970256ED20F006B3110 /* SettingsView.swift */,
 			);
-			name = "(S) Profile";
+			name = "(S) Settings";
 			sourceTree = "<group>";
 		};
 		C6FDA963256ED147006B3110 /* Extensions */ = {
@@ -322,6 +315,8 @@
 			children = (
 				C64644342565E1D600C52883 /* View+Extension.swift */,
 				C65E6879256F8EAF00E264C5 /* String+Extension.swift */,
+				C6695804259460CA004258EB /* Color+Extension.swift */,
+				C64F24282595245500A24ABD /* Image+Extension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -457,7 +452,6 @@
 				C65E687A256F8EAF00E264C5 /* String+Extension.swift in Sources */,
 				C6F9509325718697002A9993 /* TutorClassesView.swift in Sources */,
 				C6FDA96D256ED205006B3110 /* CalendarView.swift in Sources */,
-				C6FDA967256ED186006B3110 /* HomeView.swift in Sources */,
 				C67C5A11258BD8A600F08F2D /* TutorProfileView.swift in Sources */,
 				C6E9AFFA2565B99C00065AE0 /* ClassView.swift in Sources */,
 				C6EADF0A25659A7F00D6EA29 /* SceneDelegate.swift in Sources */,
@@ -468,6 +462,7 @@
 				C679405B2582D6FA00DAD7B4 /* SearchBar.swift in Sources */,
 				C612AD96257B43AC0025D3C6 /* StudentSignUp.swift in Sources */,
 				C65D8AB82573115B00B80DF0 /* AppDelegate.swift in Sources */,
+				C64F24292595245500A24ABD /* Image+Extension.swift in Sources */,
 				C612AD99257B43CE0025D3C6 /* TutorSignInView.swift in Sources */,
 				C6EADF0C25659A7F00D6EA29 /* ContentView.swift in Sources */,
 				C684394D25830F0800EBE80D /* EnvironmentKeys.swift in Sources */,
@@ -478,6 +473,7 @@
 				C65D707425748D33005CED5E /* NavModel.swift in Sources */,
 				C62BD45825788C9F0027B387 /* EventsView.swift in Sources */,
 				C65A2CC9256618C2003FB1AB /* Card.swift in Sources */,
+				C6695805259460CA004258EB /* Color+Extension.swift in Sources */,
 				C6E9AFF42565B97500065AE0 /* ClassModel.swift in Sources */,
 				C6EADF3725659D5C00D6EA29 /* TestModel.swift in Sources */,
 				C6F9508B25717E39002A9993 /* TutorContainerView.swift in Sources */,
@@ -485,7 +481,7 @@
 				C620BB08256A40490088F11F /* SignUpModel.swift in Sources */,
 				C612AD9C257B43E70025D3C6 /* LogInView.swift in Sources */,
 				C64644352565E1D600C52883 /* View+Extension.swift in Sources */,
-				C6FDA971256ED20F006B3110 /* ProfileView.swift in Sources */,
+				C6FDA971256ED20F006B3110 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -19,21 +19,17 @@ struct ContainerView: View {
     var body: some View {
         
             TabView(selection: $selection) {
-                
-//                AdditionalDivider(content: HomeView())
-//                    .tabItem {
-//                        Image(selection == 0 ? "home-red" : "home")
-//
-//                    }
-//                    .tag(0)
-                
-                AdditionalDivider(content: SubjectsView(model: subjectsViewModel).environmentObject(tutorsModel).environmentObject(classModel))
+        
+                AdditionalDivider(content: SubjectsView(model: subjectsViewModel).environmentObject(tutorsModel)
+                                    .environmentObject(classModel)
+                                    .environmentObject(studentModel))
                     .tabItem {
                         Image(selection == 0 ? "classes-red" : "classes")
                     }
                     .tag(0)
                 
-                AdditionalDivider(content:TutorsView(model: tutorsModel))
+                AdditionalDivider(content:TutorsView(model: tutorsModel)
+                                    .environmentObject(studentModel))
                     .tabItem {
                         Image(selection == 1 ? "tutors-red" : "tutors")
                     }
@@ -46,12 +42,6 @@ struct ContainerView: View {
                         Image(selection == 2 ? "calendar-red" : "calendar")
                     }
                     .tag(2)
-                
-                AdditionalDivider(content: ProfileView())
-                    .tabItem {
-                        Image(selection == 3 ? "profile-red" : "profile")
-                    }
-                    .tag(3)
                 
             }.hud(isActive: $subjectsViewModel.hudIsActive, type: subjectsViewModel.hudType)
             .hud(isActive: $classModel.hudIsActive, type: classModel.hudType)

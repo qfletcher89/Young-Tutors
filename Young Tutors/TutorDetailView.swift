@@ -40,11 +40,11 @@ struct TutorDetailView: View {
                                 ZStack{
                                     Circle()
                                         .frame(width: 150, height: 150)
-                                        .foregroundColor(Color(UIColor.tertiarySystemBackground))
+                                        .foregroundColor(.tertiaryBackground)
                                     
                                     Text(getInitals(for: tutor).uppercased())
                                         .font(.system(size: 67, weight: .regular, design: .rounded))
-                                        .foregroundColor(Color(UIColor.label))
+                                        .foregroundColor(.label)
                                     
                                 }.padding(.vertical, getImagePadding(proxy: proxy))
                                 
@@ -56,7 +56,7 @@ struct TutorDetailView: View {
                                             Text("Info:")
                                                 .font(.title3)
                                                 .fontWeight(.semibold)
-                                                .foregroundColor(Color(UIColor.label))
+                                                .foregroundColor(.label)
                                                 .padding(.bottom, 10)
                                             
                                             if tutor.pronouns != nil {
@@ -82,7 +82,7 @@ struct TutorDetailView: View {
                                         .frame(width: proxy.size.width - 60, alignment: .leading)
                                         .background(
                                             RoundedRectangle(cornerRadius: 30)
-                                                .foregroundColor(Color(UIColor.secondarySystemBackground))
+                                                .foregroundColor(.secondaryBackground)
                                         )
                                         .padding(.leading, 20)
                                         
@@ -91,7 +91,7 @@ struct TutorDetailView: View {
                                             Text("Bio:")
                                                 .font(.title3)
                                                 .fontWeight(.semibold)
-                                                .foregroundColor(Color(UIColor.label))
+                                                .foregroundColor(.label)
                                                 .padding(.bottom, 10)
                                             
                                             if tutor.bio != nil {
@@ -109,7 +109,7 @@ struct TutorDetailView: View {
                                         .frame(width: proxy.size.width - 60, alignment: .leading)
                                         .background(
                                             RoundedRectangle(cornerRadius: 30)
-                                                .foregroundColor(Color(UIColor.secondarySystemBackground))
+                                                .foregroundColor(.secondaryBackground)
                                         )
                                         .padding(.leading, 20)
                                         .padding(.bottom, 20)
@@ -119,7 +119,7 @@ struct TutorDetailView: View {
                                             Text("Subject Strengths:")
                                                 .font(.title3)
                                                 .fontWeight(.semibold)
-                                                .foregroundColor(Color(UIColor.label))
+                                                .foregroundColor(.label)
                                                 .padding(.bottom, 10)
                                             
                                             if tutor.strengths != nil {
@@ -135,7 +135,7 @@ struct TutorDetailView: View {
                                         .frame(width: proxy.size.width - 60, alignment: .leading)
                                         .background(
                                             RoundedRectangle(cornerRadius: 30)
-                                                .foregroundColor(Color(UIColor.secondarySystemBackground))
+                                                .foregroundColor(.secondaryBackground)
                                         )
                                         .padding(.leading, 20)
                                         
@@ -143,7 +143,7 @@ struct TutorDetailView: View {
                                             Text("Awards:")
                                                 .font(.title3)
                                                 .fontWeight(.semibold)
-                                                .foregroundColor(Color(UIColor.label))
+                                                .foregroundColor(.label)
                                                 .padding(.bottom, 10)
                                             
                                             if tutor.awards != nil {
@@ -159,11 +159,11 @@ struct TutorDetailView: View {
                                         .frame(width: proxy.size.width - 60, alignment: .leading)
                                         .background(
                                             RoundedRectangle(cornerRadius: 30)
-                                                .foregroundColor(Color(UIColor.secondarySystemBackground))
+                                                .foregroundColor(.secondaryBackground)
                                         )
                                         .padding(.horizontal, 20)
                                         
-                                    }.foregroundColor(Color(UIColor.secondaryLabel))
+                                    }.foregroundColor(.secondaryLabel)
                                     
                                 }
                             }
@@ -199,7 +199,7 @@ struct TutorDetailView: View {
                         } label: {
                             Image("mail")
                                 .renderingMode(.template)
-                                .foregroundColor(tutor.email != nil && tutor.email != "not-found" ? .white : Color(UIColor.quaternaryLabel))
+                                .foregroundColor(tutor.email != nil && tutor.email != "not-found" ? .white : .quatrentaryLabel)
                         }
                         
                     }.overlay(Text(tutor.id)
@@ -214,7 +214,7 @@ struct TutorDetailView: View {
             }.navigationTitle(Text(""))
             .navigationBarHidden(true)
             .background(isFromModal ? Color("ModalColor")
-                            .edgesIgnoringSafeArea(.all) : Color(UIColor.systemBackground)
+                            .edgesIgnoringSafeArea(.all) : Color.background
                             .edgesIgnoringSafeArea(.all))
         } else {
             Text("Sorry, this tutor was not found")

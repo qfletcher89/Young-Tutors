@@ -55,7 +55,7 @@ struct TutorSubjectsView: View {
                         .padding(.horizontal)
                         .padding(.vertical, 10)
                         .background(RoundedRectangle(cornerRadius: 15)
-                                        .foregroundColor(Color(UIColor.tertiarySystemFill)))
+                                        .foregroundColor(.tertiarySystemFill))
                         .padding(.horizontal)
                         .padding(.vertical)             
                         
@@ -86,7 +86,6 @@ struct TutorSubjectsView: View {
                                 if index == 0 {
                                     Spacer()
                                 }
-                                
                             }
                         }
                     }
@@ -97,7 +96,7 @@ struct TutorSubjectsView: View {
                 }))
             }//.navigationBarTitle("")
 //            .navigationBarHidden(true)
-            .background(self.cs().background.edgesIgnoringSafeArea(.all))
+            .background(Color.background.edgesIgnoringSafeArea(.all))
         }
         
     }
@@ -189,27 +188,27 @@ extension TutorSubjectsView {
         switch subject.id {
         
         case "computer science":
-            return self.cs().orange
+            return .csorange
         case "math":
-            return self.cs().skyBlue
+            return .csskyBlue
         case "english":
-            return self.cs().navyBlue
+            return .csnavyBlue
         case "science":
-            return self.cs().mint
+            return .csmint
         case "social science":
-            return self.cs().red
+            return .csred
         case "performing arts":
-            return self.cs().magenta
+            return .csmagenta
         case "world languages":
-            return self.cs().yellow
+            return .csyellow
         case "pe":
-            return self.cs().coffe
+            return .cscoffe
         case "visual arts":
-            return self.cs().teal
+            return .csteal
         case "times":
-            return self.cs().watermelon
+            return .cswatermelon
         default:
-            return self.cs().black
+            return .csblack
         }
     }
 }

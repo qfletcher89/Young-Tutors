@@ -60,9 +60,12 @@ struct LandingScreen: View {
                     .padding(.bottom, 50)
                 
                 Button(action: {
-                    withAnimation(Animation.easeOut(duration: 0.3)) {
-                        model.step = .studentName
-                    }
+//                    withAnimation(Animation.easeOut(duration: 0.3)) {
+//                        model.step = .studentName
+//                    }
+                    
+                    model.setStep(.studentName, .appear)
+                    
                 }, label: {
                     
                     HStack {
@@ -76,14 +79,15 @@ struct LandingScreen: View {
                     .padding([.vertical, .trailing], 10)
                     .frame(width: reader.size.width - 40)
                     .background(RoundedRectangle(cornerRadius: 30)
-                                    .foregroundColor(self.cs().watermelon))
+                                    .foregroundColor(.cswatermelon))
                     
                 }).padding(.bottom, 20)
                 
                 Button(action: {
-                    withAnimation(Animation.easeOut(duration: 0.3)) {
-                        model.step = .tutorSignIn
-                    }
+//                    withAnimation(Animation.easeOut(duration: 0.3)) {
+//                        model.step = .tutorSignIn
+//                    }
+                    model.setStep(.tutorSignIn, .appear)
                 }, label: {
                     
                     HStack {
@@ -107,12 +111,15 @@ struct LandingScreen: View {
                     Text("Already a member?")
                     
                     Button(action: {
-                        withAnimation(Animation.easeOut(duration: 0.3)) {
-                            model.step = .logIn
-                        }
+//                        withAnimation(Animation.easeOut(duration: 0.3)) {
+//                            model.step = .logIn
+//                        }
+                        
+                        model.setStep(.logIn, .appear)
+                        
                     }, label: {
                         Text("Sign in.")
-                            .foregroundColor(self.cs().watermelon)
+                            .foregroundColor(.cswatermelon)
                     })
                     
                 }
@@ -125,7 +132,7 @@ struct LandingScreen: View {
                         //open webview to terms of sevice
                     }, label: {
                         Text("Terms of Service")
-                            .foregroundColor(self.cs().watermelon)
+                            .foregroundColor(.cswatermelon)
                     })
                     Text("and")
                 }.font(.footnote)
@@ -136,7 +143,7 @@ struct LandingScreen: View {
                         //navigate to privacy policy
                     }, label: {
                         Text("Privacy Policy")
-                            .foregroundColor(self.cs().watermelon)
+                            .foregroundColor(.cswatermelon)
                     })
                     Text("applies to you.")
                 }.padding(.bottom, 30)
@@ -159,10 +166,13 @@ struct CompleteView: View {
             .font(.largeTitle)
             .bold()
             .onAppear {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                    withAnimation(Animation.easeOut(duration: 0.3)) {
-                        model.step = .container
-                    }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+//                    withAnimation(Animation.easeOut(duration: 0.3)) {
+//                        model.step = .container
+//                    }
+                    
+                    model.setStep(.container, .appear)
+                    
                 }
             }
     }
