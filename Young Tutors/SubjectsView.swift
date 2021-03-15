@@ -62,8 +62,7 @@ struct SubjectsView: View {
                                 self.settingsIsShowing = true
                                }, label: {
                                 AnyView(
-                                    Circle()
-                                        .frame(width: 24, height: 24)
+                                    Image("gear")
                                 )
                                }) , Button(action: {
                                 self.model.getSubjects()

@@ -45,7 +45,7 @@ struct SettingsView: View {
                                     presentationMode.wrappedValue.dismiss()
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
                                         studentModel.signOut({
-//                                            signUpModel.step = .landing
+
                                             signUpModel.setStep(.landing, .disappear)
                                         })
                                     }
@@ -91,7 +91,17 @@ struct SettingsView: View {
                                                                     print("wyoungtutors")
                                                                 })),
                                    setting2: AnyView(SettingBar(image: Image("instagram"), name: "kendalleasterly", action: {
-                                    print("kendalleasterly")
+                                    
+                                    if let url = URL(string: "https://www.instagram.com/kendall_easterly/"){
+                                        UIApplication.shared.open(url) { (result) in
+                                            if result {
+                                                print("successful")
+                                            }
+                                        }
+                                    } else {
+                                        print("url was invalid")
+                                    }
+                                    
                                    })))
                     
                     SettingSection(title: "About",
